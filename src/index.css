@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animate-spin{
+    animation: spin 100s linear infinite;  
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(255, 165, 0, 0.5)
+}
+
+/* background */
+@layer components{
+    .bg-red-gradient{
+        @apply bg-gradient-to-r from-red-900 to-red-600
+    }
+}
+@layer components{
+    .bg-slate{
+        @apply bg-slate-50
+    }
+}
+@layer components{
+    .bg-yellow{
+        @apply bg-yellow-500
+    }
+}
+/* border-color */
+@layer components{
+    .border-red{
+        @apply border-red-950
+    }
+}
+@layer components{
+    .border-yellow{
+        @apply border-yellow-500
+    }
+}
+/* text-color */
+@layer components{
+    .text-yellow{
+        @apply text-yellow-500
+    }
+}
+@layer components{
+    .text-red{
+        @apply text-red-900
+    }
+}
+/* font-size */
+@layer components{
+    .font-title{
+        @apply text-5xl font-extrabold
+    }
+}
+@layer components{
+    .font-main{
+        @apply text-3xl font-bold
+    }
+}
+@layer components{
+    .font-head{
+        @apply text-xl font-bold
+    }
+}
+@layer components{
+    .font-second{
+        @apply text-sm
+    }
+}
+
+/* animation */
+.train {
+    display: flex;
+    will-change: transform;
+    animation: moveTrain 10s linear infinite; /* เพิ่มแอนิเมชันให้รถไฟเลื่อนไปข้างหน้า */
+  }
+  
+  .skills-train-wrapper {
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden; /* ป้องกันไม่ให้ภาพเลื่อนออกจากขอบ */
+    width: 100%; /* กำหนดให้แสดงเต็มจอ */
+  }
+  
+  .train-cab {
+    width: 200px;
+  }
+  
+  .train-box-coach {
+    width: 200px;
+  }
+  
+  .imgTrain {
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  @keyframes moveTrain {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  /* animationComment */
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .tweets-row-1 {
+      align-items: center;
+      display: flex;
+      position: relative;
+      left: 0;
+  }
+  
+  .comment {
+      will-change: transform;
+      transform-style: preserve-3d;
+      animation: slide 5s linear infinite; /* เพิ่มการเคลื่อนไหว */
+  }
+  
+  .tweet-483-wide {
+      width: 483px;
+      border-radius: 10px;
+      margin-right: 32px;
+      box-shadow: 0 30px 29px -23px rgba(0, 0, 0, 0.26);
+  }
+  
+  .imgComment {
+      max-width: 100%;
+      vertical-align: middle;
+      display: inline-block;
+  }
+  
+
+  /* wave txt */
+
+  .wave-text {
+    display: inline-block;
+  }
+  
+  .wave-letter {
+    display: inline-block;
+    transform: translateY(0); /* เริ่มต้นโดยไม่มีการเคลื่อนไหว */
+    transition: transform 0.3s ease-in-out; /* เพิ่มการ transition */
+  }
+  
+  .wave-text:hover .wave-letter {
+    animation: wave 0.6s ease-in-out infinite; /* ทำให้เริ่ม animation เมื่อ hover */
+  }
+  
+  @keyframes wave {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px) rotate(10deg);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
