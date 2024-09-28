@@ -46,7 +46,8 @@ const registerAuthen = Joi.object({
                 .messages({
                     "string.empty": "Confirm password is required",
                     "any.only": "Password does not match",
-                })
+                }),
+              
                 
 })
 
@@ -71,21 +72,21 @@ const loginAuthen = Joi.object({
 
 const validateRegister = (input)=>{
 
-    const {error,value} = registerAuthen.validate(input,{
+    const {error} = registerAuthen.validate(input,{
         abortEarly: false
     })
    
+   
     if(error){
         const formatError = error.details.reduce((prev,cur)=>{
+            
 
             prev[cur.path[0]] = cur.message
             return prev
         },{})
 
         return formatError
-    }
-
-    return {value}
+    }  
     
 }
 

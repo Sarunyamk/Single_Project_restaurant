@@ -10,16 +10,18 @@ const useAppStore = create(persist((set)=>({
 
     user:null,
     token : null,
+
     actionRegister : async(form)=>{
-
+        
         try{
-
+            
             const resp = await register(form)
-            console.log(resp)
+            
             toast.success(resp.data.message)
             
            
         }catch(err){
+            
             toast.error(err.response.data.message)
         }
     },
@@ -36,8 +38,8 @@ const useAppStore = create(persist((set)=>({
                 token : resp.data.token
             })
 
+            toast.success(`Welcome ${resp.data.user.user.role}`)
             return resp
-            toast.success(resp.data.message)
         }catch(err){
 
             toast.error(err.response.data.message)

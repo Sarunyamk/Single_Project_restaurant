@@ -9,6 +9,7 @@ import useAppStore from '../zustand/appStore'
 export default function NavBar() {
   
   const user = useAppStore((state)=> state.user)
+
  
   const actionLogout = useAppStore((state)=> state.actionLogout)
  
@@ -47,7 +48,7 @@ export default function NavBar() {
                 <div className='relative'>
 
                   <div className='flex items-end'>
-                    <h3  className='font-main text-yellow '>USER</h3>
+                    <h3  className='font-main text-yellow '>{user.user.firstname}</h3>
                     <img onClick={toggleDropdownUser} className='w-8 h-8 cursor-pointer' src={dropDownIcon}/>
                   </div>
                   {

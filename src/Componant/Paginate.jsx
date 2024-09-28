@@ -67,6 +67,9 @@ const Paginate = () => {
     <div>
       
         <div className="flex flex-col items-center">
+            <div className="flex justify-center mb-4">
+              {renderPageNumbers()}
+            </div>
             <div className="grid grid-cols-5 gap-6 mb-6">
                 {currentItems.map((item) => (
                 <div key={item.id} className="p-6 bg-white rounded-lg shadow-lg">
@@ -83,9 +86,6 @@ const Paginate = () => {
                     </div>
                 </div>
                 ))}
-            </div>
-            <div className="flex justify-center mb-4">
-              {renderPageNumbers()}
             </div>
             
         </div>

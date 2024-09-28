@@ -13,7 +13,7 @@ export default function MenuPage() {
       <BackGround/>
       <CardSelectCategory/>
       <Paginate/>
-      <Menu/>
+     
       
     </div>
    

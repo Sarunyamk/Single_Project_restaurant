@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import useAppStore from '../zustand/appStore'
 import { useNavigate } from 'react-router-dom'
 
+
 export default function Login() {
 
   const navigate = useNavigate()
 
   const [form,setForm] = useState({
 
-    email : 'admin000@gmail.com',
-    password : 'Mink000'
+    email : '',
+    password : ''
   })
 
   const actionLogin = useAppStore((state)=> state.actionLogin)
@@ -52,7 +53,7 @@ export default function Login() {
         <h1 className='font-main text-yellow my-4 '>Login</h1>
         <input     name="email" onChange={handleChange} value={form.email}
                   className='p-2 outline-none w-10/12' type="email" placeholder='Put your Email...'/>
-        <input     name="email" onChange={handleChange} value={form.password}
+        <input     name="password" onChange={handleChange} value={form.password}
                   className='p-2 outline-none w-10/12' type="password" placeholder='Put your password...'/>
         
         <button className='bg-yellow text-white py-4 px-6 font-head  rounded-xl'>Login</button>
