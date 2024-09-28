@@ -1,7 +1,8 @@
-import { toast } from "react-toastify";
+
 import {create} from  "zustand";
-import {register,login,currentUser} from "../api/auth-api"
+import {register,login} from "../api/auth-api"
 import { persist ,createJSONStorage} from "zustand/middleware";
+import { toast } from 'react-toastify';
 
 
 
@@ -15,10 +16,11 @@ const useAppStore = create(persist((set)=>({
 
             const resp = await register(form)
             console.log(resp)
+            toast.success(resp.data.message)
             
            
         }catch(err){
-            console.log(err)
+            toast.error(err.response.data.message)
         }
     },
     actionLogin : async(form)=>{
@@ -34,9 +36,11 @@ const useAppStore = create(persist((set)=>({
                 token : resp.data.token
             })
 
-            return resp.data.user.user.role
+            return resp
+            toast.success(resp.data.message)
         }catch(err){
 
+            toast.error(err.response.data.message)
             console.log(err)
         }
     },

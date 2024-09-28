@@ -71,7 +71,7 @@ const loginAuthen = Joi.object({
 
 const validateRegister = (input)=>{
 
-    const {error} = registerAuthen.validate(input,{
+    const {error,value} = registerAuthen.validate(input,{
         abortEarly: false
     })
    
@@ -84,6 +84,8 @@ const validateRegister = (input)=>{
 
         return formatError
     }
+
+    return {value}
     
 }
 

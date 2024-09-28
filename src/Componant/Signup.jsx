@@ -1,5 +1,7 @@
 import React ,{useState} from 'react'
 import validateRegister from '../Utils/Validate'
+import useAppStore from '../zustand/appStore'
+
 
 const intitialState = {
   firstname: '',
@@ -26,19 +28,9 @@ export default function Signup() {
 
   const [formatError,setFormatError] = useState({})
 
-  const actionRegister = async(form) =>{
+  const actionRegister = useAppStore((state)=> state.actionRegister)
 
-    try{
-
-            const resp = await register(form)
-            console.log(resp)
-            // toast.success(resp.data.message)
-
-    }catch(err){
-
-        console.log(err)
-    }
-  }
+  
 
   const handleChange = (e) => {
     
@@ -56,11 +48,12 @@ export default function Signup() {
       return setFormatError(error)
     }
 
-    actionRegister(form)
+    actionRegister(value)
     setForm(intitialState)
     setFormatError({})
     
   }
+  
 
   return (
     <div>
@@ -80,8 +73,14 @@ export default function Signup() {
         <div className='flex gap-4 w-3/4 justify-center items-center'>
             <input  name='email' value={form.email} onChange={handleChange}
                     className='p-2 outline-none w-full' type="email" placeholder='Email...'/>
+            {
+                formatError.email && <p className='text-red-500 text-xs ml-2'>{formatError.email}</p>
+            }
             <input  name='phonenumber' value={form.phonenumber} onChange={handleChange}
                     className='p-2 outline-none w-full' type="tel" placeholder='Phonenumber...'/>
+            {
+                formatError.phonenumber && <p className='text-red-500 text-xs ml-2'>{formatError.phonenumber}</p>
+            }
         </div>
         <div className='flex gap-4 w-3/4 justify-center items-center '>
             <input  name='password' value={form.password} onChange={handleChange}
