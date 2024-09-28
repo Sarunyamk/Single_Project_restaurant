@@ -3,15 +3,15 @@ import {Link} from 'react-router-dom'
 import cartIcon from '../img/imgIcon/cartNavbarIcon.png'
 import dropDownIcon from '../img/imgIcon/dropdownIcon.png'
 import myLogo from '../img/imgBg/myLogo.png'
+import useAppStore from '../zustand/appStore'
 
 
 export default function NavBar() {
   
-
-  const [userLogin,setUserLogin] = useState({
-    name:'Mink'
-  } )
-
+  const user = useAppStore((state)=> state.user)
+ 
+  const actionLogout = useAppStore((state)=> state.actionLogout)
+ 
   const [isDropdownUserOpen,setDropdownUserOpen] = useState(false) 
 
   const toggleDropdownUser = () => {
@@ -19,7 +19,7 @@ export default function NavBar() {
   }
 
   const hdlClickLogout = () => {
-    setUserLogin(false)
+    actionLogout()
   }
 
   return (
@@ -37,22 +37,17 @@ export default function NavBar() {
             <Link to='/menu' className='font-head'>Menu</Link>
             <Link to='/contact' className='font-head'>Contact</Link>
 
-             {/* <a href='#home'>Home</a>
-             <a href='#about'>About</a>
-             <a href='#menu'>Menu</a>
-             <a href='#Contact'>Contact</a> */}
-
         </div>
 
         <div>
         
-        { userLogin ? 
+        { user ? 
             <div className='flex gap-10 items-center '>
                 
                 <div className='relative'>
 
                   <div className='flex items-end'>
-                    <h3  className='font-main text-yellow '>{userLogin.name}</h3>
+                    <h3  className='font-main text-yellow '>USER</h3>
                     <img onClick={toggleDropdownUser} className='w-8 h-8 cursor-pointer' src={dropDownIcon}/>
                   </div>
                   {
@@ -83,11 +78,7 @@ export default function NavBar() {
                 </div> 
               </Link>
 
-              {/* <Link to='/settingcustomer'>
-                <div className='w-8 h-8'>
-                  <img src={settingIcon} alt="" className='w-full h-full'/>                
-                </div>
-              </Link> */}
+              
               
 
             </div> 

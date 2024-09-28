@@ -41,7 +41,7 @@ export default function Login() {
 
       navigate('/menu')
     }else{
-      navigate('/cart')
+      navigate('/menu')
     }
   }
 
