@@ -1,28 +1,97 @@
-import React from 'react'
+import React ,{useState} from 'react'
+import validateRegister from '../Utils/Validate'
+
+const intitialState = {
+  firstname: '',
+  lastname: '',
+  phonenumber: '',
+  address: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+}
+
 
 export default function Signup() {
+
+  const [form,setForm] = useState({
+    firstname: '',
+    lastname: '',
+    phonenumber: '',
+    address: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  })
+
+  const [formatError,setFormatError] = useState({})
+
+  const actionRegister = async(form) =>{
+
+    try{
+
+            const resp = await register(form)
+            console.log(resp)
+            // toast.success(resp.data.message)
+
+    }catch(err){
+
+        console.log(err)
+    }
+  }
+
+  const handleChange = (e) => {
+    
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const error = validateRegister(form)
+    if(error){
+      return setFormatError(error)
+    }
+
+    actionRegister(form)
+    setForm(intitialState)
+    setFormatError({})
+    
+  }
+
   return (
     <div>
-      <div className='bg-red-gradient max-w-md w-full mx-auto my-60  py-4 flex flex-col justify-center items-center gap-4'>
+      <form     onSubmit={handleSubmit}
+                className='bg-red-gradient  w-1/2 mx-auto mt-60  py-4 flex flex-col justify-center items-center gap-8'>
         <h1 className='font-main text-yellow my-4 '>Sign up</h1>
-        <div className='flex gap-4'>
-            <input className='p-2 outline-none' type="text" placeholder='Firstname...'/>
-            <input className='p-2 outline-none' type="text" placeholder='Lastname...'/>
+        <div className='flex gap-4 w-3/4 justify-center items-center '>
+            <input  name='firstname' value={form.firstname} onChange={handleChange}
+                    className='p-2 outline-none w-full' type="text" placeholder='Firstname...'/>
+            <input  name='lastname' value={form.lastname} onChange={handleChange}
+                    className='p-2 outline-none w-full' type="text" placeholder='Lastname...'/>
         </div>
-        <div className='flex gap-4'>
-            <input className='p-2 outline-none' type="email" placeholder='Email...'/>
-            <input className='p-2 outline-none' type="tel" placeholder='Phone...'/>
+        <div className='flex gap-4 w-3/4 justify-center items-center'>
+            <input  name='address' value={form.address} onChange={handleChange}
+                    className='p-2 outline-none w-full' type="text" placeholder='Address...'/>            
         </div>
-        <div className='flex gap-4'>
-            <input className='p-2 outline-none' type="password" placeholder='Password...'/>
-            <input className='p-2 outline-none' type="password" placeholder='Confirm password...'/>
+        <div className='flex gap-4 w-3/4 justify-center items-center'>
+            <input  name='email' value={form.email} onChange={handleChange}
+                    className='p-2 outline-none w-full' type="email" placeholder='Email...'/>
+            <input  name='phonenumber' value={form.phonenumber} onChange={handleChange}
+                    className='p-2 outline-none w-full' type="tel" placeholder='Phonenumber...'/>
         </div>
-        <div className='flex gap-4 px-10 text-white'>
-            <input type="checkbox" />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, dolores!</p>
+        <div className='flex gap-4 w-3/4 justify-center items-center '>
+            <input  name='password' value={form.password} onChange={handleChange}
+                    className='p-2 outline-none w-full' type="password" placeholder='Password...'/>
+            <input  name='confirmPassword' value={form.confirmPassword} onChange={handleChange}
+                    className='p-2 outline-none w-full' type="password" placeholder='Confirm password...'/>
         </div>
+        
         <button className='bg-yellow p-4 font-head rounded-xl text-white'>Sign up</button>
-      </div>
+      </form>
 
       
     </div>
