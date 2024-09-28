@@ -25,7 +25,7 @@ const pageRouter = createBrowserRouter([
       <div>
          <NavBar/> 
          <Outlet/>
-         <Animation/>
+         {/* <Animation/> */}
          <Footer/>
         <ScrollToTop/>
        
