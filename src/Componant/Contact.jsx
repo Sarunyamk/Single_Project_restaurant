@@ -1,4 +1,5 @@
 import React from 'react'
+import Map from '../Componant/Map'
 
 
 export default function Contact() {
@@ -29,8 +30,8 @@ export default function Contact() {
       </section>
 
       <section className=' w-3/4 mx-auto flex my-20 '>
-        <div className='bg-slate w-1/2'>
-            googlemap
+        <div className='bg-slate w-1/2 '>
+            <Map/>
         </div>
         <div className='w-1/2 flex flex-col gap-6'>
             <div className='flex mx-4 gap-4'>
