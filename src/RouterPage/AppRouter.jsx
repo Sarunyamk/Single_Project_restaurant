@@ -12,10 +12,6 @@ import ScrollToTop from '../Utils/ScrollToTop';
 import Footer from '../Componant/Footer';
 import CartPage from '../pages/CartPage';
 import EditCustomerProfilePage from '../pages/EditCustomerProfilePage';
-import Animation from '../Componant/Animation';
-
-
-
 
 
 const pageRouter = createBrowserRouter([
@@ -24,8 +20,7 @@ const pageRouter = createBrowserRouter([
     element : (
       <div>
          <NavBar/> 
-         <Outlet/>
-         {/* <Animation/> */}
+         <Outlet/>         
          <Footer/>
         <ScrollToTop/>
        
