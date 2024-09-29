@@ -18,12 +18,11 @@ export default function BackGroundSausage() {
                   2000,
                   'Fresh Ingredients \n Authentic  \n Flavors.',
                   2000
-                ]}
-                wrapper="h3"
+                ]}                
                 cursor={true}                
                 deletionSpeed={200}
                 repeat={Infinity}
-                style={{ fontSize: '100px', whiteSpace: 'pre-line' }}
+                style={{ fontSize: '80px', whiteSpace: 'pre-line' }}
               />
               
             </h1>

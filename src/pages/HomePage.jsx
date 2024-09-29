@@ -3,9 +3,8 @@ import InfoMore from '../Componant/InfoMore';
 import About from '../Componant/About';
 import PopularMenu from '../Componant/PopularMenu';
 import OurClientComment from '../Componant/ClientComment';
-import Footer from '../Componant/Footer';
-import BackGround from '../Componant/BackGround';
 import BackGroundSausage from '../Componant/BackGroundSausage';
+import ScrollText from '../Componant/ScrollText';
 
 
 
@@ -13,12 +12,12 @@ import BackGroundSausage from '../Componant/BackGroundSausage';
 export default function HomePage() {
   return (
     <div>
-     <BackGroundSausage/>    
+     <BackGroundSausage/>   
+     <ScrollText/>
      <InfoMore/>
      <About/>  
      <PopularMenu/> 
-     <OurClientComment/>  
-     {/* <Footer/>    */}
+     <OurClientComment/>      
     </div>
   )
 }

@@ -171,3 +171,17 @@
     }
   }
   
+  /* ScrollingText */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0); /* เริ่มต้นจากตำแหน่งปกติ */
+    }
+    100% {
+      transform: translateX(-100%); /* เลื่อนไปทางซ้ายจนถึงขอบ */
+    }
+  }
+  
+  .text-scroll-left {
+    animation: scroll-left 30s linear infinite; 
+  }
+  

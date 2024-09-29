@@ -1,18 +1,17 @@
 import React from 'react'
 
 import BackGround from './../Componant/BackGround';
-import Paginate from './../Componant/Paginate';
+import Category from '../Componant/Category';
+import Menu from '../Componant/Menu';
 
 export default function MenuPage() {
   return (
   
      <div>
-      <BackGround/>
-      {/* <CardSelectCategory/> */}
-      <Paginate/>
-     
+      <BackGround/>      
+      <Category />
+      <Menu/>
       
     </div>
-   
   )
 }
