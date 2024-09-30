@@ -57,7 +57,7 @@ const useMenuStore = create(persist((set)=> ({
   },
 
 }),{
-    name : "menu=store",
+    name : "menu-store",
     storage : createJSONStorage(() => localStorage)
 }))
 

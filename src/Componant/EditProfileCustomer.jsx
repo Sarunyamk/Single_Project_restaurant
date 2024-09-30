@@ -1,119 +1,55 @@
-import React,{useEffect,useState} from 'react'
-import useAppStore from '../zustand/appStore'
-import { getProfile,editProfile } from '../api/user-api';
+import React, { useEffect, useState } from 'react';
+import useAppStore from '../zustand/appStore';
+import { getProfile, editProfile } from '../api/user-api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 
 export default function EditProfileCustomer() {
+  const [user, setUser] = useState({});
+  const [formatError,setFormatError] = useState({})
 
-  const [user,setUser] = useState({})
+  const token = useAppStore((state) => state.token);
+  const actionRegister = useAppStore((state)=> state.actionRegister)
+  
+ 
 
-  const token = useAppStore((state)=> state.token)
-
-  useEffect(()=>{
-
-    fetchProfile()
-  },[])
+  useEffect(() => {
+    if (token) {
+      fetchProfile();
+    }
+  }, [token]);
 
   const fetchProfile = async () => {
     try {
-        console.log("Token:", token); 
-        const resp = await getProfile(token);
-        console.log(resp.data);
-        setUser(resp.data);
+      
+      const resp = await getProfile(token);
+      setUser(resp.data);
     } catch (err) {
-        console.error("Error fetching profile:", err); 
+      
+      toast.error('Error fetching profile'); 
     }
-}
+  };
 
   const handleUpdateProfile = async (e) => {
-    e.preventDefault()
-    try {
-      const resp = await editProfile(user.id, token, user) 
-      fetchProfile() 
-      console.log(resp)
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
+    e.preventDefault();
+   
+    try {
+
+      const resp = await editProfile(user.id, token, user);
+      fetchProfile();
+      toast.success('Profile updated successfully!'); 
+      
+    } catch (err) {
+      
+      toast.error('Error updating profile'); 
+    }
+  };
 
   return (
-    // <div>
-    //   <div className='bg-red-gradient max-w-md w-full mx-auto my-60 py-4 flex flex-col justify-center items-center gap-4 text-white'>
-    //     <h1 className='font-main text-yellow my-4 '>Edit Profile</h1>
-
-    //     {/* <div className='space-y-4 w-full '>
-    //         <div className='flex flex-row gap-4 justify-start items-center'>
-    //             <p className='w-32 text-right'>Firstname :</p>
-    //             <input className='p-2 border rounded-md outline-none ' 
-    //                     type="text" placeholder='firstname...' value={getProfile.firstname} />
-    //         </div>
-    //         <div className='flex flex-row gap-4 justify-start items-center'>
-    //             <p className='w-32 text-right'>Lastname :</p>
-    //             <input className='p-2 border rounded-md outline-none ' type="text" placeholder='Lastname...' />
-    //         </div>
-    //         <div className='flex flex-row gap-4 justify-start items-center'>
-    //             <p className='w-32 text-right'>Phonenumber :</p>
-    //             <input className='p-2 border rounded-md outline-none ' type="text" placeholder='phone number...' />
-    //         </div>
-    //         <div className='flex flex-row gap-4 justify-start items-center'>
-    //             <p className='w-32 text-right'>Address :</p>
-    //             <input className='p-2 border rounded-md outline-none' type="text" placeholder=' address...' />
-    //         </div>
-    //         <div className='flex flex-row gap-4 justify-start items-center'>
-    //             <p className='w-32 text-right'>Email :</p>
-    //             <input className='p-2 border rounded-md outline-none' type="email" placeholder='email...' />
-    //         </div>
-    //         <div className='flex flex-row gap-4 justify-start items-center'>
-    //             <p className='w-32 text-right'>Password :</p>
-    //             <input className='p-2 border rounded-md outline-none ' type="password" placeholder='password...' />
-    //         </div>
-    //     </div> */}
-
-    //     <div className='space-y-4 w-full '>
-    //       <div className='flex flex-row gap-4 justify-start items-center'>
-    //         {
-    //           user.map((item,index)=>{
-
-    //             return(
-
-    //                 <div key={index} className='flex flex-col text-black'>
-    //                   <p className='w-32 text-right'>Firstname :</p>
-    //                   <input className='p-2 border rounded-md outline-none ' 
-    //                           type="text"  value={item.firstname} onChange={(e)=>hdlUpdateProfile(e,item.id)} />
-                            
-    //                   <p className='w-32 text-right'>Lastname :</p>
-    //                   <input className='p-2 border rounded-md outline-none ' 
-    //                           type="text"  value={item.lastname} />
-                     
-    //                   <p className='w-32 text-right'>Phonenumber :</p>
-    //                   <input className='p-2 border rounded-md outline-none ' 
-    //                           type="text"  value={item.phonenumber} />
-    //                   <p className='w-32 text-right'>Address :</p>
-    //                   <input className='p-2 border rounded-md outline-none ' 
-    //                           type="text"  value={item.address} />
-    //                   <p className='w-32 text-right'>Email :</p>
-    //                   <input className='p-2 border rounded-md outline-none ' 
-    //                           type="text"  value={item.email} />
-    //                   <p className='w-32 text-right'>Password :</p>
-    //                   <input className='p-2 border rounded-md outline-none ' 
-    //                           type="text"  value={item.password} />
-    //                 </div>
-    //             )
-    //           })
-    //         }
-            
-    //         </div>
-    //     </div>
-        
-        
-    //     <button className='bg-yellow text-white py-4 px-6 font-head  rounded-xl'>Confirm</button>
-    //   </div>
-    // </div>
-    <div>
-    <div className='bg-red-gradient max-w-md w-full mx-auto my-60 py-4 flex flex-col justify-center items-center gap-4 text-white'>
-      <h1 className='font-main text-yellow my-4'>Edit Profile</h1>
-
+    <div className='my-40 bg-red-gradient w-1/3 mx-auto p-6 flex flex-col justify-center items-center rounded-lg'>
+      <h1 className='text-center font-main text-yellow my-4'>Profile</h1>
       <form onSubmit={handleUpdateProfile} className='space-y-4 w-full'>
         <div className='flex flex-row gap-4 justify-start items-center'>
           <p className='w-32 text-right'>Firstname :</p>
@@ -121,7 +57,7 @@ export default function EditProfileCustomer() {
             className='p-2 border rounded-md outline-none'
             type='text'
             name='firstname'
-            value={user.firstname || ''}
+            value={user.firstname || ''} // ใช้ default value เพื่อป้องกัน error
             onChange={(e) => setUser({ ...user, firstname: e.target.value })}
             placeholder='Firstname...'
           />
@@ -133,7 +69,7 @@ export default function EditProfileCustomer() {
             className='p-2 border rounded-md outline-none'
             type='text'
             name='lastname'
-            value={user.lastname || ''}
+            value={user.lastname || ''} // ใช้ default value เพื่อป้องกัน error
             onChange={(e) => setUser({ ...user, lastname: e.target.value })}
             placeholder='Lastname...'
           />
@@ -145,7 +81,7 @@ export default function EditProfileCustomer() {
             className='p-2 border rounded-md outline-none'
             type='text'
             name='phonenumber'
-            value={user.phonenumber || ''}
+            value={user.phonenumber || ''} // ใช้ default value เพื่อป้องกัน error
             onChange={(e) => setUser({ ...user, phonenumber: e.target.value })}
             placeholder='Phone number...'
           />
@@ -157,7 +93,7 @@ export default function EditProfileCustomer() {
             className='p-2 border rounded-md outline-none'
             type='text'
             name='address'
-            value={user.address || ''}
+            value={user.address || ''} // ใช้ default value เพื่อป้องกัน error
             onChange={(e) => setUser({ ...user, address: e.target.value })}
             placeholder='Address...'
           />
@@ -169,18 +105,22 @@ export default function EditProfileCustomer() {
             className='p-2 border rounded-md outline-none'
             type='email'
             name='email'
-            value={user.email || ''}
+            value={user.email || ''} // ใช้ default value เพื่อป้องกัน error
             onChange={(e) => setUser({ ...user, email: e.target.value })}
             placeholder='Email...'
           />
         </div>
 
-        <button type='submit' className='bg-yellow text-white py-4 px-6 font-head rounded-xl'>
+        <button
+          type='submit'
+          className='bg-yellow text-white p-5 font-head rounded-xl text-center w-1/3 mx-auto cursor-pointer'
+        >
           Confirm
         </button>
       </form>
-    </div>
-  </div>
-  )
-}
 
+      {/* ToastContainer สำหรับแสดง toast notification */}
+      <ToastContainer />
+    </div>
+  );
+}

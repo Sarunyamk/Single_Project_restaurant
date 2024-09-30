@@ -87,7 +87,6 @@ const validateRegister = (input)=>{
 
         return formatError
     }  
-    
 }
 
 export default validateRegister
