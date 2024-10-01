@@ -71,12 +71,8 @@ const Map = () => {
       </MapContainer>
 
       {showButton && (
-        <button
-          className="absolute top-4 right-4 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-lg z-[1000] hover:bg-yellow-600"
-          onClick={backToMarker}
-        >
-          Go to M&M Restaurant
-        </button>
+        <button className="absolute top-4 right-4 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-lg z-[1000] hover:bg-yellow-600"
+                onClick={backToMarker}>  Go to M&M Restaurant </button>
       )}
     </div>
   );

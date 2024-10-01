@@ -27,7 +27,6 @@ export default function Login() {
     e.preventDefault();
     console.log(form)
     const role = await actionLogin(form)
-
     
     if(role){
 
@@ -38,11 +37,11 @@ export default function Login() {
   const roleRedirect = (role)=>{
     console.log(role)
 
-    if(role === "ADMIN"){
+    if(role === "USER"){
 
       navigate('/menu')
     }else{
-      navigate('/menu')
+      navigate('/admin')
     }
   }
 

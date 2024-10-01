@@ -5,7 +5,7 @@ import pizzaVideo from '../assets/pizzaVideo.mp4'
 
 export default function AboutUs() {
   return (
-    <div id='about' className='flex gap-20 my-40 text-red'>
+    <div id='about' className='flex gap-20 mt-60 text-red'>
     <section className='w-1/2 grid grid-cols-2 gap-4 ms-20 mb-10'>
         <div >
             <img className='w-full h-full object-cover' 
@@ -16,18 +16,12 @@ export default function AboutUs() {
             <video autoPlay loop muted  className='w-full h-full object-cover'>
                 <source src={burgerVideo2} type="video/mp4"  />
             </video>
-           
-            {/* <img className='w-[70%] h-[70%] absolute bottom-0 z-[-10]' 
-                src="https://images.unsplash.com/photo-1508424757105-b6d5ad9329d0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D"/> */}
         </div>
         <div >
 
             <video autoPlay loop muted  className='w-full h-full object-cover'>
                 <source src={pizzaVideo} type="video/mp4"  />
             </video>
-
-            {/* <img className='w-[70%] h-[70%] absolute  right-0 z-[-10]' 
-                src="https://images.unsplash.com/photo-1508424757105-b6d5ad9329d0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D"/> */}
         </div>
         <div >
             <img className='w-full h-full object-cover' 

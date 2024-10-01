@@ -13,8 +13,10 @@ const useMenuStore = create(persist((set)=> ({
 
   fetchAllMenu: async () => {
     try {
+
       const resp = await showAllMenu();
       set({ menu: resp.data, currentPage: 1 });
+
     } catch (err) {
       console.error("Error fetching menu:", err);
     }
@@ -22,8 +24,10 @@ const useMenuStore = create(persist((set)=> ({
 
   fetchMainMenu: async () => {
     try {
+
       const resp = await showMainMenu();
       set({ menu: resp.data, currentPage: 1 });
+
     } catch (err) {
       console.error("Error fetching menu:", err);
     }
@@ -31,8 +35,10 @@ const useMenuStore = create(persist((set)=> ({
 
   fetchSaladMenu: async () => {
     try {
+
       const resp = await showSaladMenu();
       set({ menu: resp.data, currentPage: 1 });
+
     } catch (err) {
       console.error("Error fetching menu:", err);
     }
@@ -40,8 +46,10 @@ const useMenuStore = create(persist((set)=> ({
 
   fetchSwSnackMenu: async () => {
     try {
+
       const resp = await showSwSnackMenu();
       set({ menu: resp.data, currentPage: 1 });
+
     } catch (err) {
       console.error("Error fetching menu:", err);
     }
@@ -49,8 +57,10 @@ const useMenuStore = create(persist((set)=> ({
 
   fetchBeverageMenu: async () => {
     try {
+
       const resp = await showBeverageMenu();
       set({ menu: resp.data, currentPage: 1 });
+      
     } catch (err) {
       console.error("Error fetching menu:", err);
     }

@@ -43,7 +43,7 @@ export default function  Menu() {
   };
 
   return (
-    <div className="flex flex-col items-center mx-20">
+    <div className="flex flex-col items-center mx-20 mb-40">
       <div className="flex justify-center mb-4">{renderPageNumbers()}</div>
       <div className="grid grid-cols-4 gap-6 mb-6 w-11/12">
         {currentItems.map((item) => (

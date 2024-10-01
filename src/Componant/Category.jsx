@@ -20,7 +20,7 @@ export default function Category() {
       ];
 
   return (
-    <div className="relative grid grid-cols-7 mt-40 mb-20">
+    <div className="relative grid grid-cols-7 my-20">
         <div></div>
         {categoryMenu.map((item) => (
           <div

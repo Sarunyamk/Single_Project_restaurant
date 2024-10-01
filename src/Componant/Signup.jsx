@@ -1,7 +1,6 @@
 import React ,{useState} from 'react'
-import validateRegister from '../Utils/Validate'
+import validateRegister from '../Utils/registerValidate'
 import useAppStore from '../zustand/appStore'
-import {toast} from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -15,23 +14,20 @@ const intitialState = {
   confirmPassword: ''
 }
 
-
 export default function Signup() {
 
   const [form,setForm] = useState({
-    firstname: '',
-    lastname: '',
-    phonenumber: '',
-    address: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+  firstname: '',
+  lastname: '',
+  phonenumber: '',
+  address: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
   })
-
   const [formatError,setFormatError] = useState({})
 
   const actionRegister = useAppStore((state)=> state.actionRegister)
-
   const navigate = useNavigate()
 
   const handleChange = (e) => {
@@ -42,7 +38,7 @@ export default function Signup() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     const error = validateRegister(form)
@@ -52,88 +48,65 @@ export default function Signup() {
       return setFormatError(error)
     }
     
-    actionRegister(form)     
-    navigate('/login')
-    setForm(intitialState)   
-    setFormatError({})
-    //ติดบัค อีเมลซ้ำ แต่ไปต่อได้
+    try {
+     
+      await actionRegister(form);
+      
+      navigate('/login');
+      setForm(intitialState);
+      setFormatError({});
+      
+    } catch (err) {
+   
+      console.error("Registration failed:", err);
+    }
   }  
+
+  const inputs = [
+    { label: 'Firstname', name: 'firstname', type: 'text', placeholder: 'Firstname...' },
+    { label: 'Lastname', name: 'lastname', type: 'text', placeholder: 'Lastname...' },
+    { label: 'Address', name: 'address', type: 'text', placeholder: 'Address...' },
+    { label: 'Email', name: 'email', type: 'email', placeholder: 'Email...' },
+    { label: 'phone', name: 'phonenumber', type: 'tel', placeholder: 'Phonenumber...' },
+    { label: 'Password', name: 'password', type: 'password', placeholder: 'Password...' },
+    { label: 'Confirm Password', name: 'confirmPassword', type: 'password', placeholder: 'Confirm password...' }
+  ];
+
 
   return (
     <div>
-      <form     onSubmit={handleSubmit}
-                className='bg-red-gradient  w-1/2 mx-auto mt-60  py-4 flex flex-col justify-center items-center gap-9'>
-        <h1 className='font-main text-yellow mt-3 '>Sign up</h1>
-        <div className='flex gap-4 w-full justify-center items-center px-8'>
-            <div className='w-full h-16'>
-              <label className='text-yellow font-bold' htmlFor="firstname">Firstname</label>
-              <input  name='firstname' value={form.firstname} onChange={handleChange}
-                      className='p-2 outline-yellow-500 w-full rounded-md' type="text" placeholder='Firstname...'/>
-              {
-                    formatError.firstname && <p className='text-gray-300 text-xs ml-2'>{formatError.firstname}</p>
-              }
-            </div>
-            <div className='w-full h-16'>
-              <label className='text-yellow font-bold' htmlFor="lastname">Lastname</label>
-              <input  name='lastname' value={form.lastname} onChange={handleChange}
-                      className='p-2 outline-yellow-500 w-full rounded-md' type="text" placeholder='Lastname...'/>
-              {
-                    formatError.lastname && <p className='text-gray-300 text-xs ml-2'>{formatError.lastname}</p>
-              }
-            </div>
-        </div>
-        <div className='flex gap-4 w-full justify-center items-center px-8'>
-            <div className='w-full h-16'>
-              <label className='text-yellow font-bold' htmlFor="address">Address</label>
-              <input  name='address' value={form.address} onChange={handleChange}
-                      className='p-2 outline-yellow-500 w-full rounded-md' type="text" placeholder='Address...'/>            
-              {
-                  formatError.address && <p className='text-gray-300 text-xs ml-2'>{formatError.address}</p>
-              }
-            </div>
-        </div>
-        <div className='flex gap-4 w-full justify-center items-center px-8 '>
-            <div className='w-1/2 h-16'>
-              <label className='text-yellow font-bold' htmlFor="email">Email</label>
-              <input  name='email' value={form.email} onChange={handleChange}
-                      className='p-2 outline-yellow-500 w-full rounded-md' type="email" placeholder='Email...'/>
-              {
-                  formatError.email && <p className='text-gray-300 text-xs ml-2'>{formatError.email}</p>
-              }
-            </div>
-            <div className='w-1/2 h-16'>
-              <label className='text-yellow font-bold' htmlFor="phonenumber">Phonenumber</label>
-              <input  name='phonenumber' value={form.phonenumber} onChange={handleChange}
-                      className='p-2 outline-yellow-500 w-full rounded-md' type="tel" placeholder='Phonenumber...'/>
-              {
-                  formatError.phonenumber && <p className='text-gray-300 text-xs ml-2'>{formatError.phonenumber}</p>
-              }
-            </div>
-            
-        </div>
-        <div className='flex gap-4 w-full justify-center items-center px-8 '>
-            <div className='w-1/2 h-16'>
-              <label className='text-yellow font-bold' htmlFor="password"> Password</label>
-              <input  name='password' value={form.password} onChange={handleChange}
-                      className='p-2 outline-yellow-500 w-full rounded-md' type="password" placeholder='Password...'/>
-              {
-                  formatError.password && <p className='text-gray-300 text-xs ml-2'>{formatError.password}</p>
-              }
-            </div>
-            <div  className='w-1/2 h-16'>
-              <label className='text-yellow font-bold' htmlFor="confirmPassword">Confirm Password</label>
-              <input  name='confirmPassword' value={form.confirmPassword} onChange={handleChange}
-                      className='p-2 outline-yellow-500 w-full rounded-md' type="password" placeholder='Confirm password...'/>
-              {
-                  formatError.confirmPassword && <p className='text-gray-300 text-xs ml-2'>{formatError.confirmPassword}</p>
-              }
-            </div>
-        </div>
-        
-        <button className='bg-yellow p-4 font-head rounded-xl text-white'>Sign up</button>
-      </form>
 
-      
-    </div>
+      <form onSubmit={handleSubmit} className='bg-red-gradient w-1/3 mx-auto my-40 p-6 flex flex-col justify-center items-center gap-4 rounded-lg'>
+          <h1 className='font-main text-yellow mt-3'>Sign up</h1>        
+
+          {inputs.map((input, index) => (
+              <div key={index} className='w-full flex flex-col '>
+                
+                  <div className='flex items-center h-12'>
+                    <label className='text-yellow font-bold w-1/3 text-right pr-4' htmlFor={input.name}>
+                      {input.label} :
+                    </label>
+
+                    <input
+                      name={input.name}
+                      value={form[input.name] || ''}
+                      onChange={handleChange}
+                      className='p-2 outline-yellow-500 w-2/3 rounded-md'
+                      type={input.type}
+                      placeholder={input.placeholder}
+                    />
+                  </div>
+
+                  <div className='w-2/3 ml-auto text-right'>
+                    {formatError[input.name] && <p className='text-gray-300 text-xs'>{formatError[input.name]}</p>}
+                  </div>
+
+              </div>
+          ))}
+
+          <button className='bg-yellow p-4 m-2 font-head rounded-xl text-white'>Sign up</button>
+      </form>
+        
+  </div>
   )
 }

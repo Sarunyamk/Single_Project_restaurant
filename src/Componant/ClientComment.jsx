@@ -8,7 +8,7 @@ export default function OurClientComment() {
     const text = "Our Client Comment";
 
   return (
-    <div className=' text-black my-40'>
+    <div className=' text-black mt-20 mb-40'>
         
         <div className="flex items-center justify-center ">
             <h1 className='font-title my-32 text-yellow wave-text'>

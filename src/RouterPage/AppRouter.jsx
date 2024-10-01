@@ -12,6 +12,10 @@ import ScrollToTop from '../Utils/ScrollToTop';
 import Footer from '../Componant/Footer';
 import CartPage from '../pages/CartPage';
 import EditCustomerProfilePage from '../pages/EditCustomerProfilePage';
+import HomePageAdmin from './../pages/adminpages/HomePageAdmin';
+import NavBarAdmin from '../Componant/adminComponant/NavbarAdmin';
+import MenuAdminPage from './../pages/adminpages/MenuAdminPage';
+import ReportAdminPage from './../pages/adminpages/ReportAdminPage';
 
 
 const pageRouter = createBrowserRouter([
@@ -35,6 +39,21 @@ const pageRouter = createBrowserRouter([
       {path : 'login',element : <LoginPage/>},
       {path : 'cart',element : <CartPage/>},
       {path : 'settingcustomer',element : <EditCustomerProfilePage/>},
+    ]
+  },
+  {
+    path : '/admin',
+    element : (
+      <div>
+         <NavBarAdmin/> 
+         <Outlet/> 
+      </div>
+    ),
+    children : [
+      {path : '',element : <HomePageAdmin/>},
+      {path : 'editmenu',element : <MenuAdminPage/>},
+      {path : 'report',element : <ReportAdminPage/>},
+      
     ]
   },{
     path : '/*',element : <div>Not Found</div>
