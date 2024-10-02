@@ -25,8 +25,9 @@ export default function Login() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(form)
+    console.log(form,"this is form")
     const role = await actionLogin(form)
+    console.log(role,"this is role")
     
     if(role){
 
@@ -35,13 +36,16 @@ export default function Login() {
   }
 
   const roleRedirect = (role)=>{
-    console.log(role)
+    
+    const checkRole = role.data.user.user.role
+    
+    console.log(checkRole,"นี่คือืออ")
 
-    if(role === "USER"){
+    if(checkRole === "ADMIN"){
 
-      navigate('/menu')
-    }else{
       navigate('/admin')
+    }else{
+      navigate('/menu')
     }
   }
 
