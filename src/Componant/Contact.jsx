@@ -30,17 +30,10 @@ export default function Contact() {
       </section>
 
       <section className=' w-3/4 mx-auto flex my-20 '>
-        <div className='bg-slate w-1/2 '>
+        <div className='bg-slate w-full '>
             <Map/>
         </div>
-        <div className='w-1/2 flex flex-col gap-6'>
-            <div className='flex mx-4 gap-4'>
-                <input className='w-1/2 p-4 bg-slate outline-none' type="text" placeholder='Firstname...'/>
-                <input className='w-1/2 p-4 bg-slate outline-none' type="email" placeholder='Email...'/>
-            </div>
-            <textarea className='mx-4 h-40 p-4 bg-slate outline-none' name="" id="" placeholder='Message'></textarea>
-            <button className='bg-red-gradient text-white font-head mx-auto p-4 rounded-xl'>Send email</button>
-        </div>
+        
       </section>
     </div>
   )

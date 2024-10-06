@@ -2,10 +2,12 @@ import Joi from "joi";
 
 
 const editProfileAuthen  = Joi.object({
+    id : Joi.number().allow(),
+
     firstname : Joi.string()
                 .required()
                 .messages({
-                    "string.empty" : "please enter your 'Firstname'"
+                    "string.empty" : "pleaseenter your 'Firstname'"
     }),
     lastname : Joi.string()
                 .required()
@@ -36,10 +38,11 @@ const editProfileAuthen  = Joi.object({
 });
 
 const validateEditProfile = (input) => {
-
+console.log(input,"this is input")
   const { error } = editProfileAuthen.validate(input, {
     abortEarly: false
   });
+  console.log(error,"this is error")
 
   if (error) {
     const formatError = error.details.reduce((prev, cur) => {
@@ -50,6 +53,7 @@ const validateEditProfile = (input) => {
 
     return formatError;
   }
+  return null;
 }
 
 export default validateEditProfile;

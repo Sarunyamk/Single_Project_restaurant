@@ -3,28 +3,40 @@ import React from 'react'
 import {createBrowserRouter,RouterProvider,Outlet} from 'react-router-dom'
 import NavBar from '../Componant/Navbar'
 import HomePage from '../pages/HomePage'
-import AboutPage from './../pages/AboutPage';
-import MenuPage from './../pages/MenuPage';
-import ContactPage from './../pages/ContactPage';
-import SignupPage from './../pages/SignupPage';
-import LoginPage from './../pages/LoginPage';
+import AboutPage from '../pages/AboutPage';
+import MenuPage from '../pages/MenuPage';
+import ContactPage from '../pages/ContactPage';
+import SignupPage from '../pages/SignupPage';
+import LoginPage from '../pages/LoginPage';
 import ScrollToTop from '../Utils/ScrollToTop';
 import Footer from '../Componant/Footer';
 import CartPage from '../pages/CartPage';
+import ModalMenuDetail from '../Componant/ModalMenuDetail';
 import EditCustomerProfilePage from '../pages/EditCustomerProfilePage';
 
+import ProtectRoute from './ProtectRoute';
 import HomePageAdmin from '../adminpages/HomePageAdmin';
 import MenuAdminPage from '../adminpages/MenuAdminPage';
+import CreateMenu from '../adminComponant/CreateMenu';
 import ReportAdminPage from '../adminpages/ReportAdminPage';
-import ProtectRoute from './ProtectRoute';
+
+
+import NotFoundPage from '../pages/NotFoundPage';
+import NavbarResponsive from '../Componant/NavbarResponsive';
+
+
 
 
 const pageRouter = createBrowserRouter([
+  
   {
         path : '/admin',
-        element:  <ProtectRoute element={<MenuAdminPage/>}  allow={["ADMIN"]}/>    ,
+        element:  <ProtectRoute 
+        element={<HomePageAdmin/>}  
+        allow={["ADMIN"]}/>,
         children: [
             {path : 'editmenu',element : <MenuAdminPage/>},
+            {path : 'createmenu',element : <CreateMenu/>},
             {path : 'report',element : <ReportAdminPage/>},
         ]
   },
@@ -33,9 +45,10 @@ const pageRouter = createBrowserRouter([
     element : (
       <div>
          <NavBar/> 
+         {/* <NavbarResponsive/> */}
          <Outlet/>         
          <Footer/>
-        <ScrollToTop/>
+        <ScrollToTop/>        
        
       </div>
     ),
@@ -43,16 +56,19 @@ const pageRouter = createBrowserRouter([
       {path : '',element : <HomePage/>},
       {path : 'about',element : <AboutPage/>},
       {path : 'menu',element : <MenuPage/>},
-      {path : 'contact',element : <ContactPage/>},
       {path : 'signup',element : <SignupPage/> },
+      {path : 'contact',element : <ContactPage/>},
       {path : 'login',element : <LoginPage/>},
       {path : 'cart',element : <CartPage/>},
+      {path : 'detail-menu',element : <ModalMenuDetail/>},
       {path : 'settingcustomer',element : <EditCustomerProfilePage/>},
+     
     ]
   },
   
+  
   {
-    path : '/*',element : <div>Not Found</div>
+    path : '/*',element : <NotFoundPage/>
   }
 ])
 

@@ -12,8 +12,6 @@ export default function ScrollText() {
     "Tel 000-000-0000",    
     
   ];
-
- 
   return (
     <section className="relative bg-yellow py-4 overflow-hidden">
       <div className="whitespace-nowrap flex">

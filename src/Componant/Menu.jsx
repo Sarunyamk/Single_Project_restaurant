@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import useMenuStore from '../zustand/menuStore';
+import { Link } from 'react-router-dom';
 
 
 export default function  Menu() {
@@ -57,7 +58,7 @@ export default function  Menu() {
             <p className="text-gray-600 text-xs">{item.description}</p>
             <p className="mt-2 text-red-500 font-semibold">${item.price}</p>
             <div className="bg-red-gradient text-white text-center rounded-lg mx-auto p-2 mt-2 shadow-lg hover:scale-105 transition duration-300 w-1/2">
-              <button className='' >Order Now</button>
+              <Link to='/detail-menu'><button className='' >Order Now</button></Link>
             </div>
           </div>
         ))}

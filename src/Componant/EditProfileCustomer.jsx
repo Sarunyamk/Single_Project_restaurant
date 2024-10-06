@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAppStore from '../zustand/appStore';
-import { getProfile, editProfile } from '../api/user-api';
 import validateEditProfile from '../Utils/editProfileValidate';
+import { getProfile, editProfile } from '../api/user-api';
 import { toast } from 'react-toastify';
 
 
@@ -35,8 +35,7 @@ export default function EditProfileCustomer() {
     
     
     if (error) {
-        setFormatError(error); 
-        return;
+      return setFormatError(error); 
     }
    
     try {

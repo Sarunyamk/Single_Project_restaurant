@@ -1,7 +1,5 @@
 import React from 'react'
 
-import starRateIcon from '../img/imgIcon/starRateIcon.png';
-
 import burgerPopular from '../img/imgMenu/burger3.png'
 import pizzaPopular from '../img/imgMenu/pizza2.png'
 import steakSetPopular from '../img/imgMenu/steak2.png'
@@ -37,13 +35,7 @@ export default function PopularMenu() {
                     <h1 className='font-main text-yellow'>Menu Name</h1>
                     <p className='px-4 text-red font-second'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, sed.</p>
                     <h2 className='font-head text-yellow'>Price</h2>
-                    <div className='flex justify-center'>
-                        <img className='w-6 h-6' src={starRateIcon} alt="" />
-                        <img className='w-6 h-6' src={starRateIcon} alt="" />
-                        <img className='w-6 h-6' src={starRateIcon} alt="" />
-                        <img className='w-6 h-6' src={starRateIcon} alt="" />
-                        <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    </div>
+                    
                 </div>
             </div>
             <div className='w-3/4  mx-auto text-center  hover:scale-125 duration-500'>
@@ -56,13 +48,7 @@ export default function PopularMenu() {
                 <h1 className='font-main text-yellow'>Menu Name</h1>
                 <p className='px-4 text-red font-second'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, sed.</p>
                 <h2 className='font-head text-yellow'>Price</h2>
-                <div className='flex justify-center'>
-                <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                </div>
+                
                 </div>
             </div>
             <div className='w-3/4  mx-auto text-center hover:scale-125 duration-500'>
@@ -75,13 +61,7 @@ export default function PopularMenu() {
                 <h1 className='font-main text-yellow'>Menu Name</h1>
                 <p className='px-4 text-red font-second'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, sed.</p>
                 <h2 className='font-head text-yellow'>Price</h2>
-                <div className='flex justify-center'>
-                <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                </div>
+                
                 </div>
             </div>
             <div className='w-3/4  mx-auto text-center hover:scale-125 duration-500'>
@@ -94,13 +74,7 @@ export default function PopularMenu() {
                 <h1 className='font-main text-yellow'>Menu Name</h1>
                 <p className='px-4 text-red font-second'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, sed.</p>
                 <h2 className='font-head text-yellow'>Price</h2>
-                <div className='flex justify-center'>
-                <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                </div>
+               
                 </div>
             </div>
             <div className='w-3/4  mx-auto text-center hover:scale-125 duration-500'>
@@ -113,17 +87,9 @@ export default function PopularMenu() {
                 <h1 className='font-main text-yellow'>Menu Name</h1>
                 <p className='px-4 text-red font-second'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, sed.</p>
                 <h2 className='font-head text-yellow'>Price$$</h2>
-                <div className='flex justify-center'>
-                <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                    <img className='w-6 h-6' src={starRateIcon} alt="" />
-                </div>
+               
                 </div>
             </div>
-            
-           
         </section>
     </div>
   )

@@ -17,11 +17,6 @@ export default function BackGround() {
         <video autoPlay loop muted  className='w-full h-full object-cover inset-0 z-0  '>
                     <source src={bgMainVideo} type="video/mp4"  />
         </video>
-
-        {/* <img
-            className='w-full h-[956px] object-cover ' 
-            src={bgSteakSet3} alt="" /> */}
-        
         </div>
     </div>
   )

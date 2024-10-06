@@ -1,12 +1,13 @@
-import React from 'react'
-import Login from '../Componant/Login';
-import Footer from '../Componant/Footer';
 
-export default function LoginPage() {
-  return (
-    <div >
-      <Login/>
-      {/* <Footer/>  */}
-    </div>
-  )
-}
+import React from 'react';
+import Login from '../Componant/Login';
+
+const LoginPage = () => {
+    return (
+        <div>
+            <Login />
+        </div>
+    );
+};
+
+export default LoginPage;

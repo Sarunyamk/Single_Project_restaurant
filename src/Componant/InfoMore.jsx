@@ -1,16 +1,8 @@
 import React from 'react'
 
-import userIcon from '../img/imgIcon/userIcon.png';
-import bookIcon from '../img/imgIcon/bookIcon.png'
-import headIcon from '../img/imgIcon/headphoneIcon.png'
-import cartIcon from '../img/imgIcon/cartIcon.png'
+import { FaUserShield,FaBookOpen ,FaShoppingCart  } from "react-icons/fa";
+import { AiTwotoneCustomerService } from "react-icons/ai";
 
-import bgSteakSet3 from '../img/imgBg/bgSteakSet3.png'
-
-import bgMainVideo from '../assets/bgMainVideo.mp4'
-
-import pizzaSpin from '../img/imgIcon/pizzaIcon1.png'
-import steakSpin from '../img/imgMenu/steak5.png'
 import { Link } from 'react-router-dom';
 
 
@@ -22,7 +14,7 @@ export default function InfoMore() {
 
                 <Link to='/about'>
                     <aside className='w-full h-60 border-2 border-red bg-slate flex flex-col justify-center items-center text-center'>
-                        <img className='w-20 ' src={userIcon} alt="" />
+                        <FaUserShield className='w-20 h-20 hover:scale-110 hover:text-yellow duration-200' />
                         <div className='p-4'>
                             <h2 className='font-head'>Our Client</h2>
                             <p className='font-second'>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
@@ -32,7 +24,7 @@ export default function InfoMore() {
 
                 <Link to='/menu'>                
                     <aside className='w-full h-60 border-2 border-red bg-slate flex flex-col justify-center items-center text-center'>
-                        <img className='w-20 ' src={bookIcon} alt="" />
+                        <FaBookOpen className='w-20 h-20 hover:scale-110 hover:text-yellow duration-200' />   
                         <div className='p-4'>
                             <h2 className='font-head'>Quality Food</h2>
                             <p className='font-second'>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
@@ -42,7 +34,7 @@ export default function InfoMore() {
 
                 <Link to='/contact'>                
                     <aside className='w-full h-60 border-2 border-red bg-slate flex flex-col justify-center items-center text-center'>
-                        <img className='w-20 ' src={headIcon} alt="" />
+                        <AiTwotoneCustomerService className='w-20 h-20 hover:scale-110 hover:text-yellow duration-200' />
                         <div className='p-4'>
                             <h2 className='font-head'>Service</h2>
                             <p className='font-second'>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
@@ -52,7 +44,7 @@ export default function InfoMore() {
 
                 <Link to='/menu'>                
                     <aside className='w-full h-60 border-2 border-red bg-slate flex flex-col justify-center items-center text-center'>
-                        <img className='w-20 ' src={cartIcon} alt="" />
+                        <FaShoppingCart className='w-20 h-20 hover:scale-110 hover:text-yellow duration-200' />
                         <div className='p-4'>
                             <h2 className='font-head'>Online Order</h2>
                             <p className='font-second'>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>

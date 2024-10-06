@@ -6,12 +6,10 @@ import Menu from '../Componant/Menu';
 
 export default function MenuPage() {
   return (
-  
      <div>
       <BackGround/>      
       <Category />
       <Menu/>
-      
     </div>
   )
 }

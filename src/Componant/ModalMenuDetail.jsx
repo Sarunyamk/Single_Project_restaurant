@@ -6,7 +6,7 @@ import pizzaMenu3 from '../img/imgMenu/pizza3.png'
 export default function ModalDetail() {
   return (
     <div>
-      <section className='relative mx-auto w-2/3 h-96 flex justify-center my-40  p-6 bg-slate-50 '>
+      <section className='relative mx-auto w-2/3 h-96 flex justify-center my-40 p-6 bg-slate-50 '>
         <div className='w-1/2 flex justify-center items-center'>
             <img className=' object-cover ' src={pizzaMenu3} alt="" />
         </div>

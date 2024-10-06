@@ -22,6 +22,8 @@ export default function NavBarAdmin() {
                 <img src={myLogo} className='w-full h-full object-contain' />
                 
             </div>
+                <Link to='/admin/report' className='font-main underline text-yellow' >Report</Link>
+                <Link to='/admin/editmenu'  className='font-main underline text-yellow' >Manage menu</Link>
             <div>
                 <div className='flex gap-10 items-center '>
                     <div className='relative'>
