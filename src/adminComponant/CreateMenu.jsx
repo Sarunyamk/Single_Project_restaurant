@@ -35,24 +35,11 @@ export default function CreateMenu() {
     })
   }
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-
-  //     await actionCreateMenu(form);
-  //     setForm(intitialState);
-
-  //   } catch (err) {
-
-  //     console.error("create Menu failed:", err);
-  //   }
-  // }
-
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
-      setForm({ ...form, image: selectedFile }); // เก็บไฟล์ภาพใน form
+      setForm({ ...form, image: selectedFile });
     }
   };
 
@@ -64,13 +51,9 @@ export default function CreateMenu() {
         console.log(key)
         formData.append(key, form[key])
       }
-
-      console.log(form)
-
-      await actionCreateMenu(formData); // ส่ง FormData ไปยัง actionCreateMenu
+      await actionCreateMenu(formData);
       setForm(intitialState);
-      setFile(null); // รีเซ็ตไฟล์ภาพ
-
+      setFile(null);
     } catch (err) {
       console.error("Create Menu failed:", err);
     }

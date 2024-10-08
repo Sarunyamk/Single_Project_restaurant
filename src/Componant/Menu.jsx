@@ -1,15 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useMenuStore from '../zustand/menuStore';
 import { Link } from 'react-router-dom';
 
+import ModalMenuDetail from '../Componant/ModalMenuDetail';
 
-export default function  Menu() {
-        
-  const { menu ,currentPage, itemsPerPage, setCurrentPage, fetchAllMenu} = useMenuStore();
+
+export default function Menu() {
+
+  const { menu, currentPage, itemsPerPage, setCurrentPage, fetchAllMenu } = useMenuStore();
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = menu.slice(indexOfFirstItem, indexOfLastItem);
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null);
+
 
 
   useEffect(() => {
@@ -31,9 +36,8 @@ export default function  Menu() {
       pageNumbers.push(
         <button
           key={i}
-          className={`mx-2 px-3 py-1 rounded-lg ${
-            currentPage === i ? 'bg-yellow text-white' : 'bg-gray-200 text-gray-700'
-          }`}
+          className={`mx-2 px-3 py-1 rounded-lg ${currentPage === i ? 'bg-yellow text-white' : 'bg-gray-200 text-gray-700'
+            }`}
           onClick={() => clickChangePage(i)}
         >
           {i}
@@ -42,6 +46,17 @@ export default function  Menu() {
     }
     return pageNumbers;
   };
+
+  const hdlOpenModal = (item) => {
+    setSelectedItem(item)
+    setIsOpenModal(true)
+  }
+
+  const hdlCloseModal = () => {
+    setIsOpenModal(false)
+    setSelectedItem(null)
+  }
+
 
   return (
     <div className="flex flex-col items-center mx-20 mb-40">
@@ -58,11 +73,11 @@ export default function  Menu() {
             <p className="text-gray-600 text-xs">{item.description}</p>
             <p className="mt-2 text-red-500 font-semibold">${item.price}</p>
             <div className="bg-red-gradient text-white text-center rounded-lg mx-auto p-2 mt-2 shadow-lg hover:scale-105 transition duration-300 w-1/2">
-              <Link to='/detail-menu'><button className='' >Order Now</button></Link>
+              <button onClick={() => hdlOpenModal(item)}>Order Now</button>
             </div>
           </div>
         ))}
-
+        {isOpenModal && <ModalMenuDetail hdlCloseModal={hdlCloseModal} selectedItem={selectedItem} />}
       </div>
     </div>
   );

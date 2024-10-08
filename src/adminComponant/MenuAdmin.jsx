@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useAppStore from './../zustand/appStore';
 import { listMenu, removeMenu, updateMenu } from '../api/admin-api';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const MenuAdmin = () => {
     const token = useAppStore((state) => state.token);
@@ -22,7 +23,18 @@ const MenuAdmin = () => {
         }
     };
 
+
     const handleDeleteMenu = async (id) => {
+
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        });
         try {
             await removeMenu(token, id);
             showAllMenu();
@@ -31,6 +43,7 @@ const MenuAdmin = () => {
             toast.error(err.response.data.message);
         }
     };
+
 
     const handleEditMenu = (item) => {
         setEditMenu(item);
