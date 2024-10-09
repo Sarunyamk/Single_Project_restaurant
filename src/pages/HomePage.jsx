@@ -8,18 +8,16 @@ import Comment from '../Componant/Comment';
 import TextVoice from '../Componant/TextVoice';
 
 
-
-
 export default function HomePage() {
   return (
     <div>
-     <BackGroundSausage/>   
-     <ScrollText/>
-     <TextVoice/>
-     <InfoMore/>
-     <About/>  
-     <PopularMenu/> 
-     <Comment/>   
+      <BackGroundSausage />
+      <ScrollText />
+      <TextVoice />
+      <InfoMore />
+      <About />
+      <PopularMenu />
+      <Comment />
     </div>
   )
 }

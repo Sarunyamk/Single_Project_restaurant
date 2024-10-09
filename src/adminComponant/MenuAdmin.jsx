@@ -75,7 +75,7 @@ const MenuAdmin = () => {
                 <div key={index} className="p-6 bg-white rounded-lg shadow-lg">
                     <img src={item.image} className='w-full h-60' />
                     <h3 className="text-lg font-bold">{item.menuName}</h3>
-                    <p className="text-gray-600 text-xs">{item.description}</p>
+                    <p className="text-gray-600 text-xs font-second">{item.description}</p>
                     <p className="mt-2 text-red-500 font-semibold">${item.price}</p>
                     <div className='flex gap-2 mt-2 justify-end'>
                         <button onClick={() => handleDeleteMenu(item.id)} className='bg-yellow p-2 rounded-md'>Delete</button>

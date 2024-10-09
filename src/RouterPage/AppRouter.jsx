@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {createBrowserRouter,RouterProvider,Outlet} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import NavBar from '../Componant/Navbar'
 import HomePage from '../pages/HomePage'
 import AboutPage from '../pages/AboutPage';
@@ -22,60 +22,63 @@ import ReportAdminPage from '../adminpages/ReportAdminPage';
 
 
 import NotFoundPage from '../pages/NotFoundPage';
-import NavbarResponsive from '../Componant/NavbarResponsive';
+import ForgetPassword from '../Componant/ForgetPassword';
+import ResetPasswordPage from '../pages/ResetPasswordPage';
 
 
 
 
 const pageRouter = createBrowserRouter([
-  
+
   {
-        path : '/admin',
-        element:  <ProtectRoute 
-        element={<HomePageAdmin/>}  
-        allow={["ADMIN"]}/>,
-        children: [
-            {path : 'editmenu',element : <MenuAdminPage/>},
-            {path : 'createmenu',element : <CreateMenu/>},
-            {path : 'report',element : <ReportAdminPage/>},
-        ]
-  },
-  {
-    path : '/',
-    element : (
-      <div>
-         <NavBar/> 
-         {/* <NavbarResponsive/> */}
-         <Outlet/>         
-         <Footer/>
-        <ScrollToTop/>        
-       
-      </div>
-    ),
-    children : [
-      {path : '',element : <HomePage/>},
-      {path : 'about',element : <AboutPage/>},
-      {path : 'menu',element : <MenuPage/>},
-      {path : 'signup',element : <SignupPage/> },
-      {path : 'contact',element : <ContactPage/>},
-      {path : 'login',element : <LoginPage/>},
-      {path : 'cart',element : <CartPage/>},
-      {path : 'detail-menu',element : <ModalMenuDetail/>},
-      {path : 'settingcustomer',element : <EditCustomerProfilePage/>},
-     
+    path: '/admin',
+    element: <ProtectRoute
+      element={<HomePageAdmin />}
+      allow={["ADMIN"]} />,
+    children: [
+      { path: 'editmenu', element: <MenuAdminPage /> },
+      { path: 'createmenu', element: <CreateMenu /> },
+      { path: 'report', element: <ReportAdminPage /> },
     ]
   },
-  
-  
   {
-    path : '/*',element : <NotFoundPage/>
+    path: '/',
+    element: (
+      <div>
+        <NavBar />
+        {/* <NavbarResponsive/> */}
+        <Outlet />
+        <Footer />
+        <ScrollToTop />
+
+      </div>
+    ),
+    children: [
+      { path: '', element: <HomePage /> },
+      { path: 'forget-password', element: <ForgetPassword /> },
+      { path: 'reset-password/:token', element: <ResetPasswordPage /> },
+      { path: 'about', element: <AboutPage /> },
+      { path: 'menu', element: <MenuPage /> },
+      { path: 'signup', element: <SignupPage /> },
+      { path: 'contact', element: <ContactPage /> },
+      { path: 'login', element: <LoginPage /> },
+      { path: 'cart', element: <CartPage /> },
+      { path: 'detail-menu', element: <ModalMenuDetail /> },
+      { path: 'settingcustomer', element: <EditCustomerProfilePage /> },
+
+    ]
+  },
+
+
+  {
+    path: '/*', element: <NotFoundPage />
   }
 ])
 
 export default function AppRouter() {
   return (
     <div>
-      <RouterProvider router={pageRouter}/>
+      <RouterProvider router={pageRouter} />
     </div>
   )
 }

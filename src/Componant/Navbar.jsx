@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
 import useAppStore from '../zustand/appStore'
+import OrderCustomerPage from './OrderCustomerPage';
 
 import myLogo from '../img/imgBg/myLogo.png'
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
-import OrderCustomerPage from './OrderCustomerPage';
 
 
 export default function NavBar() {
@@ -67,14 +68,14 @@ export default function NavBar() {
                   )
                 }
               </div>
-
-              <div className='w-8 h-8 relative '>
-                <FaCartShopping className='w-8 h-8 text-white' />
-                <div className='absolute -top-2 -right-2 w-5 h-5 bg-red rounded-full flex justify-center items-center bg-yellow'>
-                  <h1 className='text-white text-xs'>1</h1>
+              <Link to='/cart'>
+                <div className='w-8 h-8 relative '>
+                  <FaCartShopping className='w-8 h-8 text-white' />
+                  <div className='absolute -top-2 -right-2 w-5 h-5 bg-red rounded-full flex justify-center items-center bg-yellow'>
+                    <h1 className='text-white text-xs'>1</h1>
+                  </div>
                 </div>
-              </div>
-              {/* {isOpenModal && <OrderCustomerPage />} */}
+              </Link>
 
             </div>
             :

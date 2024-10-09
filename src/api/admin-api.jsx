@@ -6,6 +6,10 @@ export const listMenu = () => {
     return axios.get("http://localhost:3000/admin/allmenu")
 }
 
+export const getCategoryName = () => {
+    return axios.get("http://localhost:3000/admin/getCategoryName")
+}
+
 export const createMenu = (formData) => {
 
     return axios.post("http://localhost:3000/admin/create-menu/", formData)

@@ -1,14 +1,14 @@
-import {create} from  "zustand";
-import { persist ,createJSONStorage} from "zustand/middleware";
-import { showAllMenu,showMainMenu,showSaladMenu,showSwSnackMenu,showBeverageMenu} from '../api/menu-api';
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
+import { showAllMenu, showMainMenu, showSaladMenu, showSwSnackMenu, showBeverageMenu } from '../api/menu-api';
 
 
-const useMenuStore = create(persist((set)=> ({
+const useMenuStore = create(persist((set) => ({
 
   menu: [],
   currentPage: 1,
   itemsPerPage: 8,
-  
+
   setCurrentPage: (page) => set({ currentPage: page }),
 
   fetchAllMenu: async () => {
@@ -60,15 +60,16 @@ const useMenuStore = create(persist((set)=> ({
 
       const resp = await showBeverageMenu();
       set({ menu: resp.data, currentPage: 1 });
-      
+
     } catch (err) {
       console.error("Error fetching menu:", err);
     }
   },
 
-}),{
-    name : "menu-store",
-    storage : createJSONStorage(() => localStorage)
+
+}), {
+  name: "menu-store",
+  storage: createJSONStorage(() => localStorage)
 }))
 
 export default useMenuStore
