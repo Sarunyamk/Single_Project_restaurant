@@ -23,9 +23,9 @@ export default function ShowAllMenuCount() {
         return <p>Loading Menu...</p>;
     }
     return (
-        <div className='mx-auto '>
-
-            <table className="divide-y divide-gray-200 w-full rounded-xl mt-40  text-center">
+        <div className='w-4/5 mt-28 mx-4'>
+            <h1 className='text-yellow font-title text-center m-4'>COUNT MENU</h1>
+            <table className="divide-y divide-gray-200 w-full rounded-xl text-center">
                 <thead className="bg-gray-800 text-yellow font-second">
                     <tr>
                         <th className="px-6 py-3  uppercase tracking-wider">NO.</th>

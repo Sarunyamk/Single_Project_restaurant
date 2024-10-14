@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import useAppStore from '../zustand/appStore';
 import Swal from 'sweetalert2';
 import { createPayment } from '../api/payment-api'
-import axios from 'axios';
 
 import qrcode from '../img/imgBg/99492.jpg';
 

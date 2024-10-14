@@ -7,11 +7,13 @@ export const getOrdersByUserId = async (token, customerId) => {
             Authorization: `Bearer ${token}`
         }
     });
+
 };
 
-export const addComments = async (token, formattedComments) => {
+
+export const updateCommentStatus = async (token, formattedComments) => {
     console.log(token, formattedComments, "Sending comments");
-    return await axios.post('http://localhost:3000/comment', { comments: formattedComments }, {  // แก้ชื่อเป็น comments
+    return await axios.put('http://localhost:3000/comment/update-comment', { comments: formattedComments }, {  // แก้ชื่อเป็น comments
         headers: {
             Authorization: `Bearer ${token}`
         }

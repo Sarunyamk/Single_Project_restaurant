@@ -38,28 +38,33 @@ export default function NavBar() {
   const closeCartModal = () => {
     setCartModalOpen(false)
   }
-  const fetchCartCount = async () => {
-    try {
-      const response = await getCart(token, user.user.id);
-      if (response.status === 200) {
-        const totalCount = response.data.cart_Items.reduce((acc, item) => acc + item.count, 0);
-        setCartCount(totalCount);
-      }
-    } catch (error) {
-      console.error('Failed to fetch cart count:', error);
-    }
-  };
+  // const fetchCartCount = async () => {
+  //   try {
+  //     const response = await getCart(token, user.user.id);
+  //     if (response.status === 200) {
+  //       const totalCount = response.data.cart_Items.reduce((acc, item) => acc + item.count, 0);
+  //       setCartCount(totalCount);
+  //     }
+  //   } catch (error) {
+  //     console.error('Failed to fetch cart count:', error);
+  //   }
+  // };
 
   const openCommentModal = async () => {
+    if (!user || !user.user || !user.user.id) {
+      console.error('User ID is missing');
+      return;
+    }
+
     try {
       const response = await getOrdersByUserId(token, user.user.id); // ดึงข้อมูล order
-      console.log(user.user.id, "user.user.id")
       setOrders(response.data); // เก็บ order ใน state
       setCommentModalOpen(true); // เปิด modal สำหรับ comment
     } catch (error) {
       console.error('Failed to fetch orders:', error);
     }
   };
+
 
   const closeCommentModal = () => {
     setCommentModalOpen(false);

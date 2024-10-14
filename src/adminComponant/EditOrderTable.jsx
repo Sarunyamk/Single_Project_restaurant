@@ -24,6 +24,7 @@ export default function EditOrderTable() {
     const handleUpdateStatus = async (orderId, newStatus) => {
         try {
             const response = await updateStatusOrder(orderId, newStatus)
+            console.log(response, "responnf")
             // อัปเดตข้อมูลใน state ด้วยสถานะใหม่
             setOrders(orders.map(order => order.id === orderId ? { ...order, status: newStatus } : order));
             toast.success('Order Status updated successfully!');
@@ -69,9 +70,9 @@ export default function EditOrderTable() {
     }
 
     return (
-        <div className='mx-4  w-4/5'>
-
-            <table className="divide-y divide-gray-200 w-full rounded-xl mt-40  text-center">
+        <div className='mx-4  w-4/5 mt-28'>
+            <h1 className='text-yellow font-title text-center m-4'>ORDER</h1>
+            <table className="divide-y divide-gray-200 w-full rounded-xl text-center">
                 <thead className="bg-gray-800 text-yellow font-second ">
                     <tr>
                         <th className="px-6 py-3  uppercase tracking-wider">NO.</th>

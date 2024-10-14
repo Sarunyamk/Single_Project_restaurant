@@ -25,7 +25,6 @@ const MenuAdmin = () => {
 
 
     const handleDeleteMenu = async (id) => {
-
         const result = await Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -35,14 +34,17 @@ const MenuAdmin = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         });
-        try {
-            await removeMenu(token, id);
-            showAllMenu();
-            toast.success(`Delete menu ID ${id} success`);
-        } catch (err) {
-            toast.error(err.response.data.message);
+        if (result.isConfirmed) {
+            try {
+                await removeMenu(token, id); // เรียก API เพื่อลบเมนู
+                showAllMenu(); // โหลดข้อมูลเมนูทั้งหมดใหม่
+                toast.success(`Delete menu ID ${id} success`);
+            } catch (err) {
+                console.log(err)
+            }
         }
     };
+
 
 
     const handleEditMenu = (item) => {

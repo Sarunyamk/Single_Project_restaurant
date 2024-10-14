@@ -33,7 +33,7 @@ export default function EditUser() {
     };
 
     const handleDeleteUser = async (userId) => {
-        // เรียก SweetAlert2 เพื่อถามผู้ใช้ก่อนลบ
+
         const result = await Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -69,9 +69,9 @@ export default function EditUser() {
     }
 
     return (
-        <div className='mx-auto '>
-
-            <table className="divide-y divide-gray-200 w-full rounded-xl mt-40 text-center ">
+        <div className='w-4/5 mt-28'>
+            <h1 className='text-yellow font-title text-center m-4'>USER</h1>
+            <table className="divide-y divide-gray-200 w-full rounded-xl  text-center">
                 <thead className="bg-gray-800 text-yellow font-second">
                     <tr>
                         <th className="px-6 py-3  uppercase tracking-wider">NO.</th>

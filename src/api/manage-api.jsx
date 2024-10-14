@@ -6,11 +6,11 @@ export const getOrders = () => {
 }
 export const updateStatusOrder = (orderId, newStatus) => {
 
-    return put(`http://localhost:3000/order/update/${orderId}`, { status: newStatus });
+    return axios.put(`http://localhost:3000/order/update/${orderId}`, { status: newStatus });
 }
 export const deleteOrder = (orderId) => {
 
-    return delete (`http://localhost:3000/order/delete/${orderId}`);
+    return axios.delete(`http://localhost:3000/order/delete/${orderId}`);
 }
 
 

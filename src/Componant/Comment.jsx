@@ -74,7 +74,7 @@ const Comment = () => {
           ))}
         </h1>
       </div>
-      <RiDoubleQuotesL className='w-20 h-20 mx-32 text-yellow-500' />
+      <RiDoubleQuotesL className='w-20 h-20 mx-32 ' />
       <section className='flex items-center justify-center my-10'>
         <div className='overflow-hidden w-4/5'>
           <div
@@ -147,7 +147,7 @@ const Comment = () => {
           </div>
         </div>
       </section>
-      <RiDoubleQuotesR className='w-20 h-20 mx-32 text-yellow-500 float-end' />
+      <RiDoubleQuotesR className='w-20 h-20 mx-32  float-end' />
     </div>
   );
 }

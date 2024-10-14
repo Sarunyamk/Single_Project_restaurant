@@ -6,7 +6,7 @@ import MenuAdmin from '../adminComponant/MenuAdmin';
 const MenuAdminPage = () => {
   return (
     <div className='w-4/5'>
-      <Link to='/admin/manage/create-menu'><button className='bg-yellow m-32 px-5 py-3 font-main rounded-lg'>Create menu</button></Link>
+      <Link to='/admin/manage/create-menu'><button style={{ margin: '10rem 0 5rem 5rem' }} className='bg-yellow px-5 py-3 font-main rounded-lg'>Create menu</button></Link>
       <MenuAdmin />
 
     </div>

@@ -21,16 +21,39 @@ const Dashboard = () => {
         fetchSalesData();
     }, []);
 
-    const data = {
-        labels: ['Total Orders', 'Total Sales'],
+    const currentDate = new Date().toLocaleDateString('en-GB', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    // Data สำหรับกราฟ Total Orders
+    const ordersData = {
+        labels: ['Total Orders'],
         datasets: [
             {
-                label: 'Sales Data',
-                data: [salesData.ordersCount, salesData.totalSales],
-                backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+                label: 'Total Orders',
+                data: [salesData.ordersCount],
+                backgroundColor: ['rgba(75, 192, 192, 0.6)'],
+                borderColor: ['rgba(75, 192, 192, 1)'],
                 borderWidth: 1,
-                hoverBackgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(153, 102, 255, 0.8)'],
+                hoverBackgroundColor: ['rgba(75, 192, 192, 0.8)'],
+            },
+        ],
+    };
+
+    // Data สำหรับกราฟ Total Sales
+    const salesDataGraph = {
+        labels: ['Total Sales'],
+        datasets: [
+            {
+                label: 'Total Sales',
+                data: [salesData.totalSales],
+                backgroundColor: ['rgba(153, 102, 255, 0.6)'],
+                borderColor: ['rgba(153, 102, 255, 1)'],
+                borderWidth: 1,
+                hoverBackgroundColor: ['rgba(153, 102, 255, 0.8)'],
             },
         ],
     };
@@ -61,14 +84,21 @@ const Dashboard = () => {
     }
 
     return (
-        <div className='p-5 flex flex-col justify-center items-center w-2/3  mx-auto '>
-            <h1 className='font-main  mb-5 text-blue-600'>Today's Sales Dashboard</h1>
-            <div className='w-full h-60 flex justify-center'>
-                <Bar data={data} options={options} />
-            </div>
-            <div className='mt-5 font-head flex gap-10'>
-                <h3 className='mb-3'>Orders Count: <span className='font-bold'>{salesData.ordersCount}</span></h3>
-                <h3>Total Sales: <span className='font-bold'>{salesData.totalSales} THB</span></h3>
+        <div className='p-5 flex flex-col justify-center items-center mt-40 w-2/3 h-96 mx-auto '>
+            <h1 className='font-main mb-5 text-blue-600'>Today's Sales Dashboard</h1>
+            <h2 className="font-head text-lg">Date: {currentDate}</h2>
+
+            <div className='flex gap-6 mt-4'>
+                <div className='w-full h-60 flex flex-col justify-center items-center'>
+                    <Bar data={ordersData} options={options} />
+                    <h3 className='mb-3'>Orders Count: <span className='font-bold'>{salesData.ordersCount}</span></h3>
+                </div>
+
+
+                <div className='w-full h-60 flex flex-col justify-center items-center'>
+                    <Bar data={salesDataGraph} options={options} />
+                    <h3>Total Sales: <span className='font-bold'>{salesData.totalSales} THB</span></h3>
+                </div>
             </div>
         </div>
     );

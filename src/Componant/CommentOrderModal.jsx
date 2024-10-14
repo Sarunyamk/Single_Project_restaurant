@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
-import Swal from 'sweetalert2';
-import { addComments } from '../api/comment-api';
+import { updateCommentStatus } from '../api/comment-api';
 import useAppStore from '../zustand/appStore';
+import Swal from 'sweetalert2';
+import React, { useState } from 'react';
 
 export default function CommentOrdersModal({ orders, onClose }) {
-
     const token = useAppStore((state) => state.token);
-    const [comments, setComments] = useState({}); // สร้าง state สำหรับเก็บ comment
-    const [ratings, setRatings] = useState({});   // สร้าง state สำหรับเก็บ rating
+    const [comments, setComments] = useState({}); // เก็บข้อมูลคอมเมนต์
+    const [ratings, setRatings] = useState({}); // เก็บข้อมูลเรตติ้ง
 
-    // ฟังก์ชันจัดการการเปลี่ยนแปลงใน textarea ของคอมเมนต์
+    // จัดการการเปลี่ยนแปลงของคอมเมนต์
     const handleCommentChange = (orderId, value) => {
         setComments({ ...comments, [orderId]: value });
     };
 
-    // ฟังก์ชันจัดการการเปลี่ยนแปลงใน select ของเรตติ้ง
+    // จัดการการเปลี่ยนแปลงของเรตติ้ง
     const handleRatingChange = (orderId, value) => {
         setRatings({ ...ratings, [orderId]: value });
     };
 
+    // ส่งข้อมูลคอมเมนต์กลับไปที่ API
     const submitComments = async () => {
         try {
-            // จัดรูปแบบข้อมูลก่อนส่ง
-            const formattedComments = orders.map(item => ({
-                orderId: item.id,
-                comment: comments[item.id] || '',  // ส่ง comment ตาม orderId
-                rating: ratings[item.id] || ''     // ส่ง rating ตาม orderId
-            }));
+            const formattedComments = orders.map(order => ({
+                orderId: order.id,
+                comment: comments[order.id] || '',
+                rating: ratings[order.id] || '',
+            })).filter(comment => comment.comment && comment.rating); // กรองเฉพาะคอมเมนต์ที่มีข้อมูลครบ
 
-            console.log('Submitting comments:', formattedComments); // ตรวจสอบข้อมูลที่ส่ง
+            if (formattedComments.length === 0) {
+                Swal.fire('Warning', 'Please provide comments and ratings for all items.', 'warning');
+                return;
+            }
 
-            // ส่งข้อมูลไปยัง backend
-            await addComments(token, formattedComments);
+            await updateCommentStatus(token, formattedComments);
             Swal.fire('Success', 'Your comments have been submitted', 'success');
             onClose();
         } catch (error) {
-            console.error('Failed to submit comments:', error);
             Swal.fire('Error', 'Failed to submit comments', 'error');
         }
     };
@@ -43,27 +43,35 @@ export default function CommentOrdersModal({ orders, onClose }) {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
             <div className="relative w-full max-w-lg bg-white rounded-xl shadow-lg p-6">
-                <h2 className='text-center font-main text-yellow mb-4'>Your Order</h2>
+                <h2 className="text-center font-main text-yellow mb-4">Your Orders</h2>
                 <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
-                    {orders.map(item => (
-                        <div key={item.id} className='mb-4'>
-                            <div className='flex justify-between items-center font-bold'>
-                                <p>Order ID: {item.id}</p>
-                                <p>Total: {item.total} THB</p>
+                    {orders.map(order => (
+                        <div key={order.id} className="mb-4">
+                            <div className="flex justify-between items-center font-bold">
+                                <p className="text-yellow">Order ID: {order.id}</p>
+                                <p className="text-yellow">Total: {order.total} THB</p>
                             </div>
+
+                            <div>
+                                <span className="text-yellow">Order:</span>
+                                {order.order_detail.map(detail => (
+                                    <span key={detail.id}>{` ${detail.item.menuName} - ${detail.count} pcs, `}</span>
+                                ))}
+                            </div>
+
                             <textarea
-                                placeholder="Write your commen ...."
+                                placeholder="Write your comment..."
                                 className="w-full p-2 border rounded-md"
-                                value={comments[item.id] || ''} // ค่าใน textarea จะเปลี่ยนตาม orderId
-                                onChange={(e) => handleCommentChange(item.id, e.target.value)} // จัดการการเปลี่ยนแปลงในคอมเมนต์
+                                value={comments[order.id] || ''}
+                                onChange={e => handleCommentChange(order.id, e.target.value)}
                                 maxLength={50}
                             />
                             <select
-                                value={ratings[item.id] || ''} // ค่า select จะแสดงตาม orderId
-                                onChange={(e) => handleRatingChange(item.id, e.target.value)} // จัดการการเปลี่ยนแปลงในเรตติ้ง
+                                value={ratings[order.id] || ''}
+                                onChange={e => handleRatingChange(order.id, e.target.value)}
                                 className="mt-2 p-2 border rounded-md w-full"
                             >
-                                <option value="">Select Rating</option> {/* เพิ่มตัวเลือกว่างสำหรับเลือก */}
+                                <option value="">Select Rating</option>
                                 <option value="GOOD">Good</option>
                                 <option value="AVERAGE">Average</option>
                                 <option value="BAD">Bad</option>
@@ -71,10 +79,10 @@ export default function CommentOrdersModal({ orders, onClose }) {
                         </div>
                     ))}
                 </div>
-                <button onClick={submitComments} className='mt-4 w-full bg-green-500 text-white p-2 rounded-lg'>
-                    Comment
+                <button onClick={submitComments} className="mt-4 w-full bg-green-500 text-white p-2 rounded-lg">
+                    Submit Comment
                 </button>
-                <button onClick={onClose} className='mt-4 w-full bg-red-500 text-white p-2 rounded-lg'>
+                <button onClick={onClose} className="mt-4 w-full bg-red-500 text-white p-2 rounded-lg">
                     Close
                 </button>
             </div>
