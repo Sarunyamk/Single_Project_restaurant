@@ -6,7 +6,7 @@ import logo from '../img/imgBg/myLogo.png';
 
 const logoIcon = new L.Icon({
   iconUrl: logo,
-  iconSize: [60, 60], 
+  iconSize: [60, 60],
 });
 
 
@@ -14,16 +14,16 @@ const ZoomToMarker = ({ position, setShowButton }) => {
   const map = useMap();
 
   const handleZoom = () => {
-    map.flyTo(position, 18, { duration: 2 }); 
+    map.flyTo(position, 18, { duration: 2 });
     setShowButton(false);
   };
 
-  
+
   useMapEvents({
     moveend: () => {
       const currentCenter = map.getCenter();
       const distance = map.distance(currentCenter, position);
-      if (distance > 1000) { 
+      if (distance > 1000) {
         setShowButton(true);
       } else {
         setShowButton(false);
@@ -41,16 +41,16 @@ const ZoomToMarker = ({ position, setShowButton }) => {
 
 const Map = () => {
   const mapRef = useRef();
-  const [showButton, setShowButton] = useState(false); 
+  const [showButton, setShowButton] = useState(false);
 
-  const defaultPosition = [13.7583265, 100.5349709]; 
+  const defaultPosition = [13.7583265, 100.5349709];
   const defaultZoom = 10;
 
 
   const backToMarker = () => {
     const map = mapRef.current;
     if (map) {
-      map.flyTo(defaultPosition, 18, { duration: 2 }); 
+      map.flyTo(defaultPosition, 18, { duration: 2 });
     }
   };
 
@@ -71,8 +71,8 @@ const Map = () => {
       </MapContainer>
 
       {showButton && (
-        <button className="absolute top-4 right-4 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-lg z-[1000] hover:bg-yellow-600"
-                onClick={backToMarker}>  Go to M&M Restaurant </button>
+        <button className="absolute top-4 right-4 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-lg z-10 hover:bg-yellow-600"
+          onClick={backToMarker}>  Go to M&M Restaurant </button>
       )}
     </div>
   );

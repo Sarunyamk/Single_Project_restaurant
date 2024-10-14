@@ -20,3 +20,8 @@ export const showBeverageMenu = () => {
 }
 
 
+export const getShowPopularMenu = () => {
+    return axios.get('http://localhost:3000/menu/popular');
+}
+
+

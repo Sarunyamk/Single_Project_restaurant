@@ -10,7 +10,6 @@ import SignupPage from '../pages/SignupPage';
 import LoginPage from '../pages/LoginPage';
 import ScrollToTop from '../Utils/ScrollToTop';
 import Footer from '../Componant/Footer';
-import CartPage from '../pages/CartPage';
 import ModalMenuDetail from '../Componant/ModalMenuDetail';
 import EditCustomerProfilePage from '../pages/EditCustomerProfilePage';
 
@@ -18,12 +17,19 @@ import ProtectRoute from './ProtectRoute';
 import HomePageAdmin from '../adminpages/HomePageAdmin';
 import MenuAdminPage from '../adminpages/MenuAdminPage';
 import CreateMenu from '../adminComponant/CreateMenu';
-import ReportAdminPage from '../adminpages/ReportAdminPage';
+
 
 
 import NotFoundPage from '../pages/NotFoundPage';
 import ForgetPassword from '../Componant/ForgetPassword';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
+import Dashboard from '../adminComponant/DashBoard';
+import EditUser from '../adminComponant/EditUser';
+import EditOrderTable from '../adminComponant/EditOrderTable';
+import ShowAllComment from '../adminComponant/ShowAllComment';
+import ShowAllMenuCount from '../adminComponant/ShowAllMenuCount';
+
+
 
 
 
@@ -36,9 +42,13 @@ const pageRouter = createBrowserRouter([
       element={<HomePageAdmin />}
       allow={["ADMIN"]} />,
     children: [
-      { path: 'editmenu', element: <MenuAdminPage /> },
-      { path: 'createmenu', element: <CreateMenu /> },
-      { path: 'report', element: <ReportAdminPage /> },
+      { index: true, element: <Dashboard /> },
+      { path: 'manage/menu', element: <MenuAdminPage /> },
+      { path: 'manage/create-menu', element: <CreateMenu /> },
+      { path: 'manage/edit-orders', element: <EditOrderTable /> },
+      { path: 'report/comments', element: <ShowAllComment /> },
+      { path: 'report/total-unit-sold', element: <ShowAllMenuCount /> },
+      { path: 'setting/edit-users', element: <EditUser /> },
     ]
   },
   {
@@ -46,7 +56,6 @@ const pageRouter = createBrowserRouter([
     element: (
       <div>
         <NavBar />
-        {/* <NavbarResponsive/> */}
         <Outlet />
         <Footer />
         <ScrollToTop />
@@ -62,7 +71,6 @@ const pageRouter = createBrowserRouter([
       { path: 'signup', element: <SignupPage /> },
       { path: 'contact', element: <ContactPage /> },
       { path: 'login', element: <LoginPage /> },
-      { path: 'cart', element: <CartPage /> },
       { path: 'detail-menu', element: <ModalMenuDetail /> },
       { path: 'settingcustomer', element: <EditCustomerProfilePage /> },
 

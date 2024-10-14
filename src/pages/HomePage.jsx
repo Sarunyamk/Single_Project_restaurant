@@ -5,7 +5,8 @@ import PopularMenu from '../Componant/PopularMenu';
 import BackGroundSausage from '../Componant/BackGroundSausage';
 import ScrollText from '../Componant/ScrollText';
 import Comment from '../Componant/Comment';
-import TextVoice from '../Componant/TextVoice';
+
+
 
 
 export default function HomePage() {
@@ -13,11 +14,11 @@ export default function HomePage() {
     <div>
       <BackGroundSausage />
       <ScrollText />
-      <TextVoice />
       <InfoMore />
       <About />
       <PopularMenu />
       <Comment />
+
     </div>
   )
 }

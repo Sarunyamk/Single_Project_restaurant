@@ -14,9 +14,10 @@ export default function EditProfileCustomer() {
   const token = useAppStore((state) => state.token);
 
   useEffect(() => {
-    if (token) {
-      fetchProfile();
+    if (!token) {
+      return;
     }
+    fetchProfile();
   }, [token]);
 
   const fetchProfile = async () => {
@@ -31,23 +32,22 @@ export default function EditProfileCustomer() {
   };
 
   const handleUpdateProfile = async (e) => {
-
     e.preventDefault();
-    const error = validateEditProfile(user);
 
+    // รีเซ็ต error ก่อนทำการตรวจสอบใหม่
+    setFormatError({});
+
+    const error = validateEditProfile(user);
 
     if (error) {
       return setFormatError(error);
     }
 
     try {
-
       const resp = await editProfile(user.id, token, user);
       fetchProfile();
       toast.success(`updated successfully!`);
-
     } catch (err) {
-
       toast.error('Error updating profile');
     }
   };
@@ -68,16 +68,18 @@ export default function EditProfileCustomer() {
       <form onSubmit={handleUpdateProfile} className='space-y-4 w-full flex flex-col '>
 
         {inputs.map((inputs, index) => (
-          <div key={index} className='flex flex-row gap-4 justify-start items-center'>
-            <p className='w-32 text-right'>{inputs.label} :</p>
-            <input
-              className='p-2 border rounded-md outline-none'
-              type={inputs.type}
-              name={inputs.name}
-              value={user[inputs.name] || ''}
-              onChange={(e) => setUser({ ...user, [inputs.name]: e.target.value })}
-              placeholder={inputs.placeholder}
-            />
+          <div key={index} className='justify-start items-center mb-2'>
+            <div className='flex flex-col'>
+              <p className='w-32 text-left'>{inputs.label} :</p>
+              <input
+                className='p-2 border rounded-md outline-none'
+                type={inputs.type}
+                name={inputs.name}
+                value={user[inputs.name] || ''}
+                onChange={(e) => setUser({ ...user, [inputs.name]: e.target.value })}
+                placeholder={inputs.placeholder}
+              />
+            </div>
             {formatError[inputs.name] && <p className="text-red-500 text-sm">{formatError[inputs.name]}</p>}
           </div>
         ))}

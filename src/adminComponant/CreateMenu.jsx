@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 
 import useAdminStore from '../zustand/adminStore'
 import { getCategoryName } from '../api/admin-api';
@@ -78,11 +77,8 @@ export default function CreateMenu() {
 
 
   return (
-    <div>
-      <Link to='/admin/editmenu'>
-        <button className='bg-yellow mt-32 mx-32 px-5 py-3 font-main rounded-lg'>Back</button>
-      </Link>
-      <form onSubmit={handleSubmit} className='bg-red-gradient w-1/3 mx-auto p-6 flex flex-col justify-center items-center gap-4 rounded-lg'>
+    <div className='w-4/5'>
+      <form onSubmit={handleSubmit} className='bg-red-gradient mt-40 w-96  mx-auto p-6 flex flex-col justify-center items-center gap-4 rounded-lg'>
         <h1 className='font-main text-yellow mt-3'>Create Menu</h1>
 
         <div className='w-full flex flex-col'>

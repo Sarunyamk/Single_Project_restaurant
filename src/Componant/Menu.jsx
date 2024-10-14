@@ -70,7 +70,7 @@ export default function Menu() {
             />
             <h3 className="text-lg font-bold">{item.menuName}</h3>
             <p className="text-gray-600 text-xs">{item.description}</p>
-            <p className="mt-2 text-red-500 font-semibold">${item.price}</p>
+            <p className="mt-2 text-red-500 font-semibold">{item.price} THB</p>
             <div className="bg-red-gradient text-white text-center rounded-lg mx-auto p-2 mt-2 shadow-lg hover:scale-105 transition duration-300 w-1/2">
               <button onClick={() => hdlOpenModal(item)}>Order Now</button>
             </div>

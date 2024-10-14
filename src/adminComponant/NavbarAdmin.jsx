@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import myLogo from '../img/imgBg/myLogo.png'
 import useAppStore from '../zustand/appStore'
 
+
 export default function NavBarAdmin() {
 
     const user = useAppStore((state) => state.user)
@@ -20,19 +21,15 @@ export default function NavBarAdmin() {
                     <img src={myLogo} className='w-full h-full object-contain' />
 
                 </div>
-                <Link to='/admin/report' className='font-main underline text-yellow' >Report</Link>
-                <Link to='/admin/editmenu' className='font-main underline text-yellow' >Manage menu</Link>
-                <div>
-                    <div className='flex gap-10 items-center '>
-                        <div className='relative'>
-                            <div className='flex items-end gap-10'>
-                                <h3 className='font-main text-yellow '>{user.user.firstname}</h3>
-                                <Link to='/login' onClick={hdlClickLogout} className='font-main underline text-yellow' >Logout</Link>
-                            </div>
-                        </div>
+                <div className='flex gap-10 items-center '>
+                    <div className='flex items-end gap-10'>
+                        <h3 className='font-main text-yellow uppercase  tracking-wider'>{user.user.firstname}</h3>
+                        <Link to='/login' onClick={hdlClickLogout} className='font-main underline text-yellow hover:text-white duration-200' >Logout</Link>
                     </div>
                 </div>
+
             </nav>
+
         </div>
     )
 }

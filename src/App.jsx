@@ -28,9 +28,6 @@ export default function App() {
         transition:Flip
       />
       <AppRouter />
-
-
-
     </>
   )
 }

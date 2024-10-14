@@ -59,9 +59,9 @@ export default function Login() {
         className='flex flex-col justify-center items-center gap-4 w-full'>
         <h1 className='font-main text-yellow my-4 '>Login</h1>
         <input name="email" onChange={handleChange} value={form.email}
-          className='p-2 outline-none w-2/3 rounded-lg ' type="email" placeholder='Put your Email...' />
+          className='p-2 outline-none w-2/3 rounded-lg ' type="email" placeholder='Email...' />
         <input name="password" onChange={handleChange} value={form.password}
-          className='p-2 outline-none w-2/3 rounded-lg' type="password" placeholder='Put your password...' />
+          className='p-2 outline-none w-2/3 rounded-lg' type="password" placeholder='Password...' />
 
 
 
