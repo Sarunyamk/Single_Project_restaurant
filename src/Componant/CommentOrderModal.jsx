@@ -5,8 +5,8 @@ import React, { useState } from 'react';
 
 export default function CommentOrdersModal({ orders, onClose }) {
     const token = useAppStore((state) => state.token);
-    const [comments, setComments] = useState({}); // เก็บข้อมูลคอมเมนต์
-    const [ratings, setRatings] = useState({}); // เก็บข้อมูลเรตติ้ง
+    const [comments, setComments] = useState({});
+    const [ratings, setRatings] = useState({});
 
     // จัดการการเปลี่ยนแปลงของคอมเมนต์
     const handleCommentChange = (orderId, value) => {

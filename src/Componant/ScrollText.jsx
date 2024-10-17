@@ -9,8 +9,8 @@ export default function ScrollText() {
     "A Delicious Deal You Can’t Miss!",
     "Call Us for More Exciting Deals",
     "Burgers, Pizzas, and Steaks A Feast for Every Food Lover!",
-    "Tel 000-000-0000",    
-    
+    "Tel 002 123 456 789",
+
   ];
   return (
     <section className="relative bg-yellow py-4 overflow-hidden">

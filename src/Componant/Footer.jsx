@@ -17,11 +17,11 @@ export default function Footer() {
                         <div className='space-y-2 font-second'>
                             <div className='flex gap-4 items-center'>
                                 <FaLocationDot className='w-5 h-5' />
-                                <h2 className='text-white'>123 Street, New York, USA</h2>
+                                <h2 className='text-white'>123 Street, Phayathai Bangkok</h2>
                             </div>
                             <div className='flex gap-4 items-center'>
                                 <FaPhoneAlt className='w-5 h-5' />
-                                <h2 className='text-white'>+1 123 456 789</h2>
+                                <h2 className='text-white'>002 123 456 789</h2>
                             </div>
                             <div className='flex gap-4 items-center'>
                                 <MdEmail className='w-5 h-5' />

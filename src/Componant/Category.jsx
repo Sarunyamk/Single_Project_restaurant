@@ -3,7 +3,7 @@ import useMenuStore from '../zustand/menuStore';
 
 import imgburger from '../img/imgMenu/burger2.png';
 import imgPizza from '../img/imgMenu/pizza3.png';
-import imgSteak from '../img/imgMenu/steak1.png';
+import imgSalad from '../img/imgMenu/salad1.png';
 import imgSnack from '../img/imgMenu/frenchFries1.png';
 import imgBev from '../img/imgMenu/bev1.png';
 
@@ -14,7 +14,7 @@ export default function Category() {
   const categoryMenu = [
     { id: 1, name: "All Menu", img: imgburger, api: fetchAllMenu },
     { id: 2, name: "Main Menu", img: imgPizza, api: fetchMainMenu },
-    { id: 3, name: "Salad", img: imgSteak, api: fetchSaladMenu },
+    { id: 3, name: "Salad", img: imgSalad, api: fetchSaladMenu },
     { id: 4, name: "SW & Snack", img: imgSnack, api: fetchSwSnackMenu },
     { id: 5, name: "Beverages", img: imgBev, api: fetchBeverageMenu },
   ];

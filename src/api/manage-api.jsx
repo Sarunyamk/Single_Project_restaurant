@@ -24,5 +24,5 @@ export const updateRoleUser = (userId, newRole) => {
 }
 export const deleteUser = (userId) => {
 
-    return delete (`http://localhost:3000/admin/setting/delete-user/${userId}`);
+    return axios.delete(`http://localhost:3000/admin/setting/delete-user/${userId}`);
 }

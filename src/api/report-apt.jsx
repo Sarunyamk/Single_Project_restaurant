@@ -9,3 +9,9 @@ export const getComments = () => {
 export const getTotalSaleUnit = () => {
     return axios.get('http://localhost:3000/admin/report/menu-unit');
 }
+export const getTotalSale = (startDate, endDate) => {
+    return axios.post('http://localhost:3000/admin/report/sales-report', {
+        startDate,
+        endDate,
+    });
+}

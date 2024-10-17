@@ -32,16 +32,6 @@ export default function InfoMore() {
                         </aside>
                     </Link>
 
-                    <Link to='/contact'>
-                        <aside className='w-full h-60 border-2 border-red bg-slate flex flex-col justify-center items-center text-center'>
-                            <AiTwotoneCustomerService className='w-20 h-20 hover:scale-110 hover:text-yellow duration-200' />
-                            <div className='p-4'>
-                                <h2 className='font-head'>Service</h2>
-                                <p className='font-second'>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                            </div>
-                        </aside>
-                    </Link>
-
                     <Link to='/menu'>
                         <aside className='w-full h-60 border-2 border-red bg-slate flex flex-col justify-center items-center text-center'>
                             <FaShoppingCart className='w-20 h-20 hover:scale-110 hover:text-yellow duration-200' />
@@ -52,6 +42,15 @@ export default function InfoMore() {
                         </aside>
                     </Link>
 
+                    <Link to='/contact'>
+                        <aside className='w-full h-60 border-2 border-red bg-slate flex flex-col justify-center items-center text-center'>
+                            <AiTwotoneCustomerService className='w-20 h-20 hover:scale-110 hover:text-yellow duration-200' />
+                            <div className='p-4'>
+                                <h2 className='font-head'>Service</h2>
+                                <p className='font-second'>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            </div>
+                        </aside>
+                    </Link>
                 </div>
             </div>
         </div>

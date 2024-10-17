@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-import useAdminStore from '../zustand/adminStore'
 import { getCategoryName } from '../api/admin-api';
 import { FaImage } from "react-icons/fa6";
+
+import useAdminStore from '../zustand/adminStore'
 
 
 
@@ -16,17 +17,16 @@ const intitialState = {
 
 export default function CreateMenu() {
 
-
   const [form, setForm] = useState({
     menuName: '',
     price: '',
     description: '',
     categoryId: '',
   })
-
-  const actionCreateMenu = useAdminStore((state) => state.actionCreateMenu)
   const [file, setFile] = useState(null)
   const [categoryName, setCategoryName] = useState([])
+
+  const actionCreateMenu = useAdminStore((state) => state.actionCreateMenu)
 
   useEffect(() => {
     category()
@@ -36,7 +36,6 @@ export default function CreateMenu() {
     try {
       const resp = await getCategoryName();
       setCategoryName(resp.data);
-      console.log(resp.data)
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +43,6 @@ export default function CreateMenu() {
 
 
   const handleChange = (e) => {
-
     setForm({
       ...form,
       [e.target.name]: e.target.value

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+
 import { getTotalSaleUnit } from '../api/report-apt'
 
 export default function ShowAllMenuCount() {
+
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
 
@@ -18,7 +20,7 @@ export default function ShowAllMenuCount() {
         };
         fetchComments();
     }, []);
-    console.log(data, "count menuuuuuuuuuuuuu")
+
     if (loading) {
         return <p>Loading Menu...</p>;
     }

@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import { forgetPassword } from '../api/auth-api';
-
-
 
 const ForgetPassword = (props) => {
 
     const { setIsOpen } = props
+
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+
+    const navigate = useNavigate();
 
     const handleForgetPassword = async () => {
         try {
 
             const response = await forgetPassword(email);
             setMessage(response.data.message);
-            console.log('response :>> ', response);
 
         } catch (error) {
 
@@ -36,7 +38,7 @@ const ForgetPassword = (props) => {
                         className='border-2 border-black p-2 w-2/3 rounded-lg'
                     />
                     <button onClick={handleForgetPassword} className='bg-yellow p-2 rounded-lg font-head'>Send</button>
-                    {message && <p>{message}</p>}
+                    {message && <p className='text-green-600'>{message}</p>}
                     <button className='absolute top-0 right-0 p-2' onClick={() => setIsOpen(false)}>X</button>
                 </div>
             </div>

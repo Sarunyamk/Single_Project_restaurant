@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import useAppStore from './../zustand/appStore';
-import { listMenu, removeMenu, updateMenu } from '../api/admin-api';
+
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
+import useAppStore from './../zustand/appStore';
+import { listMenu, removeMenu, updateMenu } from '../api/admin-api';
+
 const MenuAdmin = () => {
-    const token = useAppStore((state) => state.token);
+
     const [menu, setMenu] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
     const [editMenu, setEditMenu] = useState(null);
+
+    const token = useAppStore((state) => state.token);
 
     useEffect(() => {
         showAllMenu();
@@ -44,7 +48,6 @@ const MenuAdmin = () => {
             }
         }
     };
-
 
 
     const handleEditMenu = (item) => {

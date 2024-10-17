@@ -28,10 +28,12 @@ export const forgetPassword = (email) => {
     return axios.post("http://localhost:3000/auth/forget-password", { email }, {
 
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
     })
 }
+
+
 export const resetPassword = (token, data) => {
     console.log('token :>> ', token);
     return axios.post(`http://localhost:3000/auth/reset-password/${token}`, data, {

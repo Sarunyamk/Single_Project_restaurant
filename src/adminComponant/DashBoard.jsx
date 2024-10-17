@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+
 import { Bar } from 'react-chartjs-2';
 import { getDashboard } from '../api/report-apt';
-import 'chart.js/auto'; // Import Chart.js dependencies
+import 'chart.js/auto';
 
 const Dashboard = () => {
-    const [salesData, setSalesData] = useState({ totalSales: 0, ordersCount: 0 });
+
     const [loading, setLoading] = useState(true);
+
+    const [salesData, setSalesData] = useState({ totalSales: 0, ordersCount: 0 });
 
     useEffect(() => {
         const fetchSalesData = async () => {
@@ -88,13 +91,11 @@ const Dashboard = () => {
             <h1 className='font-main mb-5 text-blue-600'>Today's Sales Dashboard</h1>
             <h2 className="font-head text-lg">Date: {currentDate}</h2>
 
-            <div className='flex gap-6 mt-4'>
+            <div className='flex gap-6 mt-6'>
                 <div className='w-full h-60 flex flex-col justify-center items-center'>
                     <Bar data={ordersData} options={options} />
                     <h3 className='mb-3'>Orders Count: <span className='font-bold'>{salesData.ordersCount}</span></h3>
                 </div>
-
-
                 <div className='w-full h-60 flex flex-col justify-center items-center'>
                     <Bar data={salesDataGraph} options={options} />
                     <h3>Total Sales: <span className='font-bold'>{salesData.totalSales} THB</span></h3>

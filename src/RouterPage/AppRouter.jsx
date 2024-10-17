@@ -31,6 +31,9 @@ import ShowAllMenuCount from '../adminComponant/ShowAllMenuCount';
 
 
 
+import PaymentCredit from '../Componant/PaymentCredit';
+import Completion from '../Componant/Completion';
+import ShowAllSaleReport from '../adminComponant/ShowAllSaleReport';
 
 
 
@@ -48,6 +51,7 @@ const pageRouter = createBrowserRouter([
       { path: 'manage/edit-orders', element: <EditOrderTable /> },
       { path: 'report/comments', element: <ShowAllComment /> },
       { path: 'report/total-unit-sold', element: <ShowAllMenuCount /> },
+      { path: 'report/total-sales', element: <ShowAllSaleReport /> },
       { path: 'setting/edit-users', element: <EditUser /> },
     ]
   },
@@ -73,6 +77,10 @@ const pageRouter = createBrowserRouter([
       { path: 'login', element: <LoginPage /> },
       { path: 'detail-menu', element: <ModalMenuDetail /> },
       { path: 'settingcustomer', element: <EditCustomerProfilePage /> },
+
+
+      { path: 'payment', element: <PaymentCredit /> },
+      { path: 'completion', element: <Completion /> },
 
     ]
   },

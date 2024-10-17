@@ -1,17 +1,27 @@
 import React, { useState } from 'react'
+
 import useAppStore from '../zustand/appStore'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useCartStore from '../zustand/cartStore';
-import { createCart } from '../api/cart-api';
 
-export default function ModalDetail(props) {
-  const { hdlCloseModal, selectedItem } = props
+import { createCart } from '../api/cart-api';
+import ReviewCarosel from '../Componant/ReviewCarosel'
+
+export default function ModalDetail() {
+
+  const navigate = useNavigate()
+
+  const [count, setCount] = useState(1)
+  const [isReviewOpen, setIsReviewOpen] = useState(false)
+
   const token = useAppStore((state) => state.token)
   const user = useAppStore((state) => state.user)
   const addToCart = useCartStore((state) => state.addToCart)
-  const navigate = useNavigate()
-  const [count, setCount] = useState(1)
+
+  const hdlCloseModal = useAppStore((state) => state.hdlCloseModal)
+  const selectedItem = useAppStore((state) => state.selectedItem)
+
 
   const hdlcountIncrement = () => {
     setCount(count + 1)
@@ -20,6 +30,11 @@ export default function ModalDetail(props) {
     if (count > 1) {
       setCount(count - 1)
     }
+  }
+
+  const hdlClickOpenReview = () => {
+
+    setIsReviewOpen(!isReviewOpen)
   }
 
   const hdlCheckLogin = async () => {
@@ -65,6 +80,7 @@ export default function ModalDetail(props) {
     }
   }
 
+
   return (
     <div>
       <section className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 ">
@@ -76,7 +92,7 @@ export default function ModalDetail(props) {
           <div className="w-1/2 text-slate-800 flex flex-col gap-4" key={selectedItem.id}>
             <h1 className="font-main">{selectedItem.menuName}</h1>
             <h2 className="font-head">Price : {selectedItem.price} THB</h2>
-            <p className="font-second min-w-full">{selectedItem.description}</p>
+            <p className="font-second min-w-full pr-4">{selectedItem.description}</p>
             <div className="flex mx-auto justify-center items-baseline">
               <button onClick={hdlcountDecrement} className="w-8 h-8 font-head hover:text-yellow">-</button>
               <h1 id="quantity" className="font-main w-10 h-10 text-center">{count}</h1>
@@ -86,12 +102,20 @@ export default function ModalDetail(props) {
               Add to cart
             </button>
             <p className="font-head">Total : {count * selectedItem.price} THB</p>
-            <button onClick={hdlCloseModal} className="absolute top-0 right-0 font-head w-8 h-8 text-center">
+            <button onClick={() => hdlCloseModal()} className="absolute top-0 right-0 font-head w-8 h-8 text-center">
               X
             </button>
+            <button onClick={hdlClickOpenReview} className="absolute top-5 right-10 font-head text-center underline text-yellow hover:scale-110 duration-300">
+              Review
+            </button>
+
           </div>
+          {
+            isReviewOpen && < ReviewCarosel hdlClickOpenReview={hdlClickOpenReview} menuItemId={selectedItem.id} />
+          }
         </div>
       </section>
+
     </div>
   );
 }

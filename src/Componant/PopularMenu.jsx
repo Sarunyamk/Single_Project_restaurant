@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+
 import { getShowPopularMenu } from '../api/menu-api'
 
 export default function PopularMenu() {
+
     const [popularMenus, setPopularMenus] = useState([]);
 
     useEffect(() => {

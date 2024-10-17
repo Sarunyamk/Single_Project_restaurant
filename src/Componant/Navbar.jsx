@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-import useAppStore from '../zustand/appStore'
-import myLogo from '../img/imgBg/myLogo.png'
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
+import myLogo from '../img/imgBg/myLogo.png'
+
+import useAppStore from '../zustand/appStore'
 import OrderCustomerCart from '../Componant/OrderCustomerCart'
-import { getCart } from '../api/cart-api';
 import { getOrdersByUserId } from '../api/comment-api';
 import CommentOrdersModal from './CommentOrderModal';
 
@@ -22,7 +22,7 @@ export default function NavBar() {
   const [isCartModalOpen, setCartModalOpen] = useState(false)
   const [isCommentModalOpen, setCommentModalOpen] = useState(false); // เพิ่ม state สำหรับเปิดปิด Comment modal
   const [orders, setOrders] = useState([]); // state เก็บรายการคำสั่งซื้อ
-  const [cartCount, setCartCount] = useState(0);
+
 
   const toggleDropdownUser = () => {
     setDropdownUserOpen(!isDropdownUserOpen)
@@ -38,17 +38,6 @@ export default function NavBar() {
   const closeCartModal = () => {
     setCartModalOpen(false)
   }
-  // const fetchCartCount = async () => {
-  //   try {
-  //     const response = await getCart(token, user.user.id);
-  //     if (response.status === 200) {
-  //       const totalCount = response.data.cart_Items.reduce((acc, item) => acc + item.count, 0);
-  //       setCartCount(totalCount);
-  //     }
-  //   } catch (error) {
-  //     console.error('Failed to fetch cart count:', error);
-  //   }
-  // };
 
   const openCommentModal = async () => {
     if (!user || !user.user || !user.user.id) {
@@ -126,11 +115,6 @@ export default function NavBar() {
               <Link>
                 <div onClick={openCartModal} className='w-8 h-8 relative '>
                   <FaCartShopping className='w-8 h-8 text-white hover:text-yellow' />
-                  {cartCount > 0 && (
-                    <div className='absolute -top-2 -right-2 w-5 h-5 bg-red rounded-full flex justify-center items-center bg-yellow'>
-                      <h1 className='text-white text-xs'>{cartCount}</h1>
-                    </div>
-                  )}
                 </div>
               </Link>
             </div>

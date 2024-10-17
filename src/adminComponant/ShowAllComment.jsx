@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+
 import { getComments } from '../api/report-apt'
 
 export default function ShowAllComment() {
@@ -19,7 +20,7 @@ export default function ShowAllComment() {
         };
         fetchComments();
     }, []);
-    console.log(data, "commenttttttttt")
+
     if (loading) {
         return <p>Loading comments...</p>;
     }

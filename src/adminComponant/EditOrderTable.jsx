@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-
-import { getOrders, updateStatusOrder, deleteOrder } from '../api/manage-api'
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 
+import { getOrders, updateStatusOrder, deleteOrder } from '../api/manage-api'
+
 export default function EditOrderTable() {
+
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -34,7 +35,7 @@ export default function EditOrderTable() {
     };
 
     const handleRemoveOrder = async (orderId) => {
-        // เรียก SweetAlert2 เพื่อถามผู้ใช้ก่อนลบ
+
         const result = await Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -55,7 +56,6 @@ export default function EditOrderTable() {
                     'success'
                 );
             } catch (error) {
-                console.error('Error removing order:', error);
                 Swal.fire(
                     'Error!',
                     'There was a problem deleting the order.',

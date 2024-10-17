@@ -26,3 +26,8 @@ export const getShowCommentUser = async () => {
 
     return axios.get('http://localhost:3000/comment/show-comment');
 }
+
+export const getShowReviewMenu = async (menuItemId) => {
+
+    return await axios.get(`http://localhost:3000/comment/review-comment/${menuItemId}`);
+}

@@ -1,28 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import useAppStore from '../zustand/appStore';
+
 import { toast } from 'react-toastify';
-import { getCart, deleteCartItem, updateCartItem } from '../api/cart-api';
-import { RiDeleteBinLine } from "react-icons/ri";
 import Swal from 'sweetalert2';
+import { RiDeleteBinLine } from "react-icons/ri";
+
+import useAppStore from '../zustand/appStore';
+import { getCart, deleteCartItem, updateCartItem } from '../api/cart-api';
 import CartCheckout from '../Componant/CartCheckout';
+import useCartStore from '../zustand/cartStore';
 
 export default function OrderCustomerCart({ isOpen, onClose }) {
-    const token = useAppStore((state) => state.token);
-    const user = useAppStore((state) => state.user);
+
     const [cartDetails, setCartDetails] = useState([]);
     const [totalAmount, setTotalAmount] = useState(0);
-    const [isCheckoutOpen, setCheckoutOpen] = useState(false);
+
+    const token = useAppStore((state) => state.token);
+    const user = useAppStore((state) => state.user);
+    // const [isCheckoutOpen, setCheckoutOpen] = useState(false);
+    const isCheckoutOpen = useCartStore((state) => state.isCheckoutOpen);
+    const setCheckoutOpen = useCartStore((state) => state.setCheckoutOpen);
 
     useEffect(() => {
         if (isOpen) {
             const fetchCartDetails = async () => {
                 try {
                     const response = await getCart(token, user.user.id);
-                    if (response.status === 200) {
+                    console.log('response.data :>> ', response.data);
+                    if (response.status === 200 && response.data) {
                         setTotalAmount(response.data.total);
                         setCartDetails(response.data.cart_Items);
-                    } else {
-                        toast.error('Failed to fetch cart details');
                     }
                 } catch (error) {
                     console.error('Error fetching cart details:', error);
@@ -151,7 +157,7 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                     </div>
                 </section>
             </div>
-            <CartCheckout cartDetails={cartDetails} totalAmount={totalAmount} closeCheckout={closeCheckout} isCheckoutOpen={isCheckoutOpen} closeOrderCart={onClose} />
+            <CartCheckout cartDetails={cartDetails} closeCheckout={closeCheckout} totalAmount={totalAmount} closeOrderCart={onClose} />
         </div>
     );
 }

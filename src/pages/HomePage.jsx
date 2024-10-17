@@ -8,7 +8,6 @@ import Comment from '../Componant/Comment';
 
 
 
-
 export default function HomePage() {
   return (
     <div>

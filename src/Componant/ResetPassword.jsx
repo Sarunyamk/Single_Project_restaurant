@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 import { resetPassword } from '../api/auth-api';
 import { useParams } from 'react-router-dom';
 
 const ResetPassword = () => {
+
     const { token } = useParams()
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState('');
+
+    const navigate = useNavigate();
 
     const handleResetPassword = async () => {
         if (password !== confirmPassword) {
@@ -19,6 +25,7 @@ const ResetPassword = () => {
             const response = await resetPassword(token, { password });
 
             setMessage(response.data.message);
+            navigate('/login');
         } catch (error) {
             setMessage('reset password error');
             console.error('Error:', error);

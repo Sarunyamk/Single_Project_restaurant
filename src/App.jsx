@@ -5,10 +5,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
-
-
-
 export default function App() {
 
   return (
@@ -27,6 +23,7 @@ export default function App() {
         theme="colored"
         transition:Flip
       />
+
       <AppRouter />
     </>
   )

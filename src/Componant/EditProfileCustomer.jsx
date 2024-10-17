@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
-import useAppStore from '../zustand/appStore';
 
+import { toast } from 'react-toastify';
+
+import useAppStore from '../zustand/appStore';
 import validateEditProfile from '../Utils/editProfileValidate';
 import { getProfile, editProfile } from '../api/user-api';
-
-
 
 export default function EditProfileCustomer() {
 
   const [user, setUser] = useState({});
   const [formatError, setFormatError] = useState({})
+
   const token = useAppStore((state) => state.token);
 
   useEffect(() => {
@@ -26,7 +26,6 @@ export default function EditProfileCustomer() {
       const resp = await getProfile(token);
       setUser(resp.data);
     } catch (err) {
-
       toast.error('Error fetching profile');
     }
   };

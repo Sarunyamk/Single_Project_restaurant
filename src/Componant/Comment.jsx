@@ -1,155 +1,87 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useEffect } from "react";
+
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 
-import { getShowCommentUser } from '../api/comment-api'
-import axios from 'axios';
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-const Comment = () => {
-  const [currentSlide, setCurrentSlide] = useState(1); // เริ่มต้นที่ slide 1 (โคลนแรก)
-  const [clientComments, setClientComments] = useState([]);
-  const totalSlides = clientComments.length; // จำนวนคอมเมนต์ทั้งหมด
-  const visibleSlides = 5; // จำนวน slide ที่แสดง
-  const sliderRef = useRef(null);
+import { getShowCommentUser } from "../api/comment-api";
+
+export default function Comment() {
   const text = "Our Client Comments";
+  const [clientComments, setClientComments] = useState([]);
 
-  // Fetch comments from the backend
   useEffect(() => {
-    const fetchComments = async () => {
+    async function fetchComments() {
       try {
-        const response = await getShowCommentUser()
-        setClientComments(response.data); // เก็บข้อมูลความคิดเห็นใน state
+        const response = await getShowCommentUser();
+        setClientComments(response.data);
       } catch (error) {
-        console.error('Error fetching comments:', error);
+        console.error("Error fetching comments:", error);
       }
-    };
-
-    fetchComments();
-  }, []);
-
-  // เลื่อนอัตโนมัติทุก 3 วินาที
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => prev + 1);
-    }, 3000);
-
-    return () => clearInterval(interval); // ล้าง interval เมื่อ component ถูกทำลาย
-  }, []);
-
-  // จัดการการเปลี่ยนภาพเมื่อสิ้นสุดการเลื่อน
-  useEffect(() => {
-    const handleTransitionEnd = () => {
-      if (currentSlide === totalSlides + 1) {
-        if (sliderRef.current) {
-          sliderRef.current.style.transition = 'none';
-          setCurrentSlide(1); // กลับไปที่คอมเมนต์แรก (โคลน)
-          setTimeout(() => {
-            if (sliderRef.current) {
-              sliderRef.current.style.transition = 'transform 0.3s ease-in-out';
-            }
-          }, 50);
-        }
-      }
-    };
-
-    if (sliderRef.current) {
-      sliderRef.current.style.transform = `translateX(-${currentSlide * (100 / visibleSlides)}%)`;
-      sliderRef.current.addEventListener('transitionend', handleTransitionEnd);
     }
-
-    return () => {
-      if (sliderRef.current) {
-        sliderRef.current.removeEventListener('transitionend', handleTransitionEnd);
-      }
-    };
-  }, [currentSlide, totalSlides, visibleSlides]);
+    fetchComments(); // เรียกฟังก์ชันเมื่อ component ถูกสร้าง
+  }, []);
 
   return (
-    <div className='my-32'>
+    <div className="m-32">
       <div className="flex items-center justify-center ">
-        <h1 className='font-title my-32 text-yellow wave-text'>
+        <h1 className="font-title my-20 text-yellow wave-text">
           {text.split("").map((letter, index) => (
-            <span key={index} className="wave-letter" style={{ animationDelay: `${index * 0.1}s` }}>
+            <span
+              key={index}
+              className="wave-letter"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               {letter}
             </span>
           ))}
         </h1>
       </div>
-      <RiDoubleQuotesL className='w-20 h-20 mx-32 ' />
-      <section className='flex items-center justify-center my-10'>
-        <div className='overflow-hidden w-4/5'>
-          <div
-            ref={sliderRef}
-            className='flex transition-transform duration-300 ease-in-out'
-          >
-            {/* โคลนของ slide สุดท้ายไว้ที่จุดเริ่มต้น */}
-            {clientComments.length > 0 && (
-              <div className='flex-shrink-0 w-1/4 border-2 rounded-lg flex flex-col text-center   items-center p-2 bg-yellow '>
-                <div className='h-1/2'>
-                  <h1 className='font-head'><span className='font-head uppercase'>{clientComments[clientComments.length - 1].user.firstname} </span> say :</h1>
-                  <h2 className=' text-gray-700'>{clientComments[clientComments.length - 1].comment}</h2>
+      <RiDoubleQuotesL className="w-20 h-20 mb-10" />
+      <Carousel className="w-full max-w-5xl mx-auto">
+        <CarouselContent className="grid grid-cols-5 gap-4">
+          {clientComments.length > 0 ? (
+            clientComments.map((comment, index) => (
+              <CarouselItem key={index}>
+                <div>
+                  <Card className="rounded-lg shadow-lg bg-gray-50">
+                    <CardContent className="p-4">
+                      <h2 className="text-2xl font-semibold text-gray-800">
+                        {comment.user?.firstname}
+                      </h2>
+                      <p className="text-md font-light text-gray-600 mt-2 italic">
+                        "{comment.comment}"
+                      </p>
+                      <h3 className="font-bold mt-4 text-gray-700">
+                        Ordered Menus:
+                      </h3>
+                      <ul className="text-sm text-gray-600 mt-2 list-disc list-inside">
+                        {comment.order?.order_detail?.map((detail) => (
+                          <li key={detail.id}>
+                            {detail.item?.menuName}
+                          </li>
+                        )) || <li>No items ordered</li>}
+                      </ul>
+                    </CardContent>
+                  </Card>
                 </div>
-                <div className="mt-4 h-1/2">
-                  <h3 className="font-head">Ordered Menus:</h3>
-                  <ul className="text-sm text-gray-600 mt-2">
-                    {clientComments[clientComments.length - 1].order.order_detail.map((detail) => (
-                      <li key={detail.id}>
-                        {detail.item.menuName} - {detail.count} pcs
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            )}
-
-            {/* แสดงคอมเมนต์ทั้งหมด */}
-            {clientComments.map((comment, index) => (
-              <div
-                key={index}
-                className='flex-shrink-0 w-1/4 border-2 rounded-lg flex flex-col text-center   items-center p-4 bg-yellow'
-              >
-                <div className='h-1/2'>
-                  <h1 className='font-head'><span className='font-head uppercase'>{comment.user.firstname} </span> say :</h1>
-                  <h2 className=' text-gray-700'>{comment.comment}</h2>
-                </div>
-                <div className="mt-4 h-1/2">
-                  <h3 className="font-bold">Ordered Menus:</h3>
-                  <ul className="text-sm text-gray-600 mt-2">
-                    {comment.order.order_detail.map((detail) => (
-                      <li key={detail.id}>
-                        {detail.item.menuName} - {detail.count} pcs
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-              </div>
-            ))}
-
-            {/* โคลนของ slide แรกไว้ที่จุดสิ้นสุด */}
-            {clientComments.length > 0 && (
-              <div className='flex-shrink-0 w-1/4 border-2 rounded-lg flex flex-col text-center  items-center p-4 bg-yellow'>
-                <div className='h-1/2'>
-                  <h1 className='font-head'><span className='font-head uppercase'>{clientComments[0].user.firstname} </span> say :</h1>
-                  <h2 className=' text-gray-700'>{clientComments[0].comment}</h2>
-                </div>
-                <div className="mt-4 h-1/2">
-                  <h3 className="font-bold">Ordered Menus:</h3>
-                  <ul className="text-sm text-gray-600 mt-2">
-                    {clientComments[0].order.order_detail.map((detail) => (
-                      <li key={detail.id}>
-                        {detail.item.menuName} - {detail.count} pcs
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-      <RiDoubleQuotesR className='w-20 h-20 mx-32  float-end' />
+              </CarouselItem>
+            ))
+          ) : (
+            <div className="text-center p-6">No comments available</div>
+          )}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+      <RiDoubleQuotesR className="w-20 h-20 float-end mt-10" />
     </div>
   );
 }
-
-export default Comment;

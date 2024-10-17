@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import { getUsers, updateRoleUser, deleteUser } from '../api/manage-api'
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 
+import { getUsers, updateRoleUser, deleteUser } from '../api/manage-api'
+
 export default function EditUser() {
+
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -54,7 +56,6 @@ export default function EditUser() {
                     'success'
                 );
             } catch (error) {
-                console.error('Error removing order:', error);
                 Swal.fire(
                     'Error!',
                     'There was a problem deleting the order.',

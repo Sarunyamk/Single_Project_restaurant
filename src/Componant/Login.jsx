@@ -1,23 +1,28 @@
 import React, { useState } from 'react'
+
 import useAppStore from '../zustand/appStore'
 import { useNavigate } from 'react-router-dom'
+
 import ForgetPassword from './ForgetPassword'
+import validateLogin from '../Utils/loginValidate'
 
 
 
 export default function Login() {
 
-  const navigate = useNavigate()
 
   const [form, setForm] = useState({
 
     email: '',
     password: ''
   })
+  const [formatError, setFormatError] = useState({})
+  const [isOpen, setIsOpen] = useState(false)
+
+  const navigate = useNavigate()
 
   const actionLogin = useAppStore((state) => state.actionLogin)
 
-  const [isOpen, setIsOpen] = useState(false)
 
   const handleChange = (e) => {
 
@@ -30,9 +35,14 @@ export default function Login() {
   const handleSubmit = async (e) => {
 
     e.preventDefault();
-    console.log(form, "this is form")
+
+    const error = validateLogin(form)
+
+    if (error) {
+
+      return setFormatError(error)
+    }
     const role = await actionLogin(form)
-    console.log(role, "this is role")
 
     if (role) {
 
@@ -43,7 +53,6 @@ export default function Login() {
   const roleRedirect = (role) => {
 
     const checkRole = role.data.user.user.role
-    console.log('checkRole', checkRole)
 
     if (checkRole === "ADMIN") {
 
@@ -60,11 +69,14 @@ export default function Login() {
         <h1 className='font-main text-yellow my-4 '>Login</h1>
         <input name="email" onChange={handleChange} value={form.email}
           className='p-2 outline-none w-2/3 rounded-lg ' type="email" placeholder='Email...' />
+        <div className='w-2/3 '>
+          {formatError && <p className='text-gray-300 text-xs'>{formatError.email}</p>}
+        </div>
         <input name="password" onChange={handleChange} value={form.password}
           className='p-2 outline-none w-2/3 rounded-lg' type="password" placeholder='Password...' />
-
-
-
+        <div className='w-2/3 '>
+          {formatError && <p className='text-gray-300 text-xs'>{formatError.password}</p>}
+        </div>
         <button className='bg-yellow text-white py-4 px-6 font-head  rounded-xl'>Login</button>
       </form>
       <p onClick={() => setIsOpen(!isOpen)} className='text-white cursor-pointer underline hover:text-yellow'>Forget Password ?</p>

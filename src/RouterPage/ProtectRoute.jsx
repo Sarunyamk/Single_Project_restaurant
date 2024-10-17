@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
+
 import useAppStore from '../zustand/appStore';
+
 import { currentUser } from '../api/auth-api';
 import { Navigate } from 'react-router-dom';
 
@@ -20,10 +22,7 @@ const ProtectRoute = ({ element, allow }) => {
     try {
 
       const resp = await currentUser(token)
-      console.log('resp', resp)
-
       const role = resp.data.user.role
-      console.log('role backend', role)
 
       if (allow.includes(role)) {
 
@@ -33,9 +32,7 @@ const ProtectRoute = ({ element, allow }) => {
 
       }
 
-
     } catch (err) {
-      console.log(err)
       setIsAllowed(false)
 
     }
@@ -48,8 +45,6 @@ const ProtectRoute = ({ element, allow }) => {
   if (!isAllowed) {
     return <Navigate to={'/login'} />
   }
-
-
 
   return element
 }

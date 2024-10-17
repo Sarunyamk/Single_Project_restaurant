@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { Link } from 'react-router-dom'
 
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -8,6 +9,7 @@ export default function SideBar() {
     const [isDropdownManage, setIsDropdownManage] = useState(false);
     const [isDropdownSetting, setIsDropdownSetting] = useState(false);
     const [isDropdownReport, setIsDropdownReport] = useState(false);
+
     const toggleDropdownManage = () => {
         setIsDropdownManage(!isDropdownManage);
     };
@@ -52,6 +54,11 @@ export default function SideBar() {
                     </button>
                     {isDropdownReport && (
                         <div className="absolute left-0 w-48 bg-white shadow-lg  z-10">
+                            <Link
+                                to='/admin/report/total-sales'
+                                className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                                onClick={() => setIsDropdownReport(false)} > Sales
+                            </Link>
                             <Link
                                 to='/admin/report/comments'
                                 className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'

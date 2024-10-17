@@ -4,7 +4,6 @@ import { Outlet } from 'react-router-dom'
 import SideBar from '../adminComponant/SideBar'
 
 
-
 const HomePageAdmin = () => {
   return (
     <div>
@@ -13,7 +12,6 @@ const HomePageAdmin = () => {
         <SideBar />
         <Outlet />
       </div>
-
     </div>
   )
 }
