@@ -40,6 +40,7 @@ export default function ModalDetail() {
   const hdlCheckLogin = async () => {
     if (!token) {
 
+      hdlCloseModal();
       navigate('/login');
     } else {
 

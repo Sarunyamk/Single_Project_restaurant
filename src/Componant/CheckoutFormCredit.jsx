@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import React, { useState } from 'react';
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 
-import { createPayment } from '../api/payment-api'
 import useAppStore from '../zustand/appStore';
 
-export default function CheckoutFormCredit({ closeCheckout, closeOrderCart }) {
+export default function CheckoutFormCredit() {
 
     const user = useAppStore((state) => state.user);
     const elements = useElements();
@@ -49,7 +47,7 @@ export default function CheckoutFormCredit({ closeCheckout, closeOrderCart }) {
 
             setIsProcessing(false);
         } catch (error) {
-            console.error('Error confirming payment:', err);
+            console.error('Error confirming payment:', error);
             setMessage('Payment confirmation failed.');
         }
     };
