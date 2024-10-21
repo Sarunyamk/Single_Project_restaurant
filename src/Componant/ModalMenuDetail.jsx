@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import Swal from 'sweetalert2';
 import useAppStore from '../zustand/appStore'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -38,6 +39,26 @@ export default function ModalDetail() {
   }
 
   const hdlCheckLogin = async () => {
+
+    const currentDate = new Date();
+    const currentDay = currentDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    const currentHour = currentDate.getHours();
+
+    const isWeekday = currentDay >= 1 && currentDay <= 5 && currentHour >= 10 && currentHour <= 22; // Monday-Friday 10:00-22:00
+    const isWeekend = (currentDay === 0 || currentDay === 6) && currentHour >= 12 && currentHour <= 22; // Saturday-Sunday 12:00-22:00
+
+    if (!isWeekday && !isWeekend) {
+      Swal.fire({
+        icon: 'info',
+        title: 'The store is currently closed ',
+        text: 'Please place your order on the next business day.',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#3085d6',
+        background: '#fefefe'
+      });
+      return;
+    }
+
     if (!token) {
 
       hdlCloseModal();

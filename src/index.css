@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=DM+Serif+Display:ital@0;1&family=Oswald:wght@200..700&family=Yeseva+One&display=swap');
+
+body{
+
+  font-family: "Oswald", serif;
+} 
+
 .animate-spin{
     animation: spin 100s linear infinite;  
 }
