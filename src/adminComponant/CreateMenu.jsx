@@ -6,8 +6,6 @@ import { FaImage } from "react-icons/fa6";
 import useAdminStore from '../zustand/adminStore'
 
 
-
-
 const intitialState = {
   menuName: '',
   price: '',
@@ -44,10 +42,11 @@ export default function CreateMenu() {
 
   const handleChange = (e) => {
     setForm({
-      ...form,
-      [e.target.name]: e.target.value
+      ...form, // คัดลอกค่าทั้งหมดของฟอร์มก่อนหน้านี้
+      [e.target.name]: e.target.value // อัปเดตฟิลด์ที่กำลังเปลี่ยนแปลงโดยใช้อีเวนต์ที่เกิดขึ้น
     })
   }
+  //e.target อ้างอิงถึงองค์ประกอบ (element) ที่ถูกกระทำการ เช่น ในที่นี้คือ input field ที่ผู้ใช้กำลังเปลี่ยนแปลงค่า
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -61,6 +60,7 @@ export default function CreateMenu() {
     e.preventDefault();
     try {
       const formData = new FormData();
+      //วนลูปเพื่อเพิ่มค่าของแต่ละฟิลด์จากฟอร์มไปยัง formData
       for (let key in form) {
         console.log(key)
         formData.append(key, form[key])

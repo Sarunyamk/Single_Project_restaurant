@@ -6,7 +6,7 @@ import { Elements } from "@stripe/react-stripe-js";
 
 import CheckoutFormCredit from "../Componant/CheckoutFormCredit";
 
-function PaymentCredit() {
+function PaymentCredit({ amount }) {
 
     const [stripePromise, setStripePromise] = useState(null);
     const [clientSecret, setClientSecret] = useState("");
@@ -29,7 +29,7 @@ function PaymentCredit() {
         const createPaymentIntent = async () => {
             try {
                 const response = await axios.post("http://localhost:3000/payment/create-payment-intent", {
-                    amount: 1999,
+                    amount: amount * 100,
                 });
                 setClientSecret(response.data.clientSecret);
             } catch (error) {

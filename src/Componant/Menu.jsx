@@ -34,7 +34,7 @@ export default function Menu() {
 
     const totalPages = Math.ceil(menu.length / itemsPerPage);
     let pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
+    for (let i = 1; i <= totalPages; i++) { // ลูปสร้างปุ่มหน้าเพจ
       pageNumbers.push(
         <button
           key={i}
@@ -46,7 +46,7 @@ export default function Menu() {
         </button>
       );
     }
-    return pageNumbers;
+    return pageNumbers; // คืนค่าปุ่มหน้าเพจทั้งหมด
   };
 
 

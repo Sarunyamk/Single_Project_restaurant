@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 
 import { getTotalSale } from '../api/report-apt'
+import useAppStore from '../zustand/appStore';
+import Loading from '../Componant/Loading';
 
 export default function ShowAllSaleReport() {
 
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [salesReport, setSalesReport] = useState(null);
-    const [loading, setLoading] = useState(false);
+
+    const loading = useAppStore((state) => state.loading);
+    const setLoading = useAppStore((state) => state.setLoading);
+
 
     const handleFetchReport = async () => {
         try {
@@ -20,6 +25,9 @@ export default function ShowAllSaleReport() {
             setLoading(false);
         }
     };
+    if (loading) {
+        return <Loading />
+    }
 
 
     return (

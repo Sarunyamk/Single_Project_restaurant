@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
 import { forgetPassword } from '../api/auth-api';
 
 const ForgetPassword = (props) => {
@@ -9,8 +8,6 @@ const ForgetPassword = (props) => {
 
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-
-    const navigate = useNavigate();
 
     const handleForgetPassword = async () => {
         try {

@@ -4,11 +4,15 @@ import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 
 import { getUsers, updateRoleUser, deleteUser } from '../api/manage-api'
+import useAppStore from '../zustand/appStore';
+import Loading from '../Componant/Loading';
 
 export default function EditUser() {
 
     const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
+
+    const loading = useAppStore((state) => state.loading);
+    const setLoading = useAppStore((state) => state.setLoading);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -66,7 +70,7 @@ export default function EditUser() {
     };
 
     if (loading) {
-        return <p>Loading orders...</p>;
+        return <Loading />
     }
 
     return (

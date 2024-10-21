@@ -3,30 +3,33 @@ import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 
 import { getOrders, updateStatusOrder, deleteOrder } from '../api/manage-api'
+import useAppStore from '../zustand/appStore';
+import Loading from '../Componant/Loading';
 
 export default function EditOrderTable() {
 
     const [orders, setOrders] = useState([]);
-    const [loading, setLoading] = useState(true);
+
+    const loading = useAppStore((state) => state.loading);
+    const setLoading = useAppStore((state) => state.setLoading);
 
     useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const response = await getOrders()
-                setOrders(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching orders:', error);
-            }
-        };
         fetchOrders();
     }, []);
-
+    const fetchOrders = async () => {
+        try {
+            const response = await getOrders()
+            setOrders(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+        }
+    };
     const handleUpdateStatus = async (orderId, newStatus) => {
         try {
             const response = await updateStatusOrder(orderId, newStatus)
-            console.log(response, "responnf")
             // อัปเดตข้อมูลใน state ด้วยสถานะใหม่
+            //เพื่อวนลูปผ่านรายการ orders และตรวจสอบว่า order.id ตรงกับ orderId ที่เราต้องการอัปเดตหรือไม่
             setOrders(orders.map(order => order.id === orderId ? { ...order, status: newStatus } : order));
             toast.success('Order Status updated successfully!');
         } catch (error) {
@@ -66,9 +69,8 @@ export default function EditOrderTable() {
     };
 
     if (loading) {
-        return <p>Loading orders...</p>;
+        return <Loading />
     }
-
     return (
         <div className='mx-4  w-4/5 mt-28'>
             <h1 className='text-yellow font-title text-center m-4'>ORDER</h1>

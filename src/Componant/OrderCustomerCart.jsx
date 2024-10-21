@@ -16,7 +16,6 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
 
     const token = useAppStore((state) => state.token);
     const user = useAppStore((state) => state.user);
-    // const [isCheckoutOpen, setCheckoutOpen] = useState(false);
     const isCheckoutOpen = useCartStore((state) => state.isCheckoutOpen);
     const setCheckoutOpen = useCartStore((state) => state.setCheckoutOpen);
 

@@ -5,7 +5,6 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import { toast } from 'react-toastify';
 
 
-
 const useAppStore = create(persist((set, get) => ({
 
     user: null,
@@ -14,6 +13,8 @@ const useAppStore = create(persist((set, get) => ({
     selectedItem: {},
     setIsOpenModal: (value) => set({ isOpenModal: value }),
     setSelectedItem: (item) => set({ selectedItem: item }),
+    loading: true,  // กำหนดค่าเริ่มต้นของ loading เป็น true
+    setLoading: (newLoading) => set({ loading: newLoading }),  // ฟังก์ชันสำหรับเปลี่ยนค่า loading
 
 
     hdlOpenModal: (item) => {

@@ -3,12 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { getDashboard } from '../api/report-apt';
 import 'chart.js/auto';
+import useAppStore from '../zustand/appStore';
+import Loading from '../Componant/Loading';
 
 const Dashboard = () => {
 
-    const [loading, setLoading] = useState(true);
-
     const [salesData, setSalesData] = useState({ totalSales: 0, ordersCount: 0 });
+
+    const loading = useAppStore((state) => state.loading);
+    const setLoading = useAppStore((state) => state.setLoading);
 
     useEffect(() => {
         const fetchSalesData = async () => {
@@ -83,7 +86,7 @@ const Dashboard = () => {
     };
 
     if (loading) {
-        return <p className="text-center font-bold text-lg">Loading dashboard...</p>;
+        return <Loading />
     }
 
     return (

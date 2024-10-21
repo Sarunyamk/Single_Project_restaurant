@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
 
 import { getComments } from '../api/report-apt'
+import Loading from './../Componant/Loading';
+import useAppStore from '../zustand/appStore';
 
 export default function ShowAllComment() {
 
     const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true);
+
+    const loading = useAppStore((state) => state.loading);
+    const setLoading = useAppStore((state) => state.setLoading);
+
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -22,7 +27,7 @@ export default function ShowAllComment() {
     }, []);
 
     if (loading) {
-        return <p>Loading comments...</p>;
+        return <Loading />
     }
     return (
         <div className='w-4/5 mt-28 mx-4'>

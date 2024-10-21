@@ -64,7 +64,7 @@ export default function CommentOrdersModal({ orders, onClose }) {
                                 className="w-full p-2 border rounded-md"
                                 value={comments[order.id] || ''}
                                 onChange={e => handleCommentChange(order.id, e.target.value)}
-                                maxLength={100}
+                                maxLength={70}
                             />
                             <select
                                 value={ratings[order.id] || ''}

@@ -276,7 +276,7 @@ export default function NavBar() {
 
     try {
       const response = await getOrdersByUserId(token, user.user.id); // ดึงข้อมูล order
-      setOrders(response.data); // เก็บ order ใน state
+      setOrders(response.data); // เก็บ order ใน state      
       setCommentModalOpen(true); // เปิด modal สำหรับ comment
     } catch (error) {
       console.error('Failed to fetch orders:', error);
@@ -292,6 +292,7 @@ export default function NavBar() {
       setDropdownUserOpen(false);
     }
   }, [user, isCartModalOpen]);
+
 
   return (
     <div>

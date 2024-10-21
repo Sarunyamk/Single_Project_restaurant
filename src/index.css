@@ -1,14 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=DM+Serif+Display:ital@0;1&family=Oswald:wght@200..700&family=Yeseva+One&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Yeseva+One&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Chewy&family=DM+Serif+Display:ital@0;1&family=Yeseva+One&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Cinzel:wght@400..900&family=DM+Serif+Display:ital@0;1&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Yeseva+One&display=swap'); */
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* font */
-@import url('https://fonts.googleapis.com/css2?family=Chewy&family=DM+Serif+Display:ital@0;1&family=Oswald:wght@200..700&family=Yeseva+One&display=swap');
 
 body{
 
   font-family: "Oswald", serif;
 } 
+/* body{
+
+  font-family: "Yeseva One", serif;
+}  */
+/* body{
+
+  font-family: "DM Serif Display", serif;
+}  */
+
+/* body{
+
+  font-family: "Cinzel", serif;
+}  */
+
+
+
+
+
+
+
+
+
 
 .animate-spin{
     animation: spin 100s linear infinite;  

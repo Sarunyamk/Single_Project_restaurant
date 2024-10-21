@@ -46,7 +46,7 @@ export default function CartCheckout({ cartDetails, totalAmount, closeCheckout, 
                                 Payment
                             </button>
                         ) : (
-                            <PaymentCredit customerId={user.user.id} closeCheckout={closeCheckout} closeOrderCart={closeOrderCart} />
+                            <PaymentCredit amount={totalAmount} customerId={user.user.id} closeCheckout={closeCheckout} closeOrderCart={closeOrderCart} />
                         )}
                         <button onClick={closeCheckout} className='mt-6 w-full bg-red-gradient text-white p-2 rounded-lg '>Close</button>
                     </div>

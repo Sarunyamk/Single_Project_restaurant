@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 
 import { getTotalSaleUnit } from '../api/report-apt'
+import useAppStore from '../zustand/appStore';
+import Loading from '../Componant/Loading';
+
 
 export default function ShowAllMenuCount() {
 
     const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true);
+    const loading = useAppStore((state) => state.loading);
+    const setLoading = useAppStore((state) => state.setLoading);
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -22,8 +26,9 @@ export default function ShowAllMenuCount() {
     }, []);
 
     if (loading) {
-        return <p>Loading Menu...</p>;
+        return <Loading />
     }
+
     return (
         <div className='w-4/5 mt-28 mx-4'>
             <h1 className='text-yellow font-title text-center m-4'>COUNT MENU</h1>

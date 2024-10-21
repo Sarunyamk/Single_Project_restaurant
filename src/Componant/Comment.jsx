@@ -52,8 +52,8 @@ export default function Comment() {
               <CarouselItem key={index}>
                 <div>
                   <Card className="rounded-lg shadow-lg bg-gray-50">
-                    <CardContent className="p-4 flex flex-col justify-between h-80">
-                      <div className="h-1/2">
+                    <CardContent className="p-4 flex flex-col justify-between h-72">
+                      <div className="h-1/3">
                         <h2 className="font-head text-gray-800">
                           {comment.user?.firstname}
                         </h2>
@@ -61,7 +61,7 @@ export default function Comment() {
                           "{comment.comment}"
                         </p>
                       </div>
-                      <div className="h-1/2">
+                      <div className="h-2/3 mt-2">
                         <h3 className="font-bold mt-4 text-gray-700">
                           Ordered Menus:
                         </h3>
