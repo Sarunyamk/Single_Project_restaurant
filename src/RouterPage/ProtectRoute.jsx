@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 
 import useAppStore from '../zustand/appStore';
 
-import { currentUser } from '../api/auth-api';
 import { Navigate } from 'react-router-dom';
 
 
@@ -16,13 +15,12 @@ const ProtectRoute = ({ element, allow }) => {
   useEffect(() => {
     checkRole()
   }, [])
-
+  console.log(user, "this is user")
   const checkRole = async () => {
 
     try {
 
-      const resp = await currentUser(token)
-      const role = resp.data.user.role
+      const role = user.user.role
 
       if (allow.includes(role)) {
 

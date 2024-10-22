@@ -13,7 +13,7 @@ const useAdminStore = create(persist((set) => ({
 
         try {
 
-            const resp = await createMenu(formData);
+            const resp = await createMenu(token, formData);
             toast.success(resp.data.message || "create menu success");
             console.log(resp)
             // return resp.data;  

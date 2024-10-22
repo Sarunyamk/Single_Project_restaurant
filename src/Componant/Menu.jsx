@@ -13,6 +13,8 @@ export default function Menu() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = menu.slice(indexOfFirstItem, indexOfLastItem);
 
+  const [isActive, setIsActive] = useState(false);
+
   const isOpenModal = useAppStore((state) => state.isOpenModal)
   const hdlOpenModal = useAppStore((state) => state.hdlOpenModal)
 
@@ -48,6 +50,12 @@ export default function Menu() {
     }
     return pageNumbers; // คืนค่าปุ่มหน้าเพจทั้งหมด
   };
+  const animation = () => {
+    setIsActive(true);
+    setTimeout(() => {
+      setIsActive(false);
+    }, 1000);
+  };
 
 
   return (
@@ -65,13 +73,20 @@ export default function Menu() {
             </div>
             <div className='h-1/2 mt-4 flex justify-around flex-col'>
               <div>
-                <h3 className="text-lg font-bold">{item.menuName}</h3>
-                <p className="text-gray-600 text-xs">{item.description}</p>
+                <h3 className="text-lg font-bold  ">{item.menuName}</h3>
+                <p className="text-gray-600 text-xs my-3">{item.description}</p>
                 <p className="mt-2 text-red-500 font-semibold">{item.price} THB</p>
               </div>
-              <div >
-                <button className="bg-red-gradient   text-white rounded-lg mx-auto p-2 mt-2 shadow-lg hover:scale-105 transition duration-300 w-1/2 flex justify-center items-center"
-                  onClick={() => hdlOpenModal(item)}>Order Now</button>
+              <div className='flex justify-center'>
+                <button className={`button ${isActive ? 'active' : ''} `} onClick={() => { hdlOpenModal(item); animation() }}>
+                  <span className='m-2'>Order Now</span>
+                  <div className='cart '>
+                    <svg className='svg' viewBox='0 0 36 26'>
+                      <polyline points='1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5'></polyline>
+                      <polyline points='15 13.5 17 15.5 22 10.5'></polyline>
+                    </svg>
+                  </div>
+                </button>
               </div>
             </div>
           </div>

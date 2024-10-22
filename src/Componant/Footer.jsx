@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebook, FaLocationDot } from "react-icons/fa6";
 import { FaYoutube, FaInstagram, FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { TbHandFinger } from "react-icons/tb";
 
 
 export default function Footer() {
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    const handleClick = (index) => {
+        setActiveIndex(index);
+    };
+    const socialIcons = [
+        { icon: <TiSocialTwitter className='w-16 h-16 text-yellow' />, },
+        { icon: <FaFacebook className='w-16 h-16 text-yellow' />, },
+        { icon: <FaYoutube className='w-16 h-16 text-yellow' />, },
+        { icon: <FaInstagram className='w-16 h-16 text-yellow' />, },
+    ];
+
     return (
         <div>
             <footer className='bg-red-gradient  text-white  h-auto'>
@@ -44,19 +57,29 @@ export default function Footer() {
                     </div>
 
 
-                    <div className='flex gap-3 mt-4'>
-                        <a href="#" className='w-20 h-20 rounded-full border border-slate-100 hover:bg-white transition-all duration-300 flex items-center justify-center'>
-                            <TiSocialTwitter className='w-16 h-16 text-yellow' />
-                        </a>
-                        <a href="#" className='w-20 h-20 rounded-full border border-slate-100 hover:bg-white transition-all duration-300 flex items-center justify-center'>
-                            <FaFacebook className='w-16 h-16 text-yellow' />
-                        </a>
-                        <a href="#" className='w-20 h-20 rounded-full border border-slate-100 hover:bg-white transition-all duration-300 flex items-center justify-center'>
-                            <FaYoutube className='w-16 h-16 text-yellow' />
-                        </a>
-                        <a href="#" className='w-20 h-20 rounded-full border border-slate-100 hover:bg-white transition-all duration-300 flex items-center justify-center'>
-                            <FaInstagram className='w-16 h-16 text-yellow' />
-                        </a>
+
+                    <div className='relative'>
+                        <div className='flex gap-3 mt-4'>
+                            {socialIcons.map((item, index) => (
+                                <a
+                                    key={index}
+                                    className={`w-20 h-20 rounded-full border border-slate-100 hover:bg-white transition-all duration-300 flex items-center justify-center social-icon ${activeIndex === index ? 'active' : ''}`}
+                                    onClick={() => handleClick(index)}
+                                >
+                                    {item.icon}
+                                </a>
+                            ))}
+                        </div>
+                        {/* ตัวชี้เคลื่อนไหวเมื่อคลิก */}
+                        <TbHandFinger
+                            className='indicator absolute top-24'
+                            style={{
+                                transform: `translateX(${activeIndex * 96}px)`,
+                                transition: 'transform 0.3s ease',
+                                width: '40px',  // ปรับขนาดกว้างของนิ้วมือ
+                                height: '40px'  // ปรับขนาดสูงของนิ้วมือ
+                            }}
+                        />
                     </div>
                 </div>
             </footer>

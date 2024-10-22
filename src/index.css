@@ -12,7 +12,8 @@
 
 body{
 
-  font-family: "Oswald", serif;
+  font-family: "Oswald", sans-serif;
+  
 } 
 /* body{
 
@@ -27,14 +28,6 @@ body{
 
   font-family: "Cinzel", serif;
 }  */
-
-
-
-
-
-
-
-
 
 
 .animate-spin{
@@ -293,3 +286,212 @@ body{
     }  
 }
   
+
+/* ปุ่ม order now */
+.button {
+  --background: #f3ab11;
+  --text: #d61f1f;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  border: none;
+  background-color: var(--background);
+  padding: 8px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  color: var(--text);
+  overflow: hidden;
+  transition: transform 0.4s ease;
+  width: 200px;
+  height: 50px;
+  ;
+}
+
+.button.active {
+  transform: scale(1.1);
+}
+
+.button .cart {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform-origin: center;
+  transition: transform 1s ease;
+}
+
+.button.active .cart {
+  transform: translateX(150px) rotate(-20deg);
+}
+
+.svg {
+  fill: none;
+  stroke: rgb(204, 17, 17);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  width: 36px;
+  height: 26px;
+}
+
+
+/* ปุ่ม social */
+.tabbar {
+  --c-color: #763FEE;
+  --c-color-foreground: #FFFFFF;
+  --indicator-circle-o: 1;
+  --indicator-circle-y: 0px;
+  --indicator-x: 0px;
+  --indicator-transition-duration: 0.4s; /* เพิ่มเวลาของอนิเมชัน */
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 31px;
+  overflow: hidden;
+  position: relative;
+  background: var(--c-backgriund);
+}
+
+.tabbar .ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 375px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around; /* ปรับการวางตำแหน่ง */
+  position: relative;
+  z-index: 1;
+}
+
+.tabbar .indicator {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 68px;
+  height: 72px;
+  fill: var(--c-color);
+  transition: transform var(--indicator-transition-duration) ease; /* เพิ่มอนิเมชัน */
+}
+
+.tabbar li {
+  cursor: pointer;
+  font-size: 2rem;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease; /* อนิเมชันการเปลี่ยนสี */
+}
+
+.tabbar li.active {
+  color: var(--c-color); /* เปลี่ยนสีเมื่อถูกเลือก */
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* เพิ่มการเลื่อนขึ้นเมื่อ hover */
+  }
+}
+
+.social-icon {
+  transition: transform 0.3s ease-in-out; /* เพิ่มการเคลื่อนย้ายปกติ */
+}
+
+.social-icon:hover {
+  animation: bounce 0.6s; /* ใช้ keyframes ที่สร้างเพื่อสร้างการเคลื่อนไหว */
+}
+
+.social-icon svg {
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* เพิ่ม transition */
+}
+
+.social-icon:hover svg {
+  transform: scale(1.2); /* ขยายขนาดไอคอนเมื่อ hover */
+  color: #FFDD57; /* เปลี่ยนสีเมื่อ hover */
+}
+
+
+
+/* ปุ่ม pay */
+
+.button1 {
+  padding: 10px 15px;
+  font-size: 16px;
+  color: white;
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.wrapper-no4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #BEEDEF, white);
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.wrapper-no4 .button-bird {
+  width: 300px;
+  height: 88px;
+  background-color: green;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: none;
+}
+
+.button-bird .feather {
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  left: 50%;
+  top: 12px;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease, transform 0.6s ease;
+}
+
+.button-bird.fly .feather {
+  display: block;
+  opacity: 1;
+  animation: fly-cycle 2s linear infinite;
+}
+@keyframes fly-cycle {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    
+  }
+  50% {
+    transform: translateY(-50px) rotate(-20deg);
+  }
+  80% {
+    transform: translateX(300px) translateY(-200px) rotate(45deg);
+  }
+  100% {
+    transform: translateX(350px) translateY(-250px) rotate(45deg);
+    opacity: 0;
+  }
+  120% {
+    transform: translateX(400px) translateY(-280px) rotate(45deg);
+    
+  }
+}
+
+
+
+
+

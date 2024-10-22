@@ -43,7 +43,7 @@ export default function PopularMenu() {
                         </div>
                         <div className='h-1/2 flex flex-col gap-3 justify-around'>
                             <div>
-                                <h1 className='font-main text-yellow'>{menu.menuName}</h1>
+                                <h1 className='font-main text-yellow my-3'>{menu.menuName}</h1>
                                 <p className='px-4 text-red font-second'>{menu.description}</p>
                             </div>
                             <div>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 import useAppStore from '../zustand/appStore';
-import { createPayment } from '../api/payment-api';
+import { confirmPayment } from '../api/payment-api';
 
 export default function Completion(props) {
 
@@ -16,7 +16,7 @@ export default function Completion(props) {
         async function clearCart() {
             try {
                 // เรียก API เพื่อยืนยันการชำระเงินในเบื้องต้น
-                const response = await createPayment(customerId);
+                const response = await confirmPayment(customerId);
 
                 // แสดงข้อความยืนยันว่าการชำระเงินสำเร็จ
                 Swal.fire({

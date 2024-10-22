@@ -6,8 +6,10 @@ export const getDashboard = () => {
 export const getComments = () => {
     return axios.get('http://localhost:3000/admin/report/all-comment');
 }
-export const getTotalSaleUnit = () => {
-    return axios.get('http://localhost:3000/admin/report/menu-unit');
+export const getTotalSaleUnit = (startDate, endDate) => {
+    return axios.post('http://localhost:3000/admin/report/menu-unit', {
+        startDate, endDate
+    });
 }
 export const getTotalSale = (startDate, endDate) => {
     return axios.post('http://localhost:3000/admin/report/sales-report', {

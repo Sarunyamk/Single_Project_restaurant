@@ -90,16 +90,16 @@ const Dashboard = () => {
     }
 
     return (
-        <div className='p-5 flex flex-col justify-center items-center mt-40 w-2/3 h-96 mx-auto '>
+        <div className='p-5 flex flex-col justify-center items-center mt-40 w-2/3  h-full mx-auto '>
             <h1 className='font-main mb-5 text-blue-600'>Today's Sales Dashboard</h1>
             <h2 className="font-head text-lg">Date: {currentDate}</h2>
 
             <div className='flex gap-6 mt-6'>
-                <div className='w-full h-60 flex flex-col justify-center items-center'>
+                <div className='w-full h-96 flex flex-col justify-center items-center'>
                     <Bar data={ordersData} options={options} />
                     <h3 className='mb-3'>Orders Count: <span className='font-bold'>{salesData.ordersCount}</span></h3>
                 </div>
-                <div className='w-full h-60 flex flex-col justify-center items-center'>
+                <div className='w-full h-96 flex flex-col justify-center items-center'>
                     <Bar data={salesDataGraph} options={options} />
                     <h3>Total Sales: <span className='font-bold'>{salesData.totalSales} THB</span></h3>
                 </div>

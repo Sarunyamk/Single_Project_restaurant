@@ -40,7 +40,6 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
 
     const updateCartItemHandler = async (id, newCount, price) => {
         if (newCount < 1) {
-            toast.error("The quantity must be at least 1.");
             return;
         }
 
@@ -147,7 +146,11 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                         )}
                     </div>
                     <div className='bg-red-gradient h-16 flex items-center justify-between px-4 text-white'>
-                        <button onClick={openCheckout} className='font-head p-1 rounded-md bg-yellow w-32 hover:scale-105 duration-300'>Confirm</button>
+                        {/* <button onClick={openCheckout} className='font-head p-1 rounded-md bg-yellow w-32 hover:scale-105 duration-300'>Confirm</button> */}
+                        <button onClick={openCheckout}
+                            className={`font-head p-1 rounded-md bg-yellow w-32 hover:scale-105 duration-300 ${cartDetails.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            disabled={cartDetails.length === 0} > Confirm </button>
+
                         <div className='flex items-center gap-4'>
                             <h1>Total: </h1>
                             <h1 className='w-32 p-2 rounded-md bg-white text-red font-head text-center'>{totalAmount}</h1>

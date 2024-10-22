@@ -13,18 +13,19 @@ export default function ShowAllComment() {
 
 
     useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                const response = await getComments()
-                setData(response.data);
-                setLoading(false);
 
-            } catch (error) {
-                console.error('Error fetching Users:', error);
-            }
-        };
         fetchComments();
     }, []);
+    const fetchComments = async () => {
+        try {
+            const response = await getComments()
+            setData(response.data);
+            setLoading(false);
+
+        } catch (error) {
+            console.error('Error fetching Users:', error);
+        }
+    };
 
     if (loading) {
         return <Loading />

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import axios from 'axios';
+
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { sendPublishKey, createPaymentStripe } from '../api/payment-api'
 
 import CheckoutFormCredit from "../Componant/CheckoutFormCredit";
 
@@ -14,7 +15,7 @@ function PaymentCredit({ amount }) {
     useEffect(() => {
         const fetchPublishableKey = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/payment/config")
+                const response = await sendPublishKey()
                 const { publishableKey } = response.data;
                 setStripePromise(loadStripe(publishableKey));
             } catch (error) {
@@ -28,9 +29,7 @@ function PaymentCredit({ amount }) {
     useEffect(() => {
         const createPaymentIntent = async () => {
             try {
-                const response = await axios.post("http://localhost:3000/payment/create-payment-intent", {
-                    amount: amount * 100,
-                });
+                const response = await createPaymentStripe(amount)
                 setClientSecret(response.data.clientSecret);
             } catch (error) {
                 console.error("Error creating payment intent:", error);

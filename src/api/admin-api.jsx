@@ -10,9 +10,13 @@ export const getCategoryName = () => {
     return axios.get("http://localhost:3000/admin/manage/getCategoryName")
 }
 
-export const createMenu = (formData) => {
+export const createMenu = (token, formData) => {
 
-    return axios.post("http://localhost:3000/admin/manage/create-menu", formData)
+    return axios.post("http://localhost:3000/admin/manage/create-menu", formData, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 
 }
 export const updateMenu = (token, id, form) => {

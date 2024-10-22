@@ -16,6 +16,7 @@ export default function ModalDetail() {
   const [count, setCount] = useState(1)
   const [isReviewOpen, setIsReviewOpen] = useState(false)
 
+
   const token = useAppStore((state) => state.token)
   const user = useAppStore((state) => state.user)
   const addToCart = useCartStore((state) => state.addToCart)
@@ -37,7 +38,7 @@ export default function ModalDetail() {
 
     setIsReviewOpen(!isReviewOpen)
   }
-
+  console.log(user, "this is user")
   const hdlCheckLogin = async () => {
 
     const currentDate = new Date();
@@ -52,6 +53,19 @@ export default function ModalDetail() {
         icon: 'info',
         title: 'The store is currently closed ',
         text: 'Please place your order on the next business day.',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#3085d6',
+        background: '#fefefe'
+      });
+      return;
+    }
+
+    const role = user && user.user.role;
+    if (role === 'ADMIN') {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Action not allowed',
+        text: 'Admins are not allowed to add items to the cart.',
         confirmButtonText: 'OK',
         confirmButtonColor: '#3085d6',
         background: '#fefefe'
@@ -123,6 +137,7 @@ export default function ModalDetail() {
             <button onClick={hdlCheckLogin} className="bg-yellow w-1/3 rounded-lg mx-auto p-2 text-white">
               Add to cart
             </button>
+
             <p className="font-head">Total : {count * selectedItem.price} THB</p>
             <button onClick={() => hdlCloseModal()} className="absolute top-0 right-0 font-head w-8 h-8 text-center">
               X

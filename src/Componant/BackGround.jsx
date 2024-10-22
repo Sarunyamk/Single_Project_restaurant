@@ -10,8 +10,8 @@ export default function BackGround() {
       <div className='relative'>
         <section >
 
-          <h1 className='text-white text-8xl font-extrabold absolute top-72 right-60 z-5 '>Let Get IT</h1>
-          <h1 className='text-white text-8xl font-extrabold absolute top-96 right-40 z-5'>Special Steak</h1>
+          <h1 className='text-white text-8xl font-extrabold absolute top-72 right-80 z-5 '>Let Get IT</h1>
+          <h1 className='text-white text-8xl font-extrabold absolute top-96 right-60 z-5'>Special Steak</h1>
           <img className='animate-spin absolute top-40 left-40 z-5 ' src={steakSpin} alt="" />
         </section>
 

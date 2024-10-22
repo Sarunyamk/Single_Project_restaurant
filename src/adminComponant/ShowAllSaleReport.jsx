@@ -31,9 +31,10 @@ export default function ShowAllSaleReport() {
 
 
     return (
-        <div className=" mx-auto mt-32 w-4/5 p-10">
+        <div className=" mx-auto mt-24 w-4/5 p-10">
+            <h1 className="text-yellow font-title text-center m-4">SALE REPORT</h1>
             <div className='flex gap-10  items-center '>
-                <h1 className='font-head underline'>Sales Report</h1>
+
                 <div >
                     <label htmlFor="startDate" className="mr-2">Start Date:</label>
                     <input
@@ -63,7 +64,7 @@ export default function ShowAllSaleReport() {
                 </button>
             </div>
 
-            {salesReport && (
+            {salesReport ? (
                 <div className="mt-4">
 
                     <h1 className=' font-main my-4'>Date <span className='text-yellow underline'>{startDate} - {endDate} </span>  Total Sales : <span className='text-yellow underline'>{salesReport.totalSales}</span> THB </h1>
@@ -96,6 +97,10 @@ export default function ShowAllSaleReport() {
                             ))}
                         </tbody>
                     </table>
+                </div>
+            ) : (
+                <div className="bg-gray-800 h-96 mt-20 flex justify-center items-center font-title text-yellow">
+                    <h1>  No data available</h1>
                 </div>
             )}
         </div>

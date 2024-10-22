@@ -74,34 +74,30 @@ export default function EditUser() {
     }
 
     return (
-        <div className='w-4/5 mt-28'>
+        <div className='mx-auto mt-24 w-4/5 p-10'>
             <h1 className='text-yellow font-title text-center m-4'>USER</h1>
-            <table className="divide-y divide-gray-200 w-full rounded-xl  text-center">
+            <table className="divide-y divide-gray-200 w-full  text-center ">
                 <thead className="bg-gray-800 text-yellow font-second">
                     <tr>
-                        <th className="px-6 py-3  uppercase tracking-wider">NO.</th>
-                        <th className="px-6 py-3  uppercase tracking-wider">User ID</th>
-                        <th className="px-6 py-3  uppercase tracking-wider">First Name</th>
-                        <th className="px-6 py-3  uppercase tracking-wider">Last Name</th>
-                        <th className="px-6 py-3  uppercase tracking-wider">Phone Number</th>
-                        <th className="px-6 py-3  uppercase tracking-wider">Address</th>
-                        <th className="px-6 py-3  uppercase tracking-wider">Email</th>
-                        <th className="px-6 py-3  uppercase tracking-wider">Role</th>
-                        <th className="px-6 py-3  uppercase tracking-wider">Action</th>
+                        <th className="px-4 py-3  uppercase ">User ID</th>
+                        <th className="px-4 py-3  uppercase ">Fulname</th>
+                        <th className="px-4 py-3  uppercase ">Phone Number</th>
+                        <th className="px-4 py-3  uppercase ">Address</th>
+                        <th className="px-4 py-3  uppercase ">Email</th>
+                        <th className="px-4 py-3  uppercase ">Role</th>
+                        <th className="px-4 py-3  uppercase ">Action</th>
                     </tr>
                 </thead>
 
                 <tbody className="bg-gray-700 text-white divide-y divide-gray-600 ">
                     {users.map((item, index) => (
                         <tr key={item.id}>
-                            <th scope="row" className="px-6 py-4 whitespace-nowrap text-yellow">{index + 1}</th>
-                            <td className="px-6 py-4 whitespace-nowrap">{item.id}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{item.firstname}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{item.lastname}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{item.phonenumber}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{item.address}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{item.email}</td>
-                            <td className="px-6 py-4">
+                            <td className="px-4 py-4 whitespace-nowrap">{item.id}</td>
+                            <td className="px-4 py-4 whitespace-nowrap">{`${item.firstname} ${item.lastname}`}</td>
+                            <td className="px-4 py-4 whitespace-nowrap">{item.phonenumber}</td>
+                            <td className="px-4 py-4 whitespace-nowrap">{item.address}</td>
+                            <td className="px-4 py-4 whitespace-nowrap">{item.email}</td>
+                            <td className="px-4 py-4">
                                 <select
                                     defaultValue={item.role}
                                     onChange={(e) => handleEditRole(item.id, e.target.value)}
