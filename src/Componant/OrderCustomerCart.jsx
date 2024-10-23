@@ -11,26 +11,32 @@ import useCartStore from '../zustand/cartStore';
 
 export default function OrderCustomerCart({ isOpen, onClose }) {
 
-    const [cartDetails, setCartDetails] = useState([]);
+    // const [cartDetails, setCartDetails] = useState([]);
     const [totalAmount, setTotalAmount] = useState(0);
+
 
     const token = useAppStore((state) => state.token);
     const user = useAppStore((state) => state.user);
     const isCheckoutOpen = useCartStore((state) => state.isCheckoutOpen);
     const setCheckoutOpen = useCartStore((state) => state.setCheckoutOpen);
+    const setTotalCount = useCartStore((state) => state.setTotalCount);
+    const cartDetails = useCartStore((state) => state.cartDetails);
+    const setCartDetails = useCartStore((state) => state.setCartDetails);
 
     useEffect(() => {
         if (isOpen) {
             const fetchCartDetails = async () => {
                 try {
                     const response = await getCart(token, user.user.id);
-                    console.log('response.data :>> ', response.data);
                     if (response.status === 200 && response.data) {
                         setTotalAmount(response.data.total);
                         setCartDetails(response.data.cart_Items);
+
+                        const totalCount = response.data.cart_Items.reduce((acc, item) => acc + item.count, 0);
+                        setTotalCount(totalCount); // เก็บผลรวม count ลงใน state
+
                     }
                 } catch (error) {
-                    console.error('Error fetching cart details:', error);
                     toast.error('An error occurred');
                 }
             };
@@ -156,10 +162,11 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                             <h1 className='w-32 p-2 rounded-md bg-white text-red font-head text-center'>{totalAmount}</h1>
                             <h1>THB </h1>
                         </div>
+
                     </div>
                 </section>
             </div>
-            <CartCheckout cartDetails={cartDetails} closeCheckout={closeCheckout} totalAmount={totalAmount} closeOrderCart={onClose} />
+            <CartCheckout closeCheckout={closeCheckout} totalAmount={totalAmount} closeOrderCart={onClose} />
         </div>
     );
 }

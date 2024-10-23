@@ -8,6 +8,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* font */
 
 body{
@@ -415,83 +416,3 @@ body{
 
 
 /* ปุ่ม pay */
-
-.button1 {
-  padding: 10px 15px;
-  font-size: 16px;
-  color: white;
-  background-color: green;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.wrapper-no4 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to bottom, #BEEDEF, white);
-  height: 100vh;
-  width: 100vw;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.wrapper-no4 .button-bird {
-  width: 300px;
-  height: 88px;
-  background-color: green;
-  border-radius: 5px;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  border: none;
-}
-
-.button-bird .feather {
-  position: absolute;
-  width: 80px;
-  height: 40px;
-  left: 50%;
-  top: 12px;
-  opacity: 0;
-  transform: translateX(-50%);
-  transition: opacity 0.3s ease, transform 0.6s ease;
-}
-
-.button-bird.fly .feather {
-  display: block;
-  opacity: 1;
-  animation: fly-cycle 2s linear infinite;
-}
-@keyframes fly-cycle {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    
-  }
-  50% {
-    transform: translateY(-50px) rotate(-20deg);
-  }
-  80% {
-    transform: translateX(300px) translateY(-200px) rotate(45deg);
-  }
-  100% {
-    transform: translateX(350px) translateY(-250px) rotate(45deg);
-    opacity: 0;
-  }
-  120% {
-    transform: translateX(400px) translateY(-280px) rotate(45deg);
-    
-  }
-}
-
-
-
-
-

@@ -10,6 +10,7 @@ import Loading from '../Componant/Loading';
 export default function EditUser() {
 
     const [users, setUsers] = useState([]);
+    const token = useAppStore((state) => state.token);
 
     const loading = useAppStore((state) => state.loading);
     const setLoading = useAppStore((state) => state.setLoading);
@@ -27,9 +28,9 @@ export default function EditUser() {
         fetchUsers();
     }, []);
 
-    const handleEditRole = async (userId, newRole) => {
+    const handleEditRole = async (userId, newRole, token) => {
         try {
-            const response = await updateRoleUser(userId, newRole)
+            const response = await updateRoleUser(userId, newRole, token)
             // อัปเดตข้อมูลใน state ด้วยสถานะใหม่
             setUsers(users.map(item => item.id === userId ? { ...item, role: newRole } : item));
             toast.success('User role updated successfully!');
@@ -38,7 +39,7 @@ export default function EditUser() {
         }
     };
 
-    const handleDeleteUser = async (userId) => {
+    const handleDeleteUser = async (userId, token) => {
 
         const result = await Swal.fire({
             title: 'Are you sure?',
@@ -52,7 +53,7 @@ export default function EditUser() {
 
         if (result.isConfirmed) {
             try {
-                await deleteUser(userId)
+                await deleteUser(userId, token)
                 setUsers(users.filter(item => item.id !== userId));
                 Swal.fire(
                     'Deleted!',
@@ -100,7 +101,7 @@ export default function EditUser() {
                             <td className="px-4 py-4">
                                 <select
                                     defaultValue={item.role}
-                                    onChange={(e) => handleEditRole(item.id, e.target.value)}
+                                    onChange={(e) => handleEditRole(item.id, e.target.value, token)}
                                     className="bg-gray-700 text-white rounded-md p-2"
                                 >
                                     <option value="ADMIN">ADMIN</option>
@@ -108,7 +109,7 @@ export default function EditUser() {
                                 </select>
                             </td>
                             <td
-                                onClick={() => handleDeleteUser(item.id)}
+                                onClick={() => handleDeleteUser(item.id, token)}
                                 className="px-6 py-4 whitespace-nowrap cursor-pointer hover:text-blue-700"
                             >
                                 Delete

@@ -15,6 +15,7 @@ export default function Menu() {
 
   const [isActive, setIsActive] = useState(false);
 
+  const token = useAppStore((state) => state.token)
   const isOpenModal = useAppStore((state) => state.isOpenModal)
   const hdlOpenModal = useAppStore((state) => state.hdlOpenModal)
 
@@ -55,6 +56,7 @@ export default function Menu() {
     setTimeout(() => {
       setIsActive(false);
     }, 1000);
+
   };
 
 
@@ -96,5 +98,4 @@ export default function Menu() {
     </div>
   );
 };
-
 

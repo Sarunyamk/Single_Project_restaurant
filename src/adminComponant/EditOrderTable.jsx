@@ -9,6 +9,7 @@ import Loading from '../Componant/Loading';
 export default function EditOrderTable() {
 
     const [orders, setOrders] = useState([]);
+    const token = useAppStore((state) => state.token);
 
     const loading = useAppStore((state) => state.loading);
     const setLoading = useAppStore((state) => state.setLoading);
@@ -25,9 +26,9 @@ export default function EditOrderTable() {
             console.error('Error fetching orders:', error);
         }
     };
-    const handleUpdateStatus = async (orderId, newStatus) => {
+    const handleUpdateStatus = async (orderId, newStatus, token) => {
         try {
-            const response = await updateStatusOrder(orderId, newStatus)
+            const response = await updateStatusOrder(orderId, newStatus, token)
             // อัปเดตข้อมูลใน state ด้วยสถานะใหม่
             //เพื่อวนลูปผ่านรายการ orders และตรวจสอบว่า order.id ตรงกับ orderId ที่เราต้องการอัปเดตหรือไม่
             setOrders(orders.map(order => order.id === orderId ? { ...order, status: newStatus } : order));
@@ -37,7 +38,8 @@ export default function EditOrderTable() {
         }
     };
 
-    const handleRemoveOrder = async (orderId) => {
+
+    const handleRemoveOrder = async (orderId, token) => {
 
         const result = await Swal.fire({
             title: 'Are you sure?',
@@ -51,7 +53,7 @@ export default function EditOrderTable() {
 
         if (result.isConfirmed) {
             try {
-                await deleteOrder(orderId)
+                await deleteOrder(orderId, token)
                 setOrders(orders.filter(order => order.id !== orderId));
                 Swal.fire(
                     'Deleted!',
@@ -98,7 +100,7 @@ export default function EditOrderTable() {
                             <td className="px-6 py-4">
                                 <select
                                     defaultValue={order.status}
-                                    onChange={(e) => handleUpdateStatus(order.id, e.target.value)}
+                                    onChange={(e) => handleUpdateStatus(order.id, e.target.value, token)}
                                     className="bg-gray-700 text-white rounded-md p-2"
                                 >
                                     <option value="PENDING">PENDING</option>
@@ -109,7 +111,7 @@ export default function EditOrderTable() {
                             <td className="px-6 py-4 whitespace-nowrap">{order.image} </td>
                             <td className="px-6 py-4 whitespace-nowrap">{new Date(order.createdAt).toLocaleDateString()}</td>
                             <td
-                                onClick={() => handleRemoveOrder(order.id)}
+                                onClick={() => handleRemoveOrder(order.id, token)}
                                 className="px-6 py-4 whitespace-nowrap cursor-pointer hover:text-blue-700"
                             >
                                 Delete

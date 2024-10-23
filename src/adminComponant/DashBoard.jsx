@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
 import { Bar } from 'react-chartjs-2';
-import { getDashboard } from '../api/report-apt';
+import { getDashboard, getComments } from '../api/report-apt';
 import 'chart.js/auto';
 import useAppStore from '../zustand/appStore';
 import Loading from '../Componant/Loading';
+
+import { Doughnut } from 'react-chartjs-2'; // นำเข้า Doughnut chart จาก react-chartjs-2
+import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
+
+Chart.register(ArcElement, Tooltip, Legend);
+
 
 const Dashboard = () => {
 
@@ -12,6 +18,13 @@ const Dashboard = () => {
 
     const loading = useAppStore((state) => state.loading);
     const setLoading = useAppStore((state) => state.setLoading);
+
+    const [data, setData] = useState([]);
+    const [ratingsCount, setRatingsCount] = useState({
+        GOOD: 0,
+        AVERAGE: 0,
+        BAD: 0,
+    });
 
     useEffect(() => {
         const fetchSalesData = async () => {
@@ -26,6 +39,54 @@ const Dashboard = () => {
 
         fetchSalesData();
     }, []);
+
+    useEffect(() => {
+        fetchComments();
+    }, []);
+
+    const fetchComments = async () => {
+        try {
+            const response = await getComments();
+            setData(response.data);
+            setLoading(false);
+
+            // นับจำนวนของ rating แต่ละประเภท
+            const countRatings = {
+                GOOD: 0,
+                AVERAGE: 0,
+                BAD: 0,
+            };
+
+            response.data.forEach((item) => {
+                if (item.rating === 'GOOD') {
+                    countRatings.GOOD += 1;
+                } else if (item.rating === 'AVERAGE') {
+                    countRatings.AVERAGE += 1;
+                } else if (item.rating === 'BAD') {
+                    countRatings.BAD += 1;
+                }
+            });
+
+            setRatingsCount(countRatings);
+
+        } catch (error) {
+            console.error('Error fetching comments:', error);
+        }
+    };
+
+
+    const chartData = {
+        labels: ['GOOD', 'AVERAGE', 'BAD'], // ป้ายกำกับแต่ละประเภท
+        datasets: [
+            {
+                label: 'Ratings',
+                data: [ratingsCount.GOOD, ratingsCount.AVERAGE, ratingsCount.BAD], // ข้อมูลจำนวนของแต่ละประเภท
+                backgroundColor: ['#4CAF50', '#FFC107', '#F44336'], // สีของแต่ละประเภท
+                hoverOffset: 4, // ขนาดการขยายเมื่อ hover
+            },
+        ],
+    };
+
 
     const currentDate = new Date().toLocaleDateString('en-GB', {
         weekday: 'long',
@@ -90,21 +151,41 @@ const Dashboard = () => {
     }
 
     return (
-        <div className='p-5 flex flex-col justify-center items-center mt-40 w-2/3  h-full mx-auto '>
-            <h1 className='font-main mb-5 text-blue-600'>Today's Sales Dashboard</h1>
-            <h2 className="font-head text-lg">Date: {currentDate}</h2>
+        <div className='flex mx-auto  justify-around items-start mt-60 gap-20'>
+            <div className='w-1/2 flex flex-col justify-start items-center'>
+                <h1 className='font-title  mb-5 text-blue-600'>Today's Sales Dashboard</h1>
+                <h2 className="font-head text-lg">Date: {currentDate}</h2>
 
-            <div className='flex gap-6 mt-6'>
-                <div className='w-full h-96 flex flex-col justify-center items-center'>
-                    <Bar data={ordersData} options={options} />
-                    <h3 className='mb-3'>Orders Count: <span className='font-bold'>{salesData.ordersCount}</span></h3>
-                </div>
-                <div className='w-full h-96 flex flex-col justify-center items-center'>
-                    <Bar data={salesDataGraph} options={options} />
-                    <h3>Total Sales: <span className='font-bold'>{salesData.totalSales} THB</span></h3>
+                <div className='flex gap-6 mt-6'>
+                    <div className='w-full h-96 flex flex-col justify-center items-center'>
+                        <Bar data={ordersData} options={options} />
+                        <h3 className='mb-3'>Orders Count: <span className='font-bold'>{salesData.ordersCount}</span></h3>
+                    </div>
+                    <div className='w-full h-96 flex flex-col justify-center items-center'>
+                        <Bar data={salesDataGraph} options={options} />
+                        <h3>Total Sales: <span className='font-bold'>{salesData.totalSales} THB</span></h3>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div className='w-1/2 flex flex-col justify-start items-center gap-10'>
+                <h1 className='text-blue-600 font-title text-center '>Rating Dashboard</h1>
+
+                {/* Doughnut chart สำหรับแสดงข้อมูล Rating */}
+                <div className='flex flex-col justify-center gap-5'>
+                    <div className='w-64 h-64'> {/* ปรับขนาดคอนเทนเนอร์ */}
+                        <Doughnut data={chartData} />
+                    </div>
+                    <div>
+                        <p style={{ color: '#4CAF50' }}>GOOD : {ratingsCount.GOOD}</p>
+                        <p style={{ color: '#FFC107' }}>AVERAGE : {ratingsCount.AVERAGE}</p>
+                        <p style={{ color: '#F44336' }}>BAD : {ratingsCount.BAD}</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div >
     );
 };
 

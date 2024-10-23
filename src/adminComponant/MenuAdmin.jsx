@@ -40,7 +40,7 @@ const MenuAdmin = () => {
         });
         if (result.isConfirmed) {
             try {
-                await removeMenu(token, id); // เรียก API เพื่อลบเมนู
+                await removeMenu(id); // เรียก API เพื่อลบเมนู
                 showAllMenu(); // โหลดข้อมูลเมนูทั้งหมดใหม่
                 toast.success(`Delete menu ID ${id} success`);
             } catch (err) {
@@ -48,7 +48,7 @@ const MenuAdmin = () => {
             }
         }
     };
-
+    console.log(token, " token here")
 
     const handleEditMenu = (item) => {
         setEditMenu(item);
@@ -58,7 +58,7 @@ const MenuAdmin = () => {
     const handleUpdateMenu = async (e) => {
         e.preventDefault();
         try {
-            await updateMenu(token, editMenu.id, editMenu);
+            await updateMenu(editMenu.id, editMenu);
             showAllMenu();
             setEditMenu(null);
             setIsEdit(false);

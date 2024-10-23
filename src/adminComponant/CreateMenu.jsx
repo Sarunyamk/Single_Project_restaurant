@@ -4,6 +4,7 @@ import { getCategoryName } from '../api/admin-api';
 import { FaImage } from "react-icons/fa6";
 
 import useAdminStore from '../zustand/adminStore'
+import useAppStore from '../zustand/appStore';
 
 
 const intitialState = {
@@ -23,6 +24,7 @@ export default function CreateMenu() {
   })
   const [file, setFile] = useState(null)
   const [categoryName, setCategoryName] = useState([])
+  const token = useAppStore((state) => state.token)
 
   const actionCreateMenu = useAdminStore((state) => state.actionCreateMenu)
 

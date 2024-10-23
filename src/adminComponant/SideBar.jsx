@@ -59,11 +59,11 @@ export default function SideBar() {
                                 className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
                                 onClick={() => setIsDropdownReport(false)} > Sales
                             </Link>
-                            <Link
+                            {/* <Link
                                 to='/admin/report/comments'
                                 className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
                                 onClick={() => setIsDropdownReport(false)} > Comments
-                            </Link>
+                            </Link> */}
                             <Link
                                 to='/admin/report/total-unit-sold'
                                 className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'

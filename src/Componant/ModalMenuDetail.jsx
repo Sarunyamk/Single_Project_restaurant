@@ -8,6 +8,7 @@ import useCartStore from '../zustand/cartStore';
 
 import { createCart } from '../api/cart-api';
 import ReviewCarosel from '../Componant/ReviewCarosel'
+import Login from '../Componant/Login'
 
 export default function ModalDetail() {
 
@@ -74,10 +75,16 @@ export default function ModalDetail() {
     }
 
     if (!token) {
+      Swal.fire({
+        title: 'Please log in',
+        text: 'You need to log in before placing an order.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      });
 
       hdlCloseModal();
-      navigate('/login');
-    } else {
+    }
+    else {
 
       try {
         // ส่งข้อมูลไปยัง API เพื่อสร้าง Cart
@@ -150,6 +157,7 @@ export default function ModalDetail() {
           {
             isReviewOpen && < ReviewCarosel hdlClickOpenReview={hdlClickOpenReview} menuItemId={selectedItem.id} />
           }
+
         </div>
       </section>
 

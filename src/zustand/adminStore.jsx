@@ -9,11 +9,11 @@ import { toast } from 'react-toastify';
 const useAdminStore = create(persist((set) => ({
 
 
-    actionCreateMenu: async (formData) => {
+    actionCreateMenu: async (formData, token) => {
 
         try {
 
-            const resp = await createMenu(token, formData);
+            const resp = await createMenu(formData, token);
             toast.success(resp.data.message || "create menu success");
             console.log(resp)
             // return resp.data;  
