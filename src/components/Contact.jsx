@@ -1,5 +1,5 @@
 import React from 'react'
-import Map from '../Componant/Map'
+import Map from './Map'
 
 
 export default function Contact() {

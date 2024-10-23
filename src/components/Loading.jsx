@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import pizzaImage from '../img/imgIcon/cartIcon.png'; // เปลี่ยนเส้นทางไปยังรูปพิซซ่าของคุณ
-import useAppStore from '../zustand/appStore';
+import useAppStore from '../stores/appStore';
 
 export default function Loading() {
 

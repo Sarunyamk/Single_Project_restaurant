@@ -1,10 +1,10 @@
 import React from 'react'
-import EditProfileCustomer from '../Componant/EditProfileCustomer'
+import EditProfileCustomer from '../components/EditProfileCustomer'
 
 export default function EditCustomerProfilePage() {
   return (
     <div>
-      <EditProfileCustomer/>
+      <EditProfileCustomer />
     </div>
   )
 }

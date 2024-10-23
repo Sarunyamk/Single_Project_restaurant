@@ -5,7 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { sendPublishKey, createPaymentStripe } from '../api/payment-api'
 
-import CheckoutFormCredit from "../Componant/CheckoutFormCredit";
+import CheckoutFormCredit from "./CheckoutFormCredit";
 
 function PaymentCredit({ amount }) {
 

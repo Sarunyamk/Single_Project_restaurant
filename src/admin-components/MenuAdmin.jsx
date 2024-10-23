@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
-import useAppStore from './../zustand/appStore';
+import useAppStore from '../stores/appStore';
 import { listMenu, removeMenu, updateMenu } from '../api/admin-api';
 
 const MenuAdmin = () => {

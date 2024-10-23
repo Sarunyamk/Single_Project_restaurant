@@ -7,12 +7,12 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
 import myLogo from '../img/imgBg/myLogo.png';
 
-import useAppStore from '../zustand/appStore';
-import OrderCustomerCart from '../Componant/OrderCustomerCart';
+import useAppStore from '../stores/appStore';
+import OrderCustomerCart from './OrderCustomerCart';
 import { getOrdersByUserId } from '../api/comment-api';
 import { getHistoryByUserId } from '../api/user-api';
 import CommentOrdersModal from './CommentOrderModal';
-import useCartStore from '../zustand/cartStore';
+import useCartStore from '../stores/cartStore';
 import HistoryOrder from './HistoryOrder';
 
 

@@ -4,7 +4,7 @@ import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebook, FaLocationDot } from "react-icons/fa6";
 import { FaYoutube, FaInstagram, FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { TbHandFinger } from "react-icons/tb";
+
 
 
 export default function Footer() {
@@ -70,16 +70,7 @@ export default function Footer() {
                                 </a>
                             ))}
                         </div>
-                        {/* ตัวชี้เคลื่อนไหวเมื่อคลิก */}
-                        <TbHandFinger
-                            className='indicator absolute top-24'
-                            style={{
-                                transform: `translateX(${activeIndex * 96}px)`,
-                                transition: 'transform 0.3s ease',
-                                width: '40px',  // ปรับขนาดกว้างของนิ้วมือ
-                                height: '40px'  // ปรับขนาดสูงของนิ้วมือ
-                            }}
-                        />
+
                     </div>
                 </div>
             </footer>

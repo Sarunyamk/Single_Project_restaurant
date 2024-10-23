@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import useAppStore from '../zustand/appStore';
+import useAppStore from '../stores/appStore';
 
 import { Navigate } from 'react-router-dom';
 

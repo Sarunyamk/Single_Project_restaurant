@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-import NavBar from '../Componant/Navbar'
+import NavBar from '../components/Navbar'
 import HomePage from '../pages/HomePage'
 import AboutPage from '../pages/AboutPage';
 import MenuPage from '../pages/MenuPage';
@@ -9,31 +9,31 @@ import ContactPage from '../pages/ContactPage';
 import SignupPage from '../pages/SignupPage';
 import LoginPage from '../pages/LoginPage';
 import ScrollToTop from '../Utils/ScrollToTop';
-import Footer from '../Componant/Footer';
-import ModalMenuDetail from '../Componant/ModalMenuDetail';
+import Footer from '../components/Footer';
+import ModalMenuDetail from '../components/ModalMenuDetail';
 import EditCustomerProfilePage from '../pages/EditCustomerProfilePage';
 
 import ProtectRoute from './ProtectRoute';
-import HomePageAdmin from '../adminpages/HomePageAdmin';
-import MenuAdminPage from '../adminpages/MenuAdminPage';
-import CreateMenu from '../adminComponant/CreateMenu';
+import HomePageAdmin from '../admin-pages/HomePageAdmin';
+import MenuAdminPage from '../admin-pages/MenuAdminPage';
+import CreateMenu from '../admin-components/CreateMenu';
 
 
 
 import NotFoundPage from '../pages/NotFoundPage';
-import ForgetPassword from '../Componant/ForgetPassword';
+import ForgetPassword from '../components/ForgetPassword';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
-import Dashboard from '../adminComponant/DashBoard';
-import EditUser from '../adminComponant/EditUser';
-import EditOrderTable from '../adminComponant/EditOrderTable';
-import ShowAllComment from '../adminComponant/ShowAllComment';
-import ShowAllMenuCount from '../adminComponant/ShowAllMenuCount';
+import Dashboard from '../admin-components/DashBoard';
+import EditUser from '../admin-components/EditUser';
+import EditOrderTable from '../admin-components/EditOrderTable';
+import ShowAllComment from '../admin-components/ShowAllComment';
+import ShowAllMenuCount from '../admin-components/ShowAllMenuCount';
 
 
 
-import PaymentCredit from '../Componant/PaymentCredit';
-import Completion from '../Componant/Completion';
-import ShowAllSaleReport from '../adminComponant/ShowAllSaleReport';
+import PaymentCredit from '../components/PaymentCredit';
+import Completion from '../components/Completion';
+import ShowAllSaleReport from '../admin-components/ShowAllSaleReport';
 
 
 

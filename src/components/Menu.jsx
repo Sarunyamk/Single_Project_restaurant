@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import useMenuStore from '../zustand/menuStore';
+import useMenuStore from '../stores/menuStore';
 
-import ModalMenuDetail from '../Componant/ModalMenuDetail';
-import useAppStore from '../zustand/appStore';
+import ModalMenuDetail from './ModalMenuDetail';
+import useAppStore from '../stores/appStore';
+import { FaPizzaSlice } from "react-icons/fa";
+import { LuPizza } from "react-icons/lu";
 
 
 export default function Menu() {
@@ -15,7 +17,6 @@ export default function Menu() {
 
   const [isActive, setIsActive] = useState(false);
 
-  const token = useAppStore((state) => state.token)
   const isOpenModal = useAppStore((state) => state.isOpenModal)
   const hdlOpenModal = useAppStore((state) => state.hdlOpenModal)
 
@@ -80,13 +81,11 @@ export default function Menu() {
                 <p className="mt-2 text-red-500 font-semibold">{item.price} THB</p>
               </div>
               <div className='flex justify-center'>
-                <button className={`button ${isActive ? 'active' : ''} `} onClick={() => { hdlOpenModal(item); animation() }}>
-                  <span className='m-2'>Order Now</span>
-                  <div className='cart '>
-                    <svg className='svg' viewBox='0 0 36 26'>
-                      <polyline points='1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5'></polyline>
-                      <polyline points='15 13.5 17 15.5 22 10.5'></polyline>
-                    </svg>
+                <button className={`button1 ${isActive ? 'active1' : ''} `} onClick={() => { hdlOpenModal(item); animation() }}>
+                  <span className='p-2 text-slate-50'>Order Now</span>
+                  <div className='cart1 flex'>
+                    <FaPizzaSlice className='svg1' />
+                    <LuPizza className='svg2' />
                   </div>
                 </button>
               </div>

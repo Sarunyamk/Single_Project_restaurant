@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
 import { getComments } from '../api/report-apt'
-import Loading from './../Componant/Loading';
-import useAppStore from '../zustand/appStore';
+import Loading from '../components/Loading';
+import useAppStore from '../stores/appStore';
 
 export default function ShowAllComment() {
 

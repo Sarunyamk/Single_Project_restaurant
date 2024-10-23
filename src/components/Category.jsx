@@ -1,5 +1,5 @@
 import React from 'react'
-import useMenuStore from '../zustand/menuStore';
+import useMenuStore from '../stores/menuStore';
 
 import imgburger from '../img/imgMenu/burger2.png';
 import imgPizza from '../img/imgMenu/pizza3.png';

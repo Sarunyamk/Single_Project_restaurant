@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import MenuAdmin from '../adminComponant/MenuAdmin';
+import MenuAdmin from '../admin-components/MenuAdmin';
 
 const MenuAdminPage = () => {
   return (

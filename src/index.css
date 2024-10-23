@@ -288,7 +288,7 @@ body{
 }
   
 
-/* ปุ่ม order now */
+/* ปุ่ม add to cart */
 .button {
   --background: #f3ab11;
   --text: #d61f1f;
@@ -415,4 +415,60 @@ body{
 
 
 
-/* ปุ่ม pay */
+/* ปุ่ม order now */
+
+ .button1 {
+  --background: #f3ab11;
+  --text: #d61f1f;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  border: none;
+  background-color: var(--background);
+  padding: 8px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  color: var(--text); 
+  transition: transform 0.4s ease;
+  width: 200px;
+  height: 50px;
+}
+
+.button1.active1 {
+  transform: scale(1.1);
+}
+
+.button1 .cart1 {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform-origin: center;
+  transition: transform 1.5s ease, opacity 0.5s ease;
+ 
+}
+
+.button1.active1 .cart1 {
+  transform: translateX(50px) translateY(-100px) rotate(-45deg); /* ปรับการเคลื่อนไหวตะกร้าออกไปข้างนอก */
+  
+}
+
+.svg1 {
+  
+  stroke: rgb(248, 246, 246);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  width: 20px;
+  height: 20px;
+} 
+.svg2 {
+  
+  stroke: rgb(217, 15, 15);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  width: 20px;
+  height: 20px;
+} 
+

@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react'
 import { getCategoryName } from '../api/admin-api';
 import { FaImage } from "react-icons/fa6";
 
-import useAdminStore from '../zustand/adminStore'
-import useAppStore from '../zustand/appStore';
+import useAdminStore from '../stores/adminStore'
+import useAppStore from '../stores/appStore';
 
 
 const intitialState = {

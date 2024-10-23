@@ -1,10 +1,10 @@
 import React from 'react'
-import InfoMore from '../Componant/InfoMore';
-import About from '../Componant/About';
-import PopularMenu from '../Componant/PopularMenu';
-import BackGroundSausage from '../Componant/BackGroundSausage';
-import ScrollText from '../Componant/ScrollText';
-import Comment from '../Componant/Comment';
+import InfoMore from '../components/InfoMore';
+import About from '../components/About';
+import PopularMenu from '../components/PopularMenu';
+import BackGroundSausage from '../components/BackGroundSausage';
+import ScrollText from '../components/ScrollText';
+import Comment from '../components/Comment';
 
 
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import useAppStore from '../zustand/appStore'
+import useAppStore from '../stores/appStore'
 import { useNavigate } from 'react-router-dom'
 
 import ForgetPassword from './ForgetPassword'

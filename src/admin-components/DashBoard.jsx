@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { getDashboard, getComments } from '../api/report-apt';
 import 'chart.js/auto';
-import useAppStore from '../zustand/appStore';
-import Loading from '../Componant/Loading';
+import useAppStore from '../stores/appStore';
+import Loading from '../components/Loading';
 
 import { Doughnut } from 'react-chartjs-2'; // นำเข้า Doughnut chart จาก react-chartjs-2
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';

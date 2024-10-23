@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 
-import useAppStore from '../zustand/appStore';
+import useAppStore from '../stores/appStore';
 
 export default function CheckoutFormCredit() {
 

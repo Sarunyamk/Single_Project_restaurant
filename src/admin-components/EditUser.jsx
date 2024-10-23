@@ -4,8 +4,8 @@ import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 
 import { getUsers, updateRoleUser, deleteUser } from '../api/manage-api'
-import useAppStore from '../zustand/appStore';
-import Loading from '../Componant/Loading';
+import useAppStore from '../stores/appStore';
+import Loading from '../components/Loading';
 
 export default function EditUser() {
 

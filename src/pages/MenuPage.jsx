@@ -1,15 +1,15 @@
 import React from 'react'
 
-import BackGround from './../Componant/BackGround';
-import Category from '../Componant/Category';
-import Menu from '../Componant/Menu';
+import BackGround from '../components/BackGround';
+import Category from '../components/Category';
+import Menu from '../components/Menu';
 
 export default function MenuPage() {
   return (
-     <div>
-      <BackGround/>      
+    <div>
+      <BackGround />
       <Category />
-      <Menu/>
+      <Menu />
     </div>
   )
 }

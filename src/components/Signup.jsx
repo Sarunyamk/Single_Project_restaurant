@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import validateRegister from '../Utils/registerValidate'
-import useAppStore from '../zustand/appStore'
+import useAppStore from '../stores/appStore'
 
 
 const intitialState = {

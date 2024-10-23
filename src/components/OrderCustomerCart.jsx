@@ -4,16 +4,16 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { RiDeleteBinLine } from "react-icons/ri";
 
-import useAppStore from '../zustand/appStore';
+
+import useAppStore from '../stores/appStore';
 import { getCart, deleteCartItem, updateCartItem } from '../api/cart-api';
-import CartCheckout from '../Componant/CartCheckout';
-import useCartStore from '../zustand/cartStore';
+import CartCheckout from './CartCheckout';
+import useCartStore from '../stores/cartStore';
 
 export default function OrderCustomerCart({ isOpen, onClose }) {
 
-    // const [cartDetails, setCartDetails] = useState([]);
-    const [totalAmount, setTotalAmount] = useState(0);
 
+    const [totalAmount, setTotalAmount] = useState(0);
 
     const token = useAppStore((state) => state.token);
     const user = useAppStore((state) => state.user);
@@ -22,6 +22,8 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
     const setTotalCount = useCartStore((state) => state.setTotalCount);
     const cartDetails = useCartStore((state) => state.cartDetails);
     const setCartDetails = useCartStore((state) => state.setCartDetails);
+
+
 
     useEffect(() => {
         if (isOpen) {
@@ -43,6 +45,7 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
             fetchCartDetails();
         }
     }, [isOpen, token, user.user.id]);
+
 
     const updateCartItemHandler = async (id, newCount, price) => {
         if (newCount < 1) {
@@ -142,6 +145,7 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                                         <div className='flex justify-end items-end'>
                                             <RiDeleteBinLine onClick={() => deleteCartItemHandler(item.id)} className='w-8 h-8 hover:text-red text-gray-500 cursor-pointer' />
                                         </div>
+
                                     </div>
                                 </div>
                             ))

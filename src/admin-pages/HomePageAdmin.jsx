@@ -1,7 +1,7 @@
 import React from 'react'
-import NavBarAdmin from '../adminComponant/NavbarAdmin'
+import NavBarAdmin from '../admin-components/NavbarAdmin'
 import { Outlet } from 'react-router-dom'
-import SideBar from '../adminComponant/SideBar'
+import SideBar from '../admin-components/SideBar'
 
 
 const HomePageAdmin = () => {

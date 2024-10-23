@@ -1,12 +1,12 @@
 import React from 'react'
-import About from '../Componant/About';
-import Comment from '../Componant/Comment';
+import About from '../components/About';
+import Comment from '../components/Comment';
 
 export default function AboutPage() {
   return (
     <div>
-      <About/>
-      <Comment/>
+      <About />
+      <Comment />
     </div>
   )
 }

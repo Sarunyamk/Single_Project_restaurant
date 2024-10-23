@@ -1,5 +1,5 @@
 import { updateCommentStatus } from '../api/comment-api';
-import useAppStore from '../zustand/appStore';
+import useAppStore from '../stores/appStore';
 import Swal from 'sweetalert2';
 import React, { useState } from 'react';
 

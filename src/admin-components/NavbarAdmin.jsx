@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import useAppStore from '../zustand/appStore'
+import useAppStore from '../stores/appStore'
 
 import myLogo from '../img/imgBg/myLogo.png'
 

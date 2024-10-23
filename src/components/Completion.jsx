@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-import useAppStore from '../zustand/appStore';
+import useAppStore from '../stores/appStore';
 import { confirmPayment } from '../api/payment-api';
 
 export default function Completion(props) {

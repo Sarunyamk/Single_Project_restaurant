@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 
 import Swal from 'sweetalert2';
-import useAppStore from '../zustand/appStore'
-import { useNavigate } from 'react-router-dom';
+import useAppStore from '../stores/appStore'
 import { toast } from 'react-toastify';
-import useCartStore from '../zustand/cartStore';
+import useCartStore from '../stores/cartStore';
 
 import { createCart } from '../api/cart-api';
-import ReviewCarosel from '../Componant/ReviewCarosel'
-import Login from '../Componant/Login'
+import ReviewCarosel from './ReviewCarosel'
+
 
 export default function ModalDetail() {
 
-  const navigate = useNavigate()
 
   const [count, setCount] = useState(1)
   const [isReviewOpen, setIsReviewOpen] = useState(false)
@@ -25,6 +23,7 @@ export default function ModalDetail() {
   const hdlCloseModal = useAppStore((state) => state.hdlCloseModal)
   const selectedItem = useAppStore((state) => state.selectedItem)
 
+  const [isActive, setIsActive] = useState(false);
 
   const hdlcountIncrement = () => {
     setCount(count + 1)
@@ -45,9 +44,11 @@ export default function ModalDetail() {
     const currentDate = new Date();
     const currentDay = currentDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
     const currentHour = currentDate.getHours();
+    console.log(currentDay, currentHour, "this is currentDay and currentHour")
 
-    const isWeekday = currentDay >= 1 && currentDay <= 5 && currentHour >= 10 && currentHour <= 22; // Monday-Friday 10:00-22:00
-    const isWeekend = (currentDay === 0 || currentDay === 6) && currentHour >= 12 && currentHour <= 22; // Saturday-Sunday 12:00-22:00
+    const isWeekday = currentDay >= 1 && currentDay <= 5 && currentHour >= 10 && currentHour <= 21; // Monday-Friday 10:00-22:00
+    const isWeekend = (currentDay === 0 || currentDay === 6) && currentHour >= 12 && currentHour <= 21; // Saturday-Sunday 12:00-22:00
+    console.log(isWeekday, isWeekend, "this is isWeekday and isWeekend")
 
     if (!isWeekday && !isWeekend) {
       Swal.fire({
@@ -112,7 +113,9 @@ export default function ModalDetail() {
 
 
           toast.success('Item added to cart');
-          hdlCloseModal();
+          setTimeout(() => {
+            hdlCloseModal();
+          }, 1500);
         } else {
           toast.error('Failed to add item to cart');
         }
@@ -122,7 +125,13 @@ export default function ModalDetail() {
       }
     }
   }
+  const animation = () => {
+    setIsActive(true);
+    setTimeout(() => {
+      setIsActive(false);
+    }, 1000);
 
+  };
 
   return (
     <div>
@@ -141,8 +150,15 @@ export default function ModalDetail() {
               <h1 id="quantity" className="font-main w-10 h-10 text-center">{count}</h1>
               <button onClick={hdlcountIncrement} className="w-8 h-8 font-head hover:text-yellow">+</button>
             </div>
-            <button onClick={hdlCheckLogin} className="bg-yellow w-1/3 rounded-lg mx-auto p-2 text-white">
-              Add to cart
+
+            <button className={`button ${isActive ? 'active' : ''} `} onClick={() => { hdlCheckLogin(); animation() }}>
+              <span className='m-2'>Add To cart</span>
+              <div className='cart '>
+                <svg className='svg' viewBox='0 0 36 26'>
+                  <polyline points='1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5'></polyline>
+                  <polyline points='15 13.5 17 15.5 22 10.5'></polyline>
+                </svg>
+              </div>
             </button>
 
             <p className="font-head">Total : {count * selectedItem.price} THB</p>

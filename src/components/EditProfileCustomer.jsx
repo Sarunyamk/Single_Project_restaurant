@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { toast } from 'react-toastify';
 
-import useAppStore from '../zustand/appStore';
+import useAppStore from '../stores/appStore';
 import validateEditProfile from '../Utils/editProfileValidate';
 import { getProfile, editProfile } from '../api/user-api';
 
