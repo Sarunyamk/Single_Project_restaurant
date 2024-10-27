@@ -9,8 +9,13 @@ import useAppStore from '../stores/appStore';
 import { getCart, deleteCartItem, updateCartItem } from '../api/cart-api';
 import CartCheckout from './CartCheckout';
 import useCartStore from '../stores/cartStore';
+import { useTranslation } from 'react-i18next';
+
 
 export default function OrderCustomerCart({ isOpen, onClose }) {
+
+    const { t } = useTranslation();
+
 
 
     const [totalAmount, setTotalAmount] = useState(0);
@@ -39,7 +44,7 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
 
                     }
                 } catch (error) {
-                    toast.error('An error occurred');
+                    toast.error(t('cart.errorOccurred'));
                 }
             };
             fetchCartDetails();
@@ -63,23 +68,23 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                 const newTotalAmount = updatedCartDetails.reduce((acc, item) => acc + parseFloat(item.total), 0).toFixed(2);
                 setTotalAmount(newTotalAmount);
             } else {
-                toast.error("Failed to update cart item");
+                toast.error(t('cart.updateFailed'));
             }
         } catch (err) {
             console.log(err);
-            toast.error("Failed to update cart item");
+            toast.error(t('cart.updateFailed'));
         }
     };
 
     const deleteCartItemHandler = async (id) => {
         const result = await Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            title: t('cart.confirmDeleteTitle'),
+            text: t('cart.confirmDeleteText'),
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: t('cart.confirmDeleteConfirm')
         });
 
         if (result.isConfirmed) {
@@ -92,13 +97,13 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                     const newTotalAmount = updatedCartDetails.reduce((acc, item) => acc + parseFloat(item.total), 0).toFixed(2);
                     setTotalAmount(newTotalAmount);
 
-                    toast.success("Delete item success");
+                    toast.success(t('cart.deleteSuccess'));
                 } else {
-                    toast.error("Failed to delete cart item");
+                    toast.error(t('cart.deleteFailed'));
                 }
             } catch (err) {
                 console.log(err);
-                toast.error("Failed to delete cart item");
+                toast.error(t('cart.deleteFailed'));
             }
         }
     };
@@ -120,7 +125,7 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                 <button onClick={onClose} className="absolute top-2 right-2 text-white font-bold text-lg hover:text-yellow"> X </button>
                 <section className='flex flex-col w-full h-full'>
                     <div className='bg-red-gradient h-16 flex justify-center items-center text-white'>
-                        <h1 className='text-center text-yellow font-main'>Cart</h1>
+                        <h1 className='text-center text-yellow font-main'>{t('cart.cartTitle')}</h1>
                     </div>
                     <div className='flex-1 overflow-y-auto p-4'>
                         {cartDetails.length > 0 ? (
@@ -133,8 +138,8 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                                         <div className='flex-1 flex flex-col justify-center gap-4'>
                                             <h1 className='font-main text-yellow'>{item.item.menuName}</h1>
                                             <div className='flex items-baseline gap-5'>
-                                                <p className='font-head text-yellow'>Price:</p>
-                                                <p className='font-head text-yellow'>{item.price} THB</p>
+                                                <p className='font-head text-yellow'>{t('cart.price')}:</p>
+                                                <p className='font-head text-yellow'>{item.price} {t('menu.bath')}</p>
                                             </div>
                                             <div className='flex items-center gap-4'>
                                                 <button onClick={() => updateCartItemHandler(item.id, item.count - 1, item.price)} className='w-8 h-8 font-head'>-</button>
@@ -145,28 +150,25 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                                         <div className='flex justify-end items-end'>
                                             <RiDeleteBinLine onClick={() => deleteCartItemHandler(item.id)} className='w-8 h-8 hover:text-red text-gray-500 cursor-pointer' />
                                         </div>
-
                                     </div>
                                 </div>
                             ))
                         ) : (
                             <div className='flex justify-center items-center h-full'>
-                                <p className='text-center font-head text-gray-500'>Your cart is empty.</p>
+                                <p className='text-center font-head text-gray-500'>{t('cart.emptyCart')}</p>
                             </div>
                         )}
                     </div>
                     <div className='bg-red-gradient h-16 flex items-center justify-between px-4 text-white'>
-                        {/* <button onClick={openCheckout} className='font-head p-1 rounded-md bg-yellow w-32 hover:scale-105 duration-300'>Confirm</button> */}
                         <button onClick={openCheckout}
                             className={`font-head p-1 rounded-md bg-yellow w-32 hover:scale-105 duration-300 ${cartDetails.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            disabled={cartDetails.length === 0} > Confirm </button>
+                            disabled={cartDetails.length === 0} > {t('cart.confirm')} </button>
 
                         <div className='flex items-center gap-4'>
-                            <h1>Total: </h1>
+                            <h1>{t('cart.total')}:</h1>
                             <h1 className='w-32 p-2 rounded-md bg-white text-red font-head text-center'>{totalAmount}</h1>
-                            <h1>THB </h1>
+                            <h1>{t('menu.bath')}</h1>
                         </div>
-
                     </div>
                 </section>
             </div>

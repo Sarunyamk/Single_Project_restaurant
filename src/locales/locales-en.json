@@ -1,0 +1,205 @@
+{
+    "navbar": {
+      "home": "Home",
+      "about": "About",
+      "menu": "Menu",
+      "contact": "Contact",
+      "hello": "Hello :",
+      "history": "History",
+      "comment": "Comment",
+      "setting": "Setting",
+      "logout": "Logout",
+      "signup": "Sign Up",
+      "login": "Login"
+    },
+    "about": {
+      "title": "About Us",
+      "welcome": "Welcome To M&M",
+      "restaurant": "Restaurant",
+      "description1": "Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.",
+      "description2": "Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.",
+      "experience": "Years of",
+      "masterChef": "Popular",
+      "experienceTitle": "Experience",
+      "masterChefTitle": "Master Chef"
+    },
+    "checkout": {
+    "title": "Your Order",
+    "customerName": "Customer name",
+    "address": "Address",
+    "total": "Total",
+    "paymentButton": "Payment",
+    "closeButton": "Close"
+  },
+  "category": {
+    "allMenu": "All Menu",
+    "mainMenu": "Main Menu",
+    "salad": "Salad",
+    "snack": "SW & Snack",
+    "beverages": "Beverages"
+  },
+  "checkoutForm": {
+    "payNow": "Pay now",
+    "processing": "Processing...",
+    "paymentSuccess": "Payment successful",
+    "paymentFailed": "Payment confirmation failed",
+    "cardError": "An error occurred with the card",
+    "unexpectedError": "An unexpected error occurred."
+  },
+  "comment": {    
+    "text": "Our Client Comments",
+    "text2": "Most Popular Menu"
+  },
+  "orderModal": {
+    "yourOrders": "Your Orders",
+    "orderId": "Order ID",
+    "total": "Total",
+    "order": "Order",
+    "pcs": "pcs",
+    "commentPlaceholder": "Write your comment...",
+    "selectRating": "Select Rating",
+    "good": "Good",
+    "average": "Average",
+    "bad": "Bad",
+    "submitComment": "Submit Comment",
+    "close": "Close",
+    "orderHistory": "Order History",
+    "orderDate": "Order Date",
+    "orderDetail": "order details"
+},
+"contact": {
+    "address": "Address",
+    "addressDetail": "123 Street, Phayathai Bangkok",
+    "phone": "Phone",
+    "phoneNumber": "002 123 456 789",
+    "email": "Email",
+    "emailAddress": "info@example.com"
+},
+"profile": {
+    "title": "Profile",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "phonenumber": "Phonenumber",
+    "address": "Address",
+    "email": "Email",
+    "firstnamePlaceholder": "Enter your firstname...",
+    "lastnamePlaceholder": "Enter your lastname...",
+    "phonePlaceholder": "Enter your phone number...",
+    "addressPlaceholder": "Enter your address...",
+    "emailPlaceholder": "Enter your email...",
+    "confirmButton": "Confirm"
+},
+"footer": {
+    "contact": "Contact",
+    "address": "123 Street, Phayathai Bangkok",
+    "phone": "002 123 456 789",
+    "email": "info@example.com",
+    "opening": "Opening",
+    "weekdays": "Monday - Friday",
+    "weekdayHours": "10:00 AM - 10:00 PM",
+    "weekends": "Saturday - Sunday",
+    "weekendHours": "12:00 PM - 10:00 PM",
+    "sendEmail":  "Send Email",
+    "emailPlaceHolder":  "Email",
+    "sendButton": "Send"
+},
+"services": {
+    "ourClient": "Our Client",
+    "clientDescription": "Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam",
+    "qualityFood": "Quality Food",
+    "foodDescription": "Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam",
+    "onlineOrder": "Online Order",
+    "orderDescription": "Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam",
+    "service": "Service",
+    "serviceDescription": "Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam"
+},
+"login": {
+    "login": "Login",
+    "emailPlaceHolder":  "Email...",
+    "passwordPlaceHolder":  "Password...",
+    "forgetPassword":  "Forget Password ?"
+},
+"menu" : {
+    
+    "orderNow": "Order Now",
+    "bath": "THB"
+},
+"modalDetail": {
+    "storeClosed": "The store is currently closed",
+    "nextBusinessDay": "Please place your order on the next business day.",
+    "ok": "OK",
+    "actionNotAllowed": "Action not allowed",
+    "adminRestriction": "Admins are not allowed to add items to the cart.",
+    "loginPromptTitle": "Please log in",
+    "loginPromptText": "You need to log in before placing an order.",
+    "itemAddedToCart": "Item added to cart",
+    "addItemToCartFailed": "Failed to add item to cart",
+    "errorOccurred": "An error occurred",
+    "price": "Price",
+    "addToCart": "Add To Cart",
+    "total": "Total",
+    "review": "Review"
+  },
+  "cart": {
+    "cartTitle": "Cart",
+    "price": "Price",
+    "confirm": "Confirm",
+    "total": "Total",
+    "emptyCart": "Your cart is empty.",
+    "confirmDeleteTitle": "Are you sure?",
+    "confirmDeleteText": "You won't be able to revert this!",
+    "confirmDeleteConfirm": "Yes, delete it!",
+    "deleteSuccess": "Delete item success",
+    "deleteFailed": "Failed to delete cart item",
+    "errorOccurred": "An error occurred",
+    "totalSale": "total sale",
+    "count": "count"
+  },
+  "payment":{
+    "choose": "Choose Payment",
+    "name" : "K.",
+    "rating" : "Rating",
+    "comment" : "No comments available"
+
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "newPasswordPlaceholder": "New password",
+    "confirmPasswordPlaceholder": "Confirm new password",
+    "confirmButton": "Confirm",
+    "passwordMismatch": "Passwords do not match",
+    "successMessage": "Your password has been reset successfully.",
+    "errorMessage": "There was an error resetting your password."
+  },
+  "signup": {
+    "title": "Sign up",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "address": "Address",
+    "email": "Email",
+    "phonenumber": "Phone Number",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "firstnamePlaceholder": "Enter your firstname",
+    "lastnamePlaceholder": "Enter your lastname",
+    "addressPlaceholder": "Enter your address",
+    "emailPlaceholder": "Enter your email",
+    "phonenumberPlaceholder": "Enter your phone number",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "submit": "Sign up"
+  },
+  "scrollText": [
+    "PROMOTION ONLY YOU !!!",
+    "Enjoy Free Delivery on All Orders",
+    "Fresh Ingredients, Delivered Fast",
+    "Satisfy Your Cravings Without Leaving Home",
+    "A Delicious Deal You Can’t Miss!",
+    "Call Us for More Exciting Deals",
+    "Burgers, Pizzas, and Steaks - A Feast for Every Food Lover!",
+    "Tel 002 123 456 789"
+  ]
+  
+
+
+}

@@ -6,7 +6,11 @@ import useAppStore from '../stores/appStore';
 import validateEditProfile from '../Utils/editProfileValidate';
 import { getProfile, editProfile } from '../api/user-api';
 
+import { useTranslation } from 'react-i18next';
+
 export default function EditProfileCustomer() {
+
+  const { t } = useTranslation();
 
   const [user, setUser] = useState({});
   const [formatError, setFormatError] = useState({})
@@ -52,39 +56,36 @@ export default function EditProfileCustomer() {
   };
 
   const inputs = [
-    { label: 'Firstname', name: 'firstname', type: 'text', placeholder: 'Firstname...' },
-    { label: 'Lastname', name: 'lastname', type: 'text', placeholder: 'Lastname...' },
-    { label: 'Phonenumber', name: 'phonenumber', type: 'text', placeholder: 'Phone number...' },
-    { label: 'Address', name: 'address', type: 'text', placeholder: 'Address...' },
-    { label: 'Email', name: 'email', type: 'email', placeholder: 'Email...' },
+    { label: t('profile.firstname'), name: 'firstname', type: 'text', placeholder: t('profile.firstnamePlaceholder') },
+    { label: t('profile.lastname'), name: 'lastname', type: 'text', placeholder: t('profile.lastnamePlaceholder') },
+    { label: t('profile.phonenumber'), name: 'phonenumber', type: 'text', placeholder: t('profile.phonePlaceholder') },
+    { label: t('profile.address'), name: 'address', type: 'text', placeholder: t('profile.addressPlaceholder') },
+    { label: t('profile.email'), name: 'email', type: 'email', placeholder: t('profile.emailPlaceholder') },
   ];
 
   return (
     <div className='my-40 bg-red-gradient w-1/3 mx-auto p-6 rounded-lg'>
-
-      <h1 className='text-center font-main text-yellow my-4'>Profile</h1>
+      <h1 className='text-center font-main text-yellow my-4'>{t('profile.title')}</h1>
 
       <form onSubmit={handleUpdateProfile} className='space-y-4 w-full flex flex-col '>
-
-        {inputs.map((inputs, index) => (
+        {inputs.map((input, index) => (
           <div key={index} className='justify-start items-center mb-2'>
             <div className='flex flex-col'>
-              <p className='w-32 text-left'>{inputs.label} :</p>
+              <p className='w-32 text-left'>{input.label} :</p>
               <input
                 className='p-2 border rounded-md outline-none'
-                type={inputs.type}
-                name={inputs.name}
-                value={user[inputs.name] || ''}
-                onChange={(e) => setUser({ ...user, [inputs.name]: e.target.value })}
-                placeholder={inputs.placeholder}
+                type={input.type}
+                name={input.name}
+                value={user[input.name] || ''}
+                onChange={(e) => setUser({ ...user, [input.name]: e.target.value })}
+                placeholder={input.placeholder}
               />
             </div>
-            {formatError[inputs.name] && <p className="text-red-500 text-sm">{formatError[inputs.name]}</p>}
+            {formatError[input.name] && <p className="text-red-500 text-sm">{formatError[input.name]}</p>}
           </div>
         ))}
-        <button type='submit'
-          className='bg-yellow text-white p-5 font-head rounded-xl w-1/3 mx-auto cursor-pointer '>
-          Confirm
+        <button type='submit' className='bg-yellow text-white p-5 font-head rounded-xl w-1/3 mx-auto cursor-pointer '>
+          {t('profile.confirmButton')}
         </button>
       </form>
     </div>

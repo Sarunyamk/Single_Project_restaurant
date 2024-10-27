@@ -8,8 +8,12 @@ import useCartStore from '../stores/cartStore';
 import { createCart } from '../api/cart-api';
 import ReviewCarosel from './ReviewCarosel'
 
+import { useTranslation } from 'react-i18next';
+
 
 export default function ModalDetail() {
+
+  const { t } = useTranslation();
 
 
   const [count, setCount] = useState(1)
@@ -53,9 +57,9 @@ export default function ModalDetail() {
     if (!isWeekday && !isWeekend) {
       Swal.fire({
         icon: 'info',
-        title: 'The store is currently closed ',
-        text: 'Please place your order on the next business day.',
-        confirmButtonText: 'OK',
+        title: t('modalDetail.storeClosed'),
+        text: t('modalDetail.nextBusinessDay'),
+        confirmButtonText: t('modalDetail.ok'),
         confirmButtonColor: '#3085d6',
         background: '#fefefe'
       });
@@ -66,9 +70,9 @@ export default function ModalDetail() {
     if (role === 'ADMIN') {
       Swal.fire({
         icon: 'warning',
-        title: 'Action not allowed',
-        text: 'Admins are not allowed to add items to the cart.',
-        confirmButtonText: 'OK',
+        title: t('modalDetail.actionNotAllowed'),
+        text: t('modalDetail.adminRestriction'),
+        confirmButtonText: t('modalDetail.ok'),
         confirmButtonColor: '#3085d6',
         background: '#fefefe'
       });
@@ -77,10 +81,10 @@ export default function ModalDetail() {
 
     if (!token) {
       Swal.fire({
-        title: 'Please log in',
-        text: 'You need to log in before placing an order.',
+        title: t('modalDetail.loginPromptTitle'),
+        text: t('modalDetail.loginPromptText'),
         icon: 'warning',
-        confirmButtonText: 'OK'
+        confirmButtonText: t('modalDetail.ok')
       });
 
       hdlCloseModal();
@@ -102,7 +106,6 @@ export default function ModalDetail() {
         });
 
         if (resp && resp.status === 201) {
-
           addToCart({
             itemId: selectedItem.id,
             menuName: selectedItem.menuName,
@@ -111,17 +114,16 @@ export default function ModalDetail() {
             total: selectedItem.price * count,
           });
 
-
-          toast.success('Item added to cart');
+          toast.success(t('modalDetail.itemAddedToCart'));
           setTimeout(() => {
             hdlCloseModal();
           }, 1500);
         } else {
-          toast.error('Failed to add item to cart');
+          toast.error(t('modalDetail.addItemToCartFailed'));
         }
       } catch (err) {
         console.error('Error adding item to cart:', err);
-        toast.error('An error occurred');
+        toast.error(t('modalDetail.errorOccurred'));
       }
     }
   }
@@ -135,7 +137,7 @@ export default function ModalDetail() {
 
   return (
     <div>
-      <section className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 ">
+      <section className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
         <div className="relative w-1/2 h-[400px] mx-auto rounded-xl bg-slate-100 flex items-center justify-center z-50">
           <div className="w-1/2 flex justify-center items-center">
             <img className="object-cover w-60 h-60" src={selectedItem.image} alt="" />
@@ -143,7 +145,7 @@ export default function ModalDetail() {
 
           <div className="w-1/2 text-slate-800 flex flex-col gap-4" key={selectedItem.id}>
             <h1 className="font-main">{selectedItem.menuName}</h1>
-            <h2 className="font-head">Price : {selectedItem.price} THB</h2>
+            <h2 className="font-head">{t('modalDetail.price')}: {selectedItem.price} {t('menu.bath')}</h2>
             <p className="font-second min-w-full pr-4">{selectedItem.description}</p>
             <div className="flex mx-auto justify-center items-baseline">
               <button onClick={hdlcountDecrement} className="w-8 h-8 font-head hover:text-yellow">-</button>
@@ -151,8 +153,8 @@ export default function ModalDetail() {
               <button onClick={hdlcountIncrement} className="w-8 h-8 font-head hover:text-yellow">+</button>
             </div>
 
-            <button className={`button ${isActive ? 'active' : ''} `} onClick={() => { hdlCheckLogin(); animation() }}>
-              <span className='m-2'>Add To cart</span>
+            <button className={`button ${isActive ? 'active' : ''} `} onClick={() => { hdlCheckLogin(); animation(); }}>
+              <span className='m-2'>{t('modalDetail.addToCart')}</span>
               <div className='cart '>
                 <svg className='svg' viewBox='0 0 36 26'>
                   <polyline points='1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5'></polyline>
@@ -161,19 +163,15 @@ export default function ModalDetail() {
               </div>
             </button>
 
-            <p className="font-head">Total : {count * selectedItem.price} THB</p>
+            <p className="font-head">{t('modalDetail.total')}: {count * selectedItem.price} {t('menu.bath')}</p>
             <button onClick={() => hdlCloseModal()} className="absolute top-0 right-0 font-head w-8 h-8 text-center">
               X
             </button>
             <button onClick={hdlClickOpenReview} className="absolute top-5 right-10 font-head text-center underline text-yellow hover:scale-110 duration-300">
-              Review
+              {t('modalDetail.review')}
             </button>
-
           </div>
-          {
-            isReviewOpen && < ReviewCarosel hdlClickOpenReview={hdlClickOpenReview} menuItemId={selectedItem.id} />
-          }
-
+          {isReviewOpen && <ReviewCarosel hdlClickOpenReview={hdlClickOpenReview} menuItemId={selectedItem.id} />}
         </div>
       </section>
 

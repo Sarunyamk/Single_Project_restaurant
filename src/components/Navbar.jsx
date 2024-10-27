@@ -15,9 +15,15 @@ import CommentOrdersModal from './CommentOrderModal';
 import useCartStore from '../stores/cartStore';
 import HistoryOrder from './HistoryOrder';
 
+import { useTranslation } from 'react-i18next';
+// นำเข้า changeLanguage จาก i18n
+import { changeLanguage } from '../i18n';
 
 
 export default function NavBar() {
+
+  const { t } = useTranslation();
+
   const user = useAppStore((state) => state.user);
   const token = useAppStore((state) => state.token);
 
@@ -34,7 +40,7 @@ export default function NavBar() {
 
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // สลับสถานะเมนูเปิด/ปิด
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const toggleDropdownUser = () => {
@@ -110,10 +116,10 @@ export default function NavBar() {
 
 
         <div className="hidden md:flex gap-8 text-white">
-          <Link to="/" className="font-head">Home</Link>
-          <Link to="/about" className="font-head">About</Link>
-          <Link to="/menu" className="font-head">Menu</Link>
-          <Link to="/contact" className="font-head">Contact</Link>
+          <Link to="/" className="font-head">{t('navbar.home')}</Link>
+          <Link to="/about" className="font-head">{t('navbar.about')}</Link>
+          <Link to="/menu" className="font-head">{t('navbar.menu')}</Link>
+          <Link to="/contact" className="font-head">{t('navbar.contact')}</Link>
         </div>
 
         <div className="md:hidden flex items-center">
@@ -131,7 +137,7 @@ export default function NavBar() {
               <div className="relative">
                 <div className="flex items-end text-yellow">
                   <h3 className="font-main">
-                    Hello: <span onClick={toggleDropdownUser} className="uppercase tracking-wider cursor-pointer">
+                    {t('navbar.hello')} <span onClick={toggleDropdownUser} className="uppercase tracking-wider cursor-pointer">
                       {user.user.firstname}
                     </span>
                   </h3>
@@ -142,18 +148,18 @@ export default function NavBar() {
                     <ul className="py-2">
                       <li>
                         <Link onClick={openHistoryModal} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                          History
+                          {t('navbar.history')}
                         </Link>
                         <Link onClick={openCommentModal} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                          Comment
+                          {t('navbar.comment')}
                         </Link>
                         <Link to="/settingcustomer" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                          Setting
+                          {t('navbar.setting')}
                         </Link>
                       </li>
                       <li>
                         <Link onClick={hdlClickLogout} to="/login" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                          Logout
+                          {t('navbar.logout')}
                         </Link>
                       </li>
                     </ul>
@@ -174,10 +180,16 @@ export default function NavBar() {
             </div>
           ) : (
             <div className="flex gap-4 md:gap-10">
-              <Link to="/signup" className="font-head underline text-yellow">Sign up</Link>
-              <Link to="/login" className="font-head underline text-yellow">Login</Link>
+              <Link to="/signup" className="font-head underline text-yellow">{t('navbar.signup')}</Link>
+              <Link to="/login" className="font-head underline text-yellow">{t('navbar.login')}</Link>
+              <div className='flex justify-center items-center gap-2 text-white'>
+                <button onClick={() => changeLanguage('en')} className=" hover:text-blue-800">EN  </button>
+                <p>/</p>
+                <button onClick={() => changeLanguage('th')} className="hover:text-blue-800"> TH</button>
+              </div>
             </div>
           )}
+
         </div>
       </nav>
 

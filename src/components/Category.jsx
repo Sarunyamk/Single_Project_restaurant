@@ -7,16 +7,20 @@ import imgSalad from '../img/imgMenu/salad1.png';
 import imgSnack from '../img/imgMenu/frenchFries1.png';
 import imgBev from '../img/imgMenu/bev1.png';
 
+import { useTranslation } from 'react-i18next';
+
 export default function Category() {
+
+  const { t } = useTranslation();
 
   const { fetchAllMenu, fetchMainMenu, fetchSaladMenu, fetchSwSnackMenu, fetchBeverageMenu } = useMenuStore();
 
   const categoryMenu = [
-    { id: 1, name: "All Menu", img: imgburger, api: fetchAllMenu },
-    { id: 2, name: "Main Menu", img: imgPizza, api: fetchMainMenu },
-    { id: 3, name: "Salad", img: imgSalad, api: fetchSaladMenu },
-    { id: 4, name: "SW & Snack", img: imgSnack, api: fetchSwSnackMenu },
-    { id: 5, name: "Beverages", img: imgBev, api: fetchBeverageMenu },
+    { id: 1, name: t('category.allMenu'), img: imgburger, api: fetchAllMenu },
+    { id: 2, name: t('category.mainMenu'), img: imgPizza, api: fetchMainMenu },
+    { id: 3, name: t('category.salad'), img: imgSalad, api: fetchSaladMenu },
+    { id: 4, name: t('category.snack'), img: imgSnack, api: fetchSwSnackMenu },
+    { id: 5, name: t('category.beverages'), img: imgBev, api: fetchBeverageMenu },
   ];
 
   return (

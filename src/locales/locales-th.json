@@ -1,0 +1,205 @@
+{
+    "navbar": {
+      "home": "หน้าแรก",
+      "about": "เกี่ยวกับ",
+      "menu": "เมนู",
+      "contact": "ติดต่อ",
+      "hello": "สวัสดี คุณ",
+      "history": "ประวัติ",
+      "comment": "คอมเมนต์",
+      "setting": "ตั้งค่า",
+      "logout": "ออกจากระบบ",
+      "signup": "สมัครสมาชิก",
+      "login": "เข้าสู่ระบบ"
+    },
+    "about": {
+      "title": "เกี่ยวกับเรา",
+      "welcome": "ยินดีต้อนรับสู่ ",
+      "restaurant": "ร้านอาหาร M&M",
+      "description1": "ช่วงเวลาที่สงบสุขจะกลับมาที่นี่ อยากให้คุณได้ลิ้มลองอาหารรสชาติเยี่ยม",
+      "description2": "ช่วงเวลาที่สงบสุขจะกลับมาที่นี่ อยากให้คุณได้ลิ้มลองอาหารรสชาติเยี่ยม",
+      "experience": "ปีแห่ง",
+      "masterChef": "ยอดนิยม",
+      "experienceTitle": "ประสบการณ์",
+      "masterChefTitle": "มาสเตอร์เชฟ"
+    },
+    "checkout": {
+        "title": "คำสั่งซื้อของคุณ",
+        "customerName": "ชื่อลูกค้า",
+        "address": "ที่อยู่",
+        "total": "ยอดรวม",
+        "paymentButton": "ชำระเงิน",
+        "closeButton": "ปิด"
+      },
+      "category": {
+    "allMenu": "เมนูทั้งหมด",
+    "mainMenu": "เมนูหลัก",
+    "salad": "สลัด",
+    "snack": "ของทานเล่น",
+    "beverages": "เครื่องดื่ม"
+  }, 
+  "checkoutForm": {
+    "payNow": "ชำระเงิน",
+    "processing": "กำลังประมวลผล...",
+    "paymentSuccess": "การชำระเงินสำเร็จ",
+    "paymentFailed": "การยืนยันการชำระเงินล้มเหลว",
+    "cardError": "เกิดข้อผิดพลาดกับบัตร",
+    "unexpectedError": "เกิดข้อผิดพลาดที่ไม่คาดคิด."
+  },
+  "comment": {    
+    "text": "ความคิดเห็นของลูกค้า",
+    "text2": "เมนูยอดฮิตห้ามพลาด"
+
+  },
+  "orderModal": {
+    "yourOrders": "รายการสั่งซื้อของคุณ",
+    "orderId": "เลขออเดอร์",
+    "total": "ยอดรวม",
+    "order": "รายการ",
+    "pcs": "ชิ้น",
+    "commentPlaceholder": "เขียนความคิดเห็นของคุณ...",
+    "selectRating": "เลือกการให้คะแนน",
+    "good": "ดี",
+    "average": "ปานกลาง",
+    "bad": "ไม่ดี",
+    "submitComment": "ส่งความคิดเห็น",
+    "close": "ปิด",
+    "orderHistory": "ประวัติการสั่งซื้อ",
+    "orderDate": "วันที่สั่ง",
+    "orderDetail": "รายละเอียด"
+},
+"contact": {
+        "address": "ที่อยู่",
+        "addressDetail": "123 ถนนพญาไท กรุงเทพมหานคร",
+        "phone": "โทรศัพท์",
+        "phoneNumber": "002 123 456 789",
+        "email": "อีเมล",
+        "emailAddress": "info@example.com"
+    },
+    "profile": {
+        "title": "โปรไฟล์",
+        "firstname": "ชื่อ",
+        "lastname": "นามสกุล",
+        "phonenumber": "เบอร์โทร",
+        "address": "ที่อยู่",
+        "email": "อีเมล",
+        "firstnamePlaceholder": "กรอกชื่อ...",
+        "lastnamePlaceholder": "กรอกนามสกุล...",
+        "phonePlaceholder": "กรอกเบอร์โทร...",
+        "addressPlaceholder": "กรอกที่อยู่...",
+        "emailPlaceholder": "กรอกอีเมล...",
+        "confirmButton": "ยืนยัน"
+    },
+    "footer": {
+        "contact": "ติดต่อเรา",
+        "address": "123 ถนน พญาไท กรุงเทพมหานคร",
+        "phone": "002 123 456 789",
+        "email": "info@example.com",
+        "opening": "เวลาเปิดทำการ",
+        "weekdays": "จันทร์ - ศุกร์",
+        "weekdayHours": "10:00 น. - 22:00 น.",
+        "weekends": "เสาร์ - อาทิตย์",
+        "weekendHours": "12:00 น. - 22:00 น.",
+        "sendEmail":  "ส่งอีเมล",
+        "emailPlaceHolder":  "กรอกอีเมล",
+        "sendButton": "ส่ง"
+    },
+    "services": {
+        "ourClient": "ลูกค้าของเรา",
+        "clientDescription": "เราเชื่อมั่นถึงลูกค้าทุกคน และให้ลูกค้าทุกคนมั่นใจในประสบการณ์ดีดีที่เราจะมอบให้",
+        "qualityFood": "อาหารคุณภาพ",
+        "foodDescription": "อาหารคุณภาพสำหรับลูกค้าทุกคน",
+        "onlineOrder": "สั่งซื้อออนไลน์",
+        "orderDescription": "สั่งซื้อสะดวกได้ทุกที่ฟรีค่าจัดส่ง",
+        "service": "บริการ",
+        "serviceDescription": "ให้บริการด้วยความเต็มใจ"
+    },
+    "login": {
+    "login": "เข้าสู่ระบบ",
+    "emailPlaceHolder":  "กรอกอีเมล...",
+    "passwordPlaceHolder":  "กรอกรหัสผ่าน...",
+    "forgetPassword":  "ลืมรหัสผ่าน ?"
+},
+"menu" : {
+    
+    "orderNow": "สั่งเลย!",
+    "bath": "บาท"
+},
+"modalDetail": {
+    "storeClosed": "ร้านค้าปิดให้บริการชั่วคราว",
+    "nextBusinessDay": "กรุณาสั่งซื้อสินค้าของคุณในวันทำการถัดไป",
+    "ok": "ตกลง",
+    "actionNotAllowed": "ไม่อนุญาตให้ดำเนินการนี้",
+    "adminRestriction": "ผู้ดูแลระบบไม่สามารถเพิ่มสินค้าลงในตะกร้าได้",
+    "loginPromptTitle": "กรุณาลงชื่อเข้าใช้",
+    "loginPromptText": "คุณต้องเข้าสู่ระบบก่อนที่จะสั่งซื้อ",
+    "itemAddedToCart": "เพิ่มสินค้าในตะกร้าสำเร็จ",
+    "addItemToCartFailed": "การเพิ่มสินค้าในตะกร้าล้มเหลว",
+    "errorOccurred": "เกิดข้อผิดพลาด",
+    "price": "ราคา",
+    "addToCart": "เพิ่มเข้าตะกร้า",
+    "total": "รวม",
+    "review": "รีวิว"
+  },
+  "cart": {
+    "cartTitle": "ตะกร้าสินค้า",
+    "price": "ราคา",
+    "confirm": "ยืนยัน",
+    "total": "รวม",
+    "emptyCart": "ตะกร้าของคุณว่างเปล่า",
+    "confirmDeleteTitle": "คุณแน่ใจหรือ?",
+    "confirmDeleteText": "คุณจะไม่สามารถยกเลิกการลบได้!",
+    "confirmDeleteConfirm": "ใช่, ลบเลย!",
+    "deleteSuccess": "ลบสินค้าเรียบร้อย",
+    "deleteFailed": "การลบสินค้าในตะกร้าล้มเหลว",
+    "errorOccurred": "เกิดข้อผิดพลาด",
+    "updateFailed": "การอัปเดตรายการในตะกร้าล้มเหลว"    ,
+    "totalSale": "ยอดขาย",
+    "count": "ชิ้น"
+  },
+  "payment":{
+    "choose": "เลือกวิธีชำระเงิน",
+    "name" : "คุณ",
+    "rating" : "คะแนน",
+    "comment" : "ไม่มีคอมเมนต์"
+
+  },
+  "resetPassword": {
+    "title": "รีเซ็ตรหัสผ่าน",
+    "newPasswordPlaceholder": "รหัสผ่านใหม่",
+    "confirmPasswordPlaceholder": "ยืนยันรหัสผ่านใหม่",
+    "confirmButton": "ยืนยัน",
+    "passwordMismatch": "รหัสผ่านไม่ตรงกัน",
+    "successMessage": "รีเซ็ตรหัสผ่านสำเร็จแล้ว",
+    "errorMessage": "เกิดข้อผิดพลาดในการรีเซ็ตรหัสผ่าน"
+  },
+  "signup": {
+    "title": "สมัครสมาชิก",
+    "firstname": "ชื่อ",
+    "lastname": "นามสกุล",
+    "address": "ที่อยู่",
+    "email": "อีเมล",
+    "phonenumber": "เบอร์โทรศัพท์",
+    "password": "รหัสผ่าน",
+    "confirmPassword": "ยืนยันรหัสผ่าน",
+    "firstnamePlaceholder": "กรอกชื่อของคุณ",
+    "lastnamePlaceholder": "กรอกนามสกุลของคุณ",
+    "addressPlaceholder": "กรอกที่อยู่ของคุณ",
+    "emailPlaceholder": "กรอกอีเมลของคุณ",
+    "phonenumberPlaceholder": "กรอกเบอร์โทรศัพท์ของคุณ",
+    "passwordPlaceholder": "กรอกรหัสผ่านของคุณ",
+    "confirmPasswordPlaceholder": "ยืนยันรหัสผ่านของคุณ",
+    "submit": "สมัครสมาชิก"
+  },
+  "scrollText": [
+    "โปรโมชั่นสุดพิเศษสำหรับคุณ !!!",
+    "ส่งฟรีในทุกออเดอร์",
+    "วัตถุดิบสดใหม่ ส่งตรงถึงบ้าน",
+    "ตอบสนองความอยากโดยไม่ต้องออกจากบ้าน",
+    "ดีลสุดพิเศษที่คุณพลาดไม่ได้!",
+    "โทรหาเราสำหรับข้อเสนอสุดพิเศษ",
+    "เบอร์เกอร์ พิซซ่า และสเต็ก - งานเลี้ยงสำหรับคนรักอาหารทุกคน!",
+    "โทร 002 123 456 789"
+  ]
+  }
+  

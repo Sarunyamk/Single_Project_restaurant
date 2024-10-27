@@ -7,9 +7,12 @@ import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 
 import { getShowCommentUser } from "../api/comment-api";
 
+import { useTranslation } from 'react-i18next';
+
 export default function Comment() {
 
-  const text = "Our Client Comments";
+  const { t } = useTranslation();
+  const text = `${t('comment.text')}`
   const [clientComments, setClientComments] = useState([]);
 
   const [currentSlide, setCurrentSlide] = useState(0); // ตำแหน่งปัจจุบัน

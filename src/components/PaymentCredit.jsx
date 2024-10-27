@@ -6,8 +6,13 @@ import { Elements } from "@stripe/react-stripe-js";
 import { sendPublishKey, createPaymentStripe } from '../api/payment-api'
 
 import CheckoutFormCredit from "./CheckoutFormCredit";
+import { useTranslation } from 'react-i18next';
+
 
 function PaymentCredit({ amount }) {
+
+    const { t } = useTranslation();
+
 
     const [stripePromise, setStripePromise] = useState(null);
     const [clientSecret, setClientSecret] = useState("");
@@ -41,7 +46,7 @@ function PaymentCredit({ amount }) {
 
     return (
         <>
-            <h1 className='text-center'>Choose Payment</h1>
+            <h1 className='text-center'>{t('payment.choose')}</h1>
             {clientSecret && stripePromise && (
                 <Elements stripe={stripePromise} options={{ clientSecret }}>
                     <CheckoutFormCredit />

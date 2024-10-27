@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import { getShowPopularMenu } from '../api/menu-api'
+import { useTranslation } from 'react-i18next';
+
 
 export default function PopularMenu() {
+    const { t } = useTranslation();
+
 
     const [popularMenus, setPopularMenus] = useState([]);
 
@@ -19,7 +23,7 @@ export default function PopularMenu() {
         fetchPopularMenus();
     }, []);
 
-    const text = "Most Popular Menu";
+    const text = `${t('comment.text2')}`
 
     return (
         <div>
@@ -47,8 +51,8 @@ export default function PopularMenu() {
                                 <p className='px-4 text-red font-second'>{menu.description}</p>
                             </div>
                             <div>
-                                <h2 className='font-head text-yellow'>{menu.price} THB</h2>
-                                <h2 className='font-head text-yellow'>Total Sale : {menu.totalCount} count </h2>
+                                <h2 className='font-head text-yellow'>{menu.price} {t('menu.bath')}</h2>
+                                <h2 className='font-head text-yellow'>{t('cart.totalSale')} : {menu.totalCount} {t('cart.count')} </h2>
                             </div>
 
                         </div>

@@ -1,17 +1,14 @@
 import React from "react";
 
-export default function ScrollText() {
-  const textItems = [
-    "•  PROMOTION ONLY YOU !!!",
-    "Enjoy Free Delivery on All Orders ",
-    "Fresh Ingredients, Delivered Fast",
-    "Satisfy Your Cravings Without Leaving Home",
-    "A Delicious Deal You Can’t Miss!",
-    "Call Us for More Exciting Deals",
-    "Burgers, Pizzas, and Steaks A Feast for Every Food Lover!",
-    "Tel 002 123 456 789",
+import { useTranslation } from 'react-i18next';
 
-  ];
+
+export default function ScrollText() {
+
+  const { t } = useTranslation();
+
+  const textItems = t('scrollText', { returnObjects: true });
+
   return (
     <section className="relative bg-yellow py-4 overflow-hidden">
       <div className="whitespace-nowrap flex">

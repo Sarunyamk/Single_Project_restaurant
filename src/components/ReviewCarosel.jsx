@@ -10,9 +10,14 @@ import {
 } from "@/components/ui/carousel"
 
 import { getShowReviewMenu } from '../api/comment-api';
+import { useTranslation } from 'react-i18next';
+
 
 
 export default function CarouselDemo({ menuItemId, hdlClickOpenReview }) {
+
+    const { t } = useTranslation();
+
 
     const [comments, setComments] = useState([]);
 
@@ -41,9 +46,9 @@ export default function CarouselDemo({ menuItemId, hdlClickOpenReview }) {
                                     <Card>
                                         <CardContent className="flex aspect-square items-center justify-center p-6">
                                             <div className="text-center">
-                                                <h2 className="text-xl font-semibold">K. {comment.user.firstname}</h2>
+                                                <h2 className="text-xl font-semibold">{t('payment.name')} {comment.user.firstname}</h2>
                                                 <p className="text-md font-light mt-2">{comment.comment}</p>
-                                                <p className="text-lg mt-2">Rating: {comment.rating}</p>
+                                                <p className="text-lg mt-2">{t('payment.rating')}: {comment.rating}</p>
                                             </div>
                                         </CardContent>
                                     </Card>
@@ -51,13 +56,13 @@ export default function CarouselDemo({ menuItemId, hdlClickOpenReview }) {
                             </CarouselItem>
                         ))
                     ) : (
-                        <div className="text-center p-6">No comments available</div>
+                        <div className="text-center p-6">{t('payment.comment')}</div>
                     )}
                 </CarouselContent>
                 <CarouselPrevious />
                 <CarouselNext />
                 <button onClick={hdlClickOpenReview} className="absolute top-0 -right-10 underline font-head w-8 h-8 text-center text-yellow">
-                    Close
+                    {t('orderModal.close')}
                 </button>
             </Carousel>
         </div>

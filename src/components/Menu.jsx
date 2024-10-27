@@ -6,8 +6,13 @@ import useAppStore from '../stores/appStore';
 import { FaPizzaSlice } from "react-icons/fa";
 import { LuPizza } from "react-icons/lu";
 
+import { useTranslation } from 'react-i18next';
+
 
 export default function Menu() {
+
+  const { t } = useTranslation();
+
 
   const { menu, currentPage, itemsPerPage, setCurrentPage, fetchAllMenu } = useMenuStore();
 
@@ -78,11 +83,11 @@ export default function Menu() {
               <div>
                 <h3 className="text-lg font-bold  ">{item.menuName}</h3>
                 <p className="text-gray-600 text-xs my-3">{item.description}</p>
-                <p className="mt-2 text-red-500 font-semibold">{item.price} THB</p>
+                <p className="mt-2 text-red-500 font-semibold">{item.price} {t('menu.bath')}</p>
               </div>
               <div className='flex justify-center'>
                 <button className={`button1 ${isActive ? 'active1' : ''} `} onClick={() => { hdlOpenModal(item); animation() }}>
-                  <span className='p-2 text-slate-50'>Order Now</span>
+                  <span className='p-2 text-slate-50'>{t('menu.orderNow')}</span>
                   <div className='cart1 flex'>
                     <FaPizzaSlice className='svg1' />
                     <LuPizza className='svg2' />

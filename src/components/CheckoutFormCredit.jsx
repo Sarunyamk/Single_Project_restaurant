@@ -3,8 +3,11 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 
 import useAppStore from '../stores/appStore';
+import { useTranslation } from 'react-i18next';
 
 export default function CheckoutFormCredit() {
+
+    const { t } = useTranslation();
 
     const user = useAppStore((state) => state.user);
     const elements = useElements();
@@ -38,17 +41,17 @@ export default function CheckoutFormCredit() {
 
             if (error) {
 
-                if (error.type === "card_error" || error.type === "validation_error") {
-                    setMessage(error.message);
-                } else {
-                    setMessage("An unexpected error occurred.");
-                }
+                setMessage(
+                    error.type === "card_error" || error.type === "validation_error"
+                        ? t('checkoutForm.cardError')
+                        : t('checkoutForm.unexpectedError')
+                );
             }
 
             setIsProcessing(false);
         } catch (error) {
             console.error('Error confirming payment:', error);
-            setMessage('Payment confirmation failed.');
+            setMessage(t('checkoutForm.paymentFailed'));
         }
     };
 
@@ -58,7 +61,7 @@ export default function CheckoutFormCredit() {
             <button className=' w-full bg-green-500 mx-auto py-2 mt-2 rounded-lg font-head text-white'
                 disabled={isProcessing || !stripe || !elements} id="submit">
                 <span id="button-text " >
-                    {isProcessing ? "Processing ... " : "Pay now"}
+                    {isProcessing ? t('checkoutForm.processing') : t('checkoutForm.payNow')}
                 </span>
             </button>
 
