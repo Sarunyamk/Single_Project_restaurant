@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 
-import { getTotalSaleUnit } from '../api/report-apt';
+import { getTotalSaleUnit } from '../api/report-api';
 import useAppStore from '../stores/appStore';
 import Loading from '../components/Loading';
 

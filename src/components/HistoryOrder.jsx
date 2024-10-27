@@ -1,11 +1,9 @@
 
 
 import React, { useState } from 'react';
-import { create } from 'zustand';
+
 
 export default function HistoryOrder({ orders, onClose }) {
-    console.log(orders)
-
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">

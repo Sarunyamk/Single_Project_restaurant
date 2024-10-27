@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { getTotalSale } from '../api/report-apt'
+import { getTotalSale } from '../api/report-api'
 import useAppStore from '../stores/appStore';
 import Loading from '../components/Loading';
 

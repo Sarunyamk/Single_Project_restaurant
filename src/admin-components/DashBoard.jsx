@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Bar } from 'react-chartjs-2';
-import { getDashboard, getComments } from '../api/report-apt';
+import { getDashboard, getComments } from '../api/report-api';
 import 'chart.js/auto';
 import useAppStore from '../stores/appStore';
 import Loading from '../components/Loading';

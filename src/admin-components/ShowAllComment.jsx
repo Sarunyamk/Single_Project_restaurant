@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { getComments } from '../api/report-apt'
+import { getComments } from '../api/report-api'
 import Loading from '../components/Loading';
 import useAppStore from '../stores/appStore';
 
