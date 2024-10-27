@@ -7,6 +7,7 @@ import { MdEmail } from "react-icons/md";
 
 import { useTranslation } from 'react-i18next';
 
+
 export default function Footer() {
 
     const { t } = useTranslation();
@@ -68,6 +69,8 @@ export default function Footer() {
                                 </a>
                             ))}
                         </div>
+
+
                     </div>
                 </div>
             </footer>

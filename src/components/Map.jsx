@@ -55,7 +55,7 @@ const Map = () => {
   };
 
   return (
-    <div className="h-96 overflow-hidden shadow-2xl rounded-lg relative">
+    <div className="h-[500px] shadow-2xl rounded-lg relative">
       <MapContainer
         ref={mapRef}
         style={{ height: '100%', width: '100%' }}

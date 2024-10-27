@@ -198,7 +198,20 @@
     "Call Us for More Exciting Deals",
     "Burgers, Pizzas, and Steaks - A Feast for Every Food Lover!",
     "Tel 002 123 456 789"
-  ]
+  ],
+  "emailForm": {
+    "title": "Send an Email",
+    "recipientEmail": "Recipient Email",
+    "recipientPlaceholder": "Enter recipient email",
+    "subject": "Subject",
+    "subjectPlaceholder": "Enter subject",
+    "message": "Message",
+    "messagePlaceholder": "Enter your message",
+    "sendButton": "Send Email",
+    "loginToSend": "Please log in to send an email",
+    "failedToSend": "Failed to send email",
+    "adminRestriction": "Admins are not allowed to send email."
+  }
   
 
 

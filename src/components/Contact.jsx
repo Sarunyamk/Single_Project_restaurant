@@ -1,6 +1,7 @@
 import React from 'react'
 import Map from './Map'
 import { useTranslation } from 'react-i18next';
+import SendEmailForm from './SendEmailForm';
 
 
 export default function Contact() {
@@ -32,9 +33,12 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className='w-3/4 mx-auto flex my-20'>
-        <div className='bg-slate w-full'>
+      <section className='w-2/3 gap-10 mx-auto flex my-20 '>
+        <div className='w-2/3 '>
           <Map />
+        </div>
+        <div className='w-1/3'>
+          <SendEmailForm />
         </div>
       </section>
     </div>

@@ -175,8 +175,14 @@ export default function NavBar() {
                     </div>
                   )}
 
+
                 </div>
               </Link>
+              <div className='flex justify-center items-center gap-2 text-white'>
+                <button onClick={() => changeLanguage('en')} className=" hover:text-blue-800">EN  </button>
+                <p>/</p>
+                <button onClick={() => changeLanguage('th')} className="hover:text-blue-800"> TH</button>
+              </div>
             </div>
           ) : (
             <div className="flex gap-4 md:gap-10">
