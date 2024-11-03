@@ -11,6 +11,7 @@ export default function Completion(props) {
 
     const user = useAppStore((state) => state.user);
     const customerId = user.user.id
+    console.log(user, "user completion")
 
     useEffect(() => {
         async function clearCart() {

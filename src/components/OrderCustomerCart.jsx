@@ -40,7 +40,7 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                         setCartDetails(response.data.cart_Items);
 
                         const totalCount = response.data.cart_Items.reduce((acc, item) => acc + item.count, 0);
-                        setTotalCount(totalCount); // เก็บผลรวม count ลงใน state
+                        setTotalCount(totalCount);
 
                     }
                 } catch (error) {
