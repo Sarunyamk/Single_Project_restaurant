@@ -58,7 +58,7 @@ export default function CheckoutFormCredit() {
     return (
         <form id="payment-form" onSubmit={handleSubmit}>
             <PaymentElement id="payment-element" />
-            <button className=' w-full bg-green-500 mx-auto py-2 mt-2 rounded-lg font-head text-white'
+            <button className=' w-full bg-green-500 mx-auto py-2 mt-2 rounded-lg md:font-head text-white'
                 disabled={isProcessing || !stripe || !elements} id="submit">
                 <span id="button-text " >
                     {isProcessing ? t('checkoutForm.processing') : t('checkoutForm.payNow')}

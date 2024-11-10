@@ -64,16 +64,16 @@ export default function EditProfileCustomer() {
   ];
 
   return (
-    <div className='my-40 bg-red-gradient w-1/3 mx-auto p-6 rounded-lg'>
-      <h1 className='text-center font-main text-yellow my-4'>{t('profile.title')}</h1>
+    <div className="my-40 bg-red-gradient w-4/5 md:w-1/2 lg:w-1/3 mx-auto p-6 rounded-lg">
+      <h1 className="text-center font-main text-yellow my-4 text-xl md:text-2xl">{t('profile.title')}</h1>
 
-      <form onSubmit={handleUpdateProfile} className='space-y-4 w-full flex flex-col '>
+      <form onSubmit={handleUpdateProfile} className="space-y-4 w-full flex flex-col">
         {inputs.map((input, index) => (
-          <div key={index} className='justify-start items-center mb-2'>
-            <div className='flex flex-col'>
-              <p className='w-32 text-left'>{input.label} :</p>
+          <div key={index} className="justify-start items-center mb-2">
+            <div className="flex flex-col">
+              <p className="text-left text-sm md:text-base">{input.label} :</p>
               <input
-                className='p-2 border rounded-md outline-none'
+                className="p-2 border rounded-md outline-none w-full"
                 type={input.type}
                 name={input.name}
                 value={user[input.name] || ''}
@@ -81,14 +81,18 @@ export default function EditProfileCustomer() {
                 placeholder={input.placeholder}
               />
             </div>
-            {formatError[input.name] && <p className="text-red-500 text-sm">{formatError[input.name]}</p>}
+            {formatError[input.name] && <p className="text-red-500 text-xs md:text-sm">{formatError[input.name]}</p>}
           </div>
         ))}
-        <button type='submit' className='bg-yellow text-white p-5 font-head rounded-xl w-1/3 mx-auto cursor-pointer '>
+        <button
+          type="submit"
+          className="bg-yellow text-white p-3 md:p-5 md:font-head rounded-xl w-full md:w-1/3 mx-auto cursor-pointer"
+        >
           {t('profile.confirmButton')}
         </button>
       </form>
     </div>
+
   );
 }
 

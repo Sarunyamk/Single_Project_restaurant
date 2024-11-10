@@ -5,10 +5,10 @@ import bgMainVideo from '../assets/BgSausage.mp4'
 
 export default function BackGroundSausage() {
   return (
-    <div id='home'>
+    <div id='home' className='mt-20'>
       <div className='relative'>
         <section  >
-          <h1 className='text-shadow text-white text-center font-extrabold  absolute top-72 left-1/2 transform -translate-x-1/2 z-5'>
+          <h1 className=' hidden md:block text-shadow text-white text-center font-extrabold  absolute top-72 left-1/2 transform -translate-x-1/2 z-5'>
 
             <TypeAnimation
               sequence={[

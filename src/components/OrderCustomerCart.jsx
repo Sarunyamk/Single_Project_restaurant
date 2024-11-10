@@ -121,11 +121,11 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
 
     return (
         <div onClick={onClose} className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-            <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-3xl h-[500px] bg-white rounded-xl shadow-lg overflow-hidden">
+            <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-3xl h-[500px] bg-white rounded-xl shadow-lg overflow-hidden mx-10">
                 <button onClick={onClose} className="absolute top-2 right-2 text-white font-bold text-lg hover:text-yellow"> X </button>
                 <section className='flex flex-col w-full h-full'>
                     <div className='bg-red-gradient h-16 flex justify-center items-center text-white'>
-                        <h1 className='text-center text-yellow font-main'>{t('cart.cartTitle')}</h1>
+                        <h1 className='text-center text-yellow text-xl md:font-main'>{t('cart.cartTitle')}</h1>
                     </div>
                     <div className='flex-1 overflow-y-auto p-4'>
                         {cartDetails.length > 0 ? (
@@ -155,18 +155,18 @@ export default function OrderCustomerCart({ isOpen, onClose }) {
                             ))
                         ) : (
                             <div className='flex justify-center items-center h-full'>
-                                <p className='text-center font-head text-gray-500'>{t('cart.emptyCart')}</p>
+                                <p className='text-center text-lg md:font-head text-gray-500'>{t('cart.emptyCart')}</p>
                             </div>
                         )}
                     </div>
                     <div className='bg-red-gradient h-16 flex items-center justify-between px-4 text-white'>
                         <button onClick={openCheckout}
-                            className={`font-head p-1 rounded-md bg-yellow w-32 hover:scale-105 duration-300 ${cartDetails.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            className={`text-lg md:font-headd p-1 rounded-md bg-yellow w-32 hover:scale-105 duration-300 ${cartDetails.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
                             disabled={cartDetails.length === 0} > {t('cart.confirm')} </button>
 
                         <div className='flex items-center gap-4'>
                             <h1>{t('cart.total')}:</h1>
-                            <h1 className='w-32 p-2 rounded-md bg-white text-red font-head text-center'>{totalAmount}</h1>
+                            <h1 className='w-32 p-2 rounded-md bg-white text-red text-lg md:font-head text-center'>{totalAmount}</h1>
                             <h1>{t('menu.bath')}</h1>
                         </div>
                     </div>

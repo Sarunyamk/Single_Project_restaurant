@@ -57,81 +57,58 @@ export default function Comment() {
 
 
   return (
-    <div className="m-32">
-      <div className="flex items-center justify-center ">
-        <h1 className="font-title my-20 text-yellow wave-text">
+    <div className="m-10 sm:m-20 lg:m-32">
+      <div className="flex items-center justify-center">
+        <h1 className="md:font-title my-10 lg:my-20 text-yellow wave-text text-3xl">
           {text.split("").map((letter, index) => (
-            <span
-              key={index}
-              className="wave-letter"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
+            <span key={index} className="wave-letter" style={{ animationDelay: `${index * 0.1}s` }}>
               {letter}
             </span>
           ))}
         </h1>
       </div>
-      <RiDoubleQuotesL className="w-20 h-20 mb-10" />
-
+      <RiDoubleQuotesL className="w-10 h-10 sm:w-20 sm:h-20 mb-5 lg:mb-10" />
       <section className='flex items-center justify-center'>
         <div className='overflow-hidden w-4/5'>
           <div
             ref={sliderRef}
             className='flex transition-transform duration-300'
-            onTransitionEnd={handleTransitionEnd} // เรียกใช้เมื่อการเลื่อนสิ้นสุด
+            onTransitionEnd={handleTransitionEnd}
             style={{ transform: `translateX(-${currentSlide * (100 / visibleSlides)}%)` }}
           >
-            <figure
-
-              className='flex-shrink-0 w-1/4 border-2 rounded-lg flex flex-col justify-between h-72 items-center'
-            >
-              <div className="mx-auto flex flex-col justify-center items-center h-full">
+            <figure className='flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 border-2 rounded-lg flex flex-col justify-center items-center h-60 md:h-72'>
+              <div className="flex flex-col items-center">
                 <h3>THANK YOU</h3>
                 <h3>FOR EVERY ORDER</h3>
               </div>
-
             </figure>
-
             {clientComments.map((comment, index) => (
-              <div
-                key={index}
-                className='flex-shrink-0 w-1/4 border-2 rounded-lg h-72 flex flex-col justify-between items-center'
-              >
-                <div className="h-2/5 w-full flex flex-col justify-start items-center  mt-3">
+              <div key={index} className='flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 border-2 rounded-lg h-60 md:h-72 flex flex-col justify-between items-center'>
+                <div className="h-2/5 w-full flex flex-col justify-start items-center mt-3">
                   <h3 className="font-head text-lg text-gray-800 uppercase">{comment.user.firstname}</h3>
                   <p className="italic p-3 font-second text-gray-600 text-center">{`" ${comment.comment} "`}</p>
                 </div>
-
                 <div className="h-3/5 w-full flex flex-col justify-start mt-2 items-center">
                   <h3 className="font-bold text-gray-700 mb-2">Ordered Menus:</h3>
                   <ul className="font-second text-gray-600 list-disc list-inside">
                     {comment.order?.order_detail?.slice(0, 4).map((detail) => (
                       <li key={detail.id}>{detail.item?.menuName}</li>
                     )) || <li>No items ordered</li>}
-                    {comment.order?.order_detail?.length >= 4 && (
-                      <li key="more">...</li>
-                    )}
+                    {comment.order?.order_detail?.length >= 4 && <li key="more">...</li>}
                   </ul>
                 </div>
               </div>
             ))}
-
-            <figure
-
-              className='flex-shrink-0 w-1/4 border-2 rounded-lg flex flex-col justify-between h-72 items-center'
-            >
-              <div className="mx-auto flex flex-col justify-center items-center h-full">
+            <figure className='flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 border-2 rounded-lg flex flex-col justify-center items-center h-60 md:h-72'>
+              <div className="flex flex-col items-center">
                 <h3>THANK YOU</h3>
                 <h3>FOR EVERY ORDER</h3>
               </div>
-
             </figure>
-
           </div>
         </div>
       </section>
-
-      <RiDoubleQuotesR className="w-20 h-20 float-end mt-10" />
+      <RiDoubleQuotesR className="w-10 h-10 sm:w-20 sm:h-20 mt-5 lg:mt-10" />
     </div>
   );
 }

@@ -28,7 +28,7 @@ export default function PopularMenu() {
     return (
         <div>
             <div className="flex items-center justify-center ">
-                <h1 className='font-title my-32 text-yellow wave-text'>
+                <h1 className='md:font-title my-10 lg:my-20 text-yellow wave-text text-3xl'>
                     {text.split("").map((letter, index) => (
                         <span key={index} className="wave-letter" style={{ animationDelay: `${index * 0.1}s` }}>
                             {letter}
@@ -37,7 +37,7 @@ export default function PopularMenu() {
                 </h1>
             </div>
 
-            <section className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mx-40'>
+            <section className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4 md:mx-40'>
                 {popularMenus.map((menu, index) => (
                     <div className='w-3/4  mx-auto text-center hover:scale-110 duration-500' key={index}>
                         <div className='h-1/2'>
@@ -47,12 +47,12 @@ export default function PopularMenu() {
                         </div>
                         <div className='h-1/2 flex flex-col justify-around'>
                             <div>
-                                <h1 className='font-main text-yellow '>{menu.menuName}</h1>
+                                <h1 className='text-xl md:font-main text-yellow '>{menu.menuName}</h1>
                                 <p className='px-4 text-red font-second'>{menu.description}</p>
                             </div>
                             <div>
-                                <h2 className='font-head text-yellow'>{menu.price} {t('menu.bath')}</h2>
-                                <h2 className='font-head text-yellow'>{t('cart.totalSale')} : {menu.totalCount} {t('cart.count')} </h2>
+                                <h2 className='md:font-head text-yellow'>{menu.price} {t('menu.bath')}</h2>
+                                <h2 className='md:font-head text-yellow'>{t('cart.totalSale')} : {menu.totalCount} {t('cart.count')} </h2>
                             </div>
 
                         </div>

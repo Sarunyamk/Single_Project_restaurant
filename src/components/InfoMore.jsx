@@ -13,7 +13,7 @@ export default function InfoMore() {
 
     return (
         <div>
-            <div className='text-red mx-auto my-40 flex justify-center items-center'>
+            <div className='text-red mx-auto my-20 flex justify-center items-center'>
                 <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 mx-8'>
 
                     <Link to='/about'>

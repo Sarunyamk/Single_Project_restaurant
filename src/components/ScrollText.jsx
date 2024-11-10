@@ -10,7 +10,7 @@ export default function ScrollText() {
   const textItems = t('scrollText', { returnObjects: true });
 
   return (
-    <section className="relative bg-yellow py-4 overflow-hidden">
+    <section className="relative  hidden md:block bg-yellow py-4 overflow-hidden">
       <div className="whitespace-nowrap flex">
         <div className=" text-scroll-left inline-block">
 

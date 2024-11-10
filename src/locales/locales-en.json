@@ -10,7 +10,9 @@
       "setting": "Setting",
       "logout": "Logout",
       "signup": "Sign Up",
-      "login": "Login"
+      "login": "Login",
+      "order": "Cart",
+      "more":"more..."
     },
     "about": {
       "title": "About Us",

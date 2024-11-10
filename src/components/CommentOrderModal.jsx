@@ -46,7 +46,7 @@ export default function CommentOrdersModal({ orders, onClose }) {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
             <div className="relative w-full max-w-lg bg-white rounded-xl shadow-lg p-6">
-                <h2 className="text-center font-main text-yellow mb-4">{t('orderModal.yourOrders')}</h2>
+                <h2 className="text-center text-xl md:font-main text-yellow mb-4">{t('orderModal.yourOrders')}</h2>
                 <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     {orders.map(order => (
                         <div key={order.id} className="mb-4">

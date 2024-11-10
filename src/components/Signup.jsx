@@ -84,33 +84,41 @@ export default function Signup() {
 
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className='bg-red-gradient w-1/3 mx-auto my-40 p-6 flex flex-col justify-center items-center gap-4 rounded-lg'>
-        <h1 className='font-main text-yellow mt-3'>{t('signup.title')}</h1>
+    <div className='p-4 sm:p-6 md:p-10 mt-10'>
+      <form
+        onSubmit={handleSubmit}
+        className='bg-red-gradient w-full sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto my-20 p-4 sm:p-6 md:p-8 flex flex-col justify-center items-center gap-4 rounded-lg'>
+
+        <h1 className='font-main text-yellow mt-3 text-lg sm:text-xl md:text-2xl'>{t('signup.title')}</h1>
 
         {inputs.map((input, index) => (
           <div key={index} className='w-full flex flex-col'>
-            <div className='flex items-center h-12'>
-              <label className='text-yellow font-bold w-1/3 text-right pr-4' htmlFor={input.name}>
+            <div className='flex flex-col sm:flex-row items-start sm:items-center h-auto sm:h-12'>
+              <label
+                className='text-yellow font-bold w-full sm:w-1/3 text-left sm:text-right pr-0 sm:pr-4 mb-2 sm:mb-0'
+                htmlFor={input.name}>
                 {input.label} :
               </label>
               <input
                 name={input.name}
                 value={form[input.name] || ''}
                 onChange={handleChange}
-                className='p-2 outline-yellow-500 w-2/3 rounded-md'
+                className='p-2 outline-yellow-500 w-full sm:w-2/3 rounded-md'
                 type={input.type}
                 placeholder={input.placeholder}
               />
             </div>
-            <div className='w-2/3 ml-auto text-right'>
+            <div className='w-full sm:w-2/3 ml-0 sm:ml-auto text-left sm:text-right'>
               {formatError[input.name] && <p className='text-gray-300 text-xs'>{formatError[input.name]}</p>}
             </div>
           </div>
         ))}
 
-        <button className='bg-yellow p-4 m-2 font-head rounded-xl text-white'>{t('signup.submit')}</button>
+        <button className='bg-yellow p-2 sm:p-4 m-2 font-head rounded-xl text-white text-sm sm:text-base'>
+          {t('signup.submit')}
+        </button>
       </form>
     </div>
+
   )
 }

@@ -138,39 +138,41 @@ export default function ModalDetail() {
   return (
     <div>
       <section className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-        <div className="relative w-1/2 h-[400px] mx-auto rounded-xl bg-slate-100 flex items-center justify-center z-50">
-          <div className="w-1/2 flex justify-center items-center">
+        <div className="relative w-4/5 md:w-1/2 h-[600px] mx-auto rounded-xl bg-slate-100 flex flex-col items-center justify-center z-50">
+          <div className=" flex justify-center items-center">
             <img className="object-cover w-60 h-60" src={selectedItem.image} alt="" />
           </div>
 
-          <div className="w-1/2 text-slate-800 flex flex-col gap-4" key={selectedItem.id}>
-            <h1 className="font-main">{selectedItem.menuName}</h1>
-            <h2 className="font-head">{t('modalDetail.price')}: {selectedItem.price} {t('menu.bath')}</h2>
-            <p className="font-second min-w-full pr-4">{selectedItem.description}</p>
+          <div className="mx-10 text-slate-800 flex flex-col gap-4" key={selectedItem.id}>
+            <h1 className="md:font-main">{selectedItem.menuName}</h1>
+            <h2 className="md:font-head">{t('modalDetail.price')}: {selectedItem.price} {t('menu.bath')}</h2>
+            <p className="font-second min-w-full">{selectedItem.description}</p>
             <div className="flex mx-auto justify-center items-baseline">
               <button onClick={hdlcountDecrement} className="w-8 h-8 font-head hover:text-yellow">-</button>
-              <h1 id="quantity" className="font-main w-10 h-10 text-center">{count}</h1>
+              <h1 id="quantity" className="md:font-main w-10 h-10 text-center">{count}</h1>
               <button onClick={hdlcountIncrement} className="w-8 h-8 font-head hover:text-yellow">+</button>
             </div>
 
-            <button className={`button ${isActive ? 'active' : ''} `} onClick={() => { hdlCheckLogin(); animation(); }}>
-              <span className='m-2'>{t('modalDetail.addToCart')}</span>
-              <div className='cart '>
-                <svg className='svg' viewBox='0 0 36 26'>
-                  <polyline points='1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5'></polyline>
-                  <polyline points='15 13.5 17 15.5 22 10.5'></polyline>
-                </svg>
-              </div>
-            </button>
 
-            <p className="font-head">{t('modalDetail.total')}: {count * selectedItem.price} {t('menu.bath')}</p>
+
+
+            <p className="md:font-head">{t('modalDetail.total')}: {count * selectedItem.price} {t('menu.bath')}</p>
             <button onClick={() => hdlCloseModal()} className="absolute top-0 right-0 font-head w-8 h-8 text-center">
               X
             </button>
-            <button onClick={hdlClickOpenReview} className="absolute top-5 right-10 font-head text-center underline text-yellow hover:scale-110 duration-300">
+            <button onClick={hdlClickOpenReview} className="absolute top-5 right-10 md:font-head text-center underline text-yellow hover:scale-110 duration-300">
               {t('modalDetail.review')}
             </button>
           </div>
+          <button className={` items-center justify-center button ${isActive ? 'active' : ''} `} onClick={() => { hdlCheckLogin(); animation(); }}>
+            <span className='text-sm md:font-head'>{t('modalDetail.addToCart')}</span>
+            <div className='cart '>
+              <svg className='svg' viewBox='0 0 36 26'>
+                <polyline points='1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5'></polyline>
+                <polyline points='15 13.5 17 15.5 22 10.5'></polyline>
+              </svg>
+            </div>
+          </button>
           {isReviewOpen && <ReviewCarosel hdlClickOpenReview={hdlClickOpenReview} menuItemId={selectedItem.id} />}
         </div>
       </section>

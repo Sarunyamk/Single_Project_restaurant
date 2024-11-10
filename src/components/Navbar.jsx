@@ -18,6 +18,8 @@ import HistoryOrder from './HistoryOrder';
 import { useTranslation } from 'react-i18next';
 // นำเข้า changeLanguage จาก i18n
 import { changeLanguage } from '../i18n';
+import { FiMenu, FiX } from 'react-icons/fi';
+
 
 
 export default function NavBar() {
@@ -38,6 +40,8 @@ export default function NavBar() {
   const [isHistoryModalOpen, setHistoryModalOpen] = useState(false);
   const [orders, setOrders] = useState([]);
 
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMoreMenuOpen, setMoreMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -107,52 +111,44 @@ export default function NavBar() {
 
   return (
     <div>
-
-      <nav className="top-0 left-0 w-full flex justify-between px-4 md:px-8 h-24 items-center bg-red-gradient fixed z-20">
-
-        <div className="w-32 h-20 md:w-40 md:h-24">
-          <img src={myLogo} className="w-full h-full object-contain" alt="Logo" />
-        </div>
-
-
-        <div className="hidden md:flex gap-8 text-white">
-          <Link to="/" className="font-head">{t('navbar.home')}</Link>
-          <Link to="/about" className="font-head">{t('navbar.about')}</Link>
-          <Link to="/menu" className="font-head">{t('navbar.menu')}</Link>
-          <Link to="/contact" className="font-head">{t('navbar.contact')}</Link>
-        </div>
-
-        <div className="md:hidden flex items-center">
-          <button onClick={toggleMenu} className="text-white">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-          </button>
-        </div>
+      <nav className="fixed inset-x-0 top-0 z-50 bg-red-gradient shadow-sm w-full flex px-8 md:px-8 h-24 items-center">
+        <div className="w-full flex justify-between items-center">
+          <Link to="/" className="flex items-center">
+            <img src={myLogo} className="w-20 h-20 object-contain" alt="Logo" />
+          </Link>
 
 
-        <div>
-          {user ? (
-            <div className="flex gap-10 items-center">
-              <div className="relative">
-                <div className="flex items-end text-yellow">
-                  <h3 className="font-main">
-                    {t('navbar.hello')} <span onClick={toggleDropdownUser} className="uppercase tracking-wider cursor-pointer">
-                      {user.user.firstname}
-                    </span>
-                  </h3>
-                  <IoMdArrowDropdown className="cursor-pointer" onClick={toggleDropdownUser} />
+          {/* Links for Large Screen */}
+          <div className="hidden md:flex gap-8 text-white ">
+            <Link to="/" className="font-head hover:text-yellow">{t('navbar.home')}</Link>
+            <Link to="/about" className="font-head hover:text-yellow">{t('navbar.about')}</Link>
+            <Link to="/menu" className="font-head hover:text-yellow">{t('navbar.menu')}</Link>
+            <Link to="/contact" className="font-head hover:text-yellow">{t('navbar.contact')}</Link>
+          </div>
+          <div className="hidden md:flex gap-8 text-black">
+            {user ? (
+              <div className="flex items-center space-x-2  cursor-pointer" >
+                <div className="relative w-10 h-10 flex items-center justify-center rounded-full bg-yellow-500 text-white font-bold">
+                  <span onClick={toggleDropdownUser} className="uppercase tracking-wider cursor-pointer">
+                    {user.user.firstname.charAt(0).toUpperCase()}
+                  </span>
                 </div>
+                <IoMdArrowDropdown className=" cursor-pointer text-black" onClick={toggleDropdownUser} />
                 {isDropdownUserOpen && (
-                  <div className="absolute mt-2 w-32 top-6 right-0 bg-white rounded-md shadow-lg">
+                  <div className="absolute top-20 bg-white rounded-md shadow-lg" onClick={() => setDropdownUserOpen(false)}>
                     <ul className="py-2">
                       <li>
                         <Link onClick={openHistoryModal} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                           {t('navbar.history')}
                         </Link>
+
+                      </li>
+                      <li>
                         <Link onClick={openCommentModal} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                           {t('navbar.comment')}
                         </Link>
+                      </li>
+                      <li>
                         <Link to="/settingcustomer" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                           {t('navbar.setting')}
                         </Link>
@@ -165,54 +161,99 @@ export default function NavBar() {
                     </ul>
                   </div>
                 )}
+                <Link>
+                  <div onClick={openCartModal} className="w-8 h-8 relative">
+                    <FaCartShopping className="w-8 h-8 text-white hover:text-yellow" />
+                    {totalCount > 0 && (
+                      <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-yellow text-xs flex items-center justify-center">
+                        {totalCount} {/* แสดงจำนวนสินค้าในตะกร้า */}
+                      </div>
+                    )}
+
+
+                  </div>
+                </Link>
               </div>
-              <Link>
-                <div onClick={openCartModal} className="w-8 h-8 relative">
-                  <FaCartShopping className="w-8 h-8 text-white hover:text-yellow" />
-                  {totalCount > 0 && (
-                    <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-yellow text-xs flex items-center justify-center">
-                      {totalCount} {/* แสดงจำนวนสินค้าในตะกร้า */}
+            ) : (
+              <div className="flex gap-10 text-black">
+                <Link to="/signup" className="font-head underline text-yellow">{t('navbar.signup')}</Link>
+                <Link to="/login" className="font-head underline text-yellow">{t('navbar.login')}</Link>
+              </div>
+            )}
+            <div className="flex items-center sm:justify-end space-x-2 ">
+              <button onClick={() => changeLanguage('en')} className=" hover:text-yellow">EN  </button>
+              <p>/</p>
+              <button onClick={() => changeLanguage('th')} className="hover:text-yellow"> TH</button>
+
+
+
+            </div>
+          </div>
+
+
+        </div>
+        <div className='flex items-center md:hidden space-x-2'>
+          <button onClick={() => changeLanguage('en')} className=" hover:text-yellow">EN  </button>
+          <p>/</p>
+          <button onClick={() => changeLanguage('th')} className="hover:text-yellow"> TH</button>
+        </div>
+        <div className="flex items-center md:hidden space-x-2">
+
+          <button onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} className="ml-4">
+            {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+
+
+        </div>
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-20 left-0 w-full bg-white shadow-lg z-40 text-center">
+
+            <div className="flex flex-col space-y-1">
+              <Link to="/" className="block py-2 text-gray-700 bg-blue-100" onClick={() => setMobileMenuOpen(false)}>{t('navbar.home')}</Link>
+              <Link to="/about" className="block py-2 text-gray-700 bg-blue-100" onClick={() => setMobileMenuOpen(false)}>{t('navbar.about')}</Link>
+              <Link to="/menu" className="block py-2 text-gray-700 bg-blue-100" onClick={() => setMobileMenuOpen(false)}>{t('navbar.menu')}</Link>
+              <Link to="/contact" className="block py-2 text-gray-700 bg-blue-100" onClick={() => setMobileMenuOpen(false)}>{t('navbar.contact')}</Link>
+
+              {user ? (
+                <>
+                  <div className="block py-2 text-gray-700 bg-blue-100 cursor-pointer" onClick={() => setMoreMenuOpen(!isMoreMenuOpen)}>{t('navbar.more')}</div>
+                  {isMoreMenuOpen && (
+                    <div className="space-y-2">
+                      <div onClick={openCartModal} className="block py-2 text-gray-700 cursor-pointer hover:bg-gray-100">
+                        {t('navbar.order')}
+                      </div>
+                      <div onClick={openHistoryModal} className="block py-2 text-gray-700 cursor-pointer hover:bg-gray-100">
+                        {t('navbar.history')}
+                      </div>
+                      <div onClick={openCommentModal} className="block py-2 text-gray-700 cursor-pointer hover:bg-gray-100">
+                        {t('navbar.comment')}
+                      </div>
+                      <Link to="/settingcustomer" className="block py-2 text-gray-700 cursor-pointer hover:bg-gray-100" onClick={() => setMobileMenuOpen(false)}>
+                        {t('navbar.setting')}
+                      </Link>
                     </div>
                   )}
+                  <Link onClick={hdlClickLogout} to="/login" className="block py-2 text-gray-700 bg-blue-100" >
+                    {t('navbar.logout')}
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/signup" className="block py-2 bg-blue-100 underline text-yellow" onClick={() => setMobileMenuOpen(false)}>{t('navbar.signup')} </Link>
+                  <Link to="/login" className="block py-2 bg-blue-100 underline text-yellow" onClick={() => setMobileMenuOpen(false)}>{t('navbar.login')}</Link>
+                </>
+              )}
 
-
-                </div>
-              </Link>
-              <div className='flex justify-center items-center gap-2 text-white'>
-                <button onClick={() => changeLanguage('en')} className=" hover:text-blue-800">EN  </button>
-                <p>/</p>
-                <button onClick={() => changeLanguage('th')} className="hover:text-blue-800"> TH</button>
-              </div>
             </div>
-          ) : (
-            <div className="flex gap-4 md:gap-10">
-              <Link to="/signup" className="font-head underline text-yellow">{t('navbar.signup')}</Link>
-              <Link to="/login" className="font-head underline text-yellow">{t('navbar.login')}</Link>
-              <div className='flex justify-center items-center gap-2 text-white'>
-                <button onClick={() => changeLanguage('en')} className=" hover:text-blue-800">EN  </button>
-                <p>/</p>
-                <button onClick={() => changeLanguage('th')} className="hover:text-blue-800"> TH</button>
-              </div>
-            </div>
-          )}
-
-        </div>
+          </div>
+        )}
       </nav>
-
-
-      {isMenuOpen && (
-        <div className="md:hidden absolute top-24 left-0 w-full bg-red-gradient flex flex-col items-center gap-4 text-white py-4 z-50">
-          <Link to="/" className="font-head">Home</Link>
-          <Link to="/about" className="font-head">About</Link>
-          <Link to="/menu" className="font-head">Menu</Link>
-          <Link to="/contact" className="font-head">Contact</Link>
-        </div>
-      )}
-
       {isCartModalOpen && <OrderCustomerCart isOpen={isCartModalOpen} onClose={closeCartModal} />}
       {isCommentModalOpen && <CommentOrdersModal orders={orders} onClose={closeCommentModal} />}
       {isHistoryModalOpen && <HistoryOrder orders={orders} onClose={closeHistoryModal} />}
     </div>
+
   );
 }
 

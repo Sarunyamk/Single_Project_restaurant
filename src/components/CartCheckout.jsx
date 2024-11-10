@@ -26,8 +26,8 @@ export default function CartCheckout({ totalAmount, closeCheckout, closeOrderCar
         <div>
             {isCheckoutOpen && (
                 <div onClick={closeCheckout} className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-                    <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-lg bg-white rounded-xl shadow-lg p-6">
-                        <h2 className='text-center font-main text-yellow mb-4'>{t('checkout.title')}</h2>
+                    <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-lg bg-white rounded-xl shadow-lg p-6 mx-10">
+                        <h2 className='text-center text-xl md:font-main text-yellow mb-4'>{t('checkout.title')}</h2>
                         <div className='flex flex-col gap-4 text-yellow'>
                             <p className='text-lg font-bold '>{t('checkout.customerName')}: <span className='text-black'>{user.user.firstname}</span></p>
                             <p className='text-lg font-bold'>{t('checkout.address')}: <span className='text-black'>{user.user.address}</span></p>
