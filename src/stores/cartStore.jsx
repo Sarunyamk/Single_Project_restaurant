@@ -30,5 +30,3 @@ const useCartStore = create((set) => ({
 
 export default useCartStore
 
-
-
